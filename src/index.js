@@ -65,4 +65,180 @@ class ElementWrapper {
     });
     return this;
   }
+
+  #on(event, callback) {
+    this.elements.forEach(el => el.addEventListener(event, callback));
+    return this;
+  }
+
+  /**
+   * Attach a click event listener to all elements
+   * @param {Function} callback - The function to call when the event occurs
+   * @returns {ElementWrapper}
+   */
+  onClick(callback) {
+    return this.#on('click', callback);
+  }
+
+  /**
+   * Attach a mouseover event listener to all elements
+   * @param {Function} callback - The function to call when the event occurs
+   * @returns {ElementWrapper}
+   */
+  onMouseOver(callback) {
+    return this.#on('mouseover', callback);
+  }
+
+  /**
+   * Attach a mouseout event listener to all elements
+   * @param {Function} callback - The function to call when the event occurs
+   * @returns {ElementWrapper}
+   */
+  onMouseOut(callback) {
+    return this.#on('mouseout', callback);
+  }
+
+  /**
+   * Attach a change event listener to all elements
+   * @param {Function} callback - The function to call when the event occurs
+   * @returns {ElementWrapper}
+   */
+  onChange(callback) {
+    return this.#on('change', callback);
+  }
+
+  /**
+   * Attach an input event listener to all elements
+   * @param {Function} callback - The function to call when the event occurs
+   * @returns {ElementWrapper}
+   */
+  onInput(callback) {
+    return this.#on('input', callback);
+  }
+
+  /**
+   * Attach a submit event listener to all elements
+   * @param {Function} callback - The function to call when the event occurs
+   * @returns {ElementWrapper}
+   */
+  onSubmit(callback) {
+    return this.#on('submit', callback);
+  }
+
+  /**
+   * Attach a focus event listener to all elements
+   * @param {Function} callback - The function to call when the event occurs
+   * @returns {ElementWrapper}
+   */
+  onFocus(callback) {
+    return this.#on('focus', callback);
+  }
+
+  /**
+   * Attach a blur event listener to all elements
+   * @param {Function} callback - The function to call when the event occurs
+   * @returns {ElementWrapper}
+   */
+  onBlur(callback) {
+    return this.#on('blur', callback);
+  }
+
+  /**
+   * Attach a keydown event listener to all elements
+   * @param {Function} callback - The function to call when the event occurs
+   * @returns {ElementWrapper}
+   */
+  onKeyDown(callback) {
+    return this.#on('keydown', callback);
+  }
+
+  /**
+   * Attach a keyup event listener to all elements
+   * @param {Function} callback - The function to call when the event occurs
+   * @returns {ElementWrapper}
+   */
+  onKeyUp(callback) {
+    return this.#on('keyup', callback);
+  }
+
+  /**
+   * Attach a keypress event listener to all elements
+   * @param {Function} callback - The function to call when the event occurs
+   * @returns {ElementWrapper}
+   */
+  onKeyPress(callback) {
+    return this.#on('keypress', callback);
+  }
+
+  /**
+   * Attach a double-click event listener to all elements
+   * @param {Function} callback - The function to call when the event occurs
+   * @returns {ElementWrapper}
+   */
+  onDblClick(callback) {
+    return this.#on('dblclick', callback);
+  }
+
+  /**
+   * Attach a contextmenu event listener to all elements
+   * @param {Function} callback - The function to call when the event occurs
+   * @returns {ElementWrapper}
+   */
+  onContextMenu(callback) {
+    return this.#on('contextmenu', callback);
+  }
+
+  /**
+   * Attach a scroll event listener to all elements
+   * @param {Function} callback - The function to call when the event occurs
+   * @returns {ElementWrapper}
+   */
+  onScroll(callback) {
+    return this.#on('scroll', callback);
+  }
+
+  /**
+   * Attach a resize event listener to all elements
+   * @param {Function} callback - The function to call when the event occurs
+   * @returns {ElementWrapper}
+   */
+  onResize(callback) {
+    return this.#on('resize', callback);
+  }
+
+  /**
+   * Attach a load event listener to all elements
+   * @param {Function} callback - The function to call when the event occurs
+   * @returns {ElementWrapper}
+   */
+  onLoad(callback) {
+    return this.#on('load', callback);
+  }
+
+  /**
+   * Attach an unload event listener to all elements
+   * @param {Function} callback - The function to call when the event occurs
+   * @returns {ElementWrapper}
+   */
+  onUnload(callback) {
+    return this.#on('unload', callback);
+  }
+
+  /**
+   * Attach a drag event listener to all elements
+   * @param {Function} callback - The function to call when the event occurs
+   * @returns {ElementWrapper}
+   */
+  onDrag(callback) {
+    return this.#on('drag', callback);
+  }
+
+  /**
+   * Attach a drop event listener to all elements
+   * @param {Function} callback - The function to call when the event occurs
+   * @returns {ElementWrapper}
+   */
+  onDrop(callback) {
+    return this.#on('drop', callback);
+  }
 }
