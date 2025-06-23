@@ -66,6 +66,24 @@ class ElementWrapper {
     return this;
   }
 
+  /**
+   *  Get the array of elements
+   * @returns {Array<HTMLElement>}
+   */
+  getArray() {
+    return Array.from(this.elements);
+  }
+
+  /**
+   * Get the NodeList of elements
+   * @returns {NodeList}
+   */
+  getNodeList() {
+    return this.elements instanceof NodeList
+      ? this.elements
+      : document.querySelectorAll(this.elements);
+  }
+
   #on(event, callback) {
     this.elements.forEach(el => el.addEventListener(event, callback));
     return this;
