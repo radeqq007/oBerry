@@ -48,6 +48,26 @@ export class ElementWrapper {
   }
 
   /**
+   * Set the inner HTML of all elements
+   * @param {string} content
+   */
+  setHTML(content) {
+    this.elements.forEach(el => {
+      el.innerHTML = content;
+    });
+  }
+
+  /**
+   * Get the inner HTML of the first element
+   * @returns {string}
+   */
+  getHTML() {
+    if (this.elements.length < 1) return null;
+
+    return this.elements[0].innerHTML;
+  }
+
+  /**
    *  Get the array of elements
    * @returns {Array<HTMLElement>}
    */
