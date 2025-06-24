@@ -5,7 +5,7 @@
  * @param {*} value - The initial value to make reactive
  * @returns {Reactive} A new Reactive instance wrapping the provided value
  */
-export function $ref(value) {
+export function $ref(value: any) {
   if (value == null || value === undefined) {
     return new Reactive(null);
   }
@@ -14,17 +14,10 @@ export function $ref(value) {
 }
 
 export class Reactive {
-  /**
-   * Array of watcher functions that will be called when the value changes.
-   * Each watcher receives (newValue, oldValue) as parameters.
-   *
-   * @type {Function[]}
-   * @private
-   */
-  watchers = [];
-  _value = null;
+  watchers: Array<Function> = [];
+  _value: any = null;
 
-  constructor(value) {
+  constructor(value: any) {
     this._value = value;
   }
 
@@ -41,14 +34,6 @@ export class Reactive {
   }
 }
 
-export function $watch(ref, watcher) {
-  if (!(ref instanceof Reactive)) {
-    throw new Error('The first argument must be a Reactive instance.');
-  }
-
-  if (typeof watcher !== 'function') {
-    throw new Error('The second argument must be a function.');
-  }
-
+export function $watch(ref: Reactive, watcher: Function) {
   ref.watchers.push(watcher);
 }
