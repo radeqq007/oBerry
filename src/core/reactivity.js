@@ -13,7 +13,7 @@ export function $ref(value) {
   return new Reactive(value);
 }
 
-class Reactive {
+export class Reactive {
   /**
    * Array of watcher functions that will be called when the value changes.
    * Each watcher receives (newValue, oldValue) as parameters.
