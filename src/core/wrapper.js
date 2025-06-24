@@ -1,3 +1,5 @@
+import { $watch, Reactive } from './reactivity.js';
+
 export class ElementWrapper {
   constructor(elements) {
     this.elements = elements;
@@ -83,6 +85,17 @@ export class ElementWrapper {
     return this.elements instanceof NodeList
       ? this.elements
       : document.querySelectorAll(this.elements);
+  }
+
+  bindHTML(ref) {
+    if (!(ref instanceof Reactive))
+      throw new Error('ref must be a Reactive instance');
+
+    $watch(ref, () => {
+      this.setHTML(ref.value);
+    });
+
+    return this;
   }
 
   #on(event, callback) {
