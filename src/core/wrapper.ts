@@ -1,59 +1,57 @@
 import { $watch, Reactive } from './reactivity.js';
 
 export class ElementWrapper {
-  constructor(elements) {
-    this.elements = elements;
+  elements: Array<HTMLElement>;
+
+  constructor(elements: Array<HTMLElement> | NodeList) {
+    // Convert NodeList to Array and filter to only HTMLElements because typescripts yells at you otherwise
+    if (elements instanceof NodeList) {
+      this.elements = Array.from(elements).filter(
+        (node): node is HTMLElement => node.nodeType === Node.ELEMENT_NODE
+      ) as HTMLElement[];
+    } else {
+      this.elements = elements;
+    }
   }
 
   /**
    * Add a class to all elements
-   * @param {string} className
-   * @returns {ElementWrapper}
    */
-  addClass(className) {
+  addClass(className: string): this {
     this.elements.forEach(el => el.classList.add(className));
     return this;
   }
 
   /**
    * Remove a class to all elements
-   * @param {string} className
-   * @returns {ElementWrapper}
    */
-  removeClass(className) {
+  removeClass(className: string): this {
     this.elements.forEach(el => el.classList.remove(className));
     return this;
   }
 
   /**
    * Toggle a class on all elements
-   * @param {string} className
-   * @returns {ElementWrapper}
    */
-  toggleClass(className) {
+  toggleClass(className: string): this {
     this.elements.forEach(el => el.classList.toggle(className));
     return this;
   }
 
   /**
    * Modify the style of all elements
-   * @param {Object.<string, string>} styles
-   * @returns {ElementWrapper}
    */
-  css(styles) {
+  css(styles: Partial<CSSStyleDeclaration>): this {
     this.elements.forEach(el => {
-      for (const [key, value] of Object.entries(styles)) {
-        el.style[key] = value;
-      }
+      Object.assign(el.style, styles);
     });
     return this;
   }
 
   /**
    * Set the inner HTML of all elements
-   * @param {string} content
    */
-  setHTML(content) {
+  setHTML(content: string) {
     this.elements.forEach(el => {
       el.innerHTML = content;
     });
@@ -61,19 +59,15 @@ export class ElementWrapper {
 
   /**
    * Get the inner HTML of the first element
-   * @returns {string}
    */
-  getHTML() {
-    if (this.elements.length < 1) return null;
-
-    return this.elements[0].innerHTML;
+  getHTML(): string | null {
+    return this.elements[0]?.innerHTML ?? null;
   }
 
   /**
    * Set the inner text of all elements
-   * @param {string} content
    */
-  setText(content) {
+  setText(content: string) {
     this.elements.forEach(el => {
       el.innerText = content;
     });
@@ -81,36 +75,28 @@ export class ElementWrapper {
 
   /**
    * Get the inner Text of the first element
-   * @returns {string}
    */
-  getText() {
-    if (this.elements.length < 1) return null;
-
-    return this.elements[0].innerText;
+  getText(): string | null {
+    return this.elements[0]?.innerText ?? null;
   }
 
   /**
    *  Get the array of elements
-   * @returns {Array<HTMLElement>}
    */
-  getArray() {
+  getArray(): Array<HTMLElement> {
     return Array.from(this.elements);
   }
 
   /**
    * Get the NodeList of elements
-   * @returns {NodeList}
    */
-  getNodeList() {
+  getNodeList(): NodeList {
     return this.elements instanceof NodeList
       ? this.elements
       : document.querySelectorAll(this.elements);
   }
 
-  bindHTML(ref) {
-    if (!(ref instanceof Reactive))
-      throw new Error('ref must be a Reactive instance');
-
+  bindHTML(ref: Reactive): this {
     $watch(ref, () => {
       this.setHTML(ref.value);
     });
@@ -118,10 +104,7 @@ export class ElementWrapper {
     return this;
   }
 
-  bind(ref) {
-    if (!(ref instanceof Reactive))
-      throw new Error('ref must be a Reactive instance');
-
+  bind(ref: Reactive): this {
     $watch(ref, () => {
       this.setText(ref.value);
     });
@@ -129,179 +112,173 @@ export class ElementWrapper {
     return this;
   }
 
-  #on(event, callback) {
+  private on<K extends keyof HTMLElementEventMap>(
+    event: K,
+    callback: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any
+  ): this {
     this.elements.forEach(el => el.addEventListener(event, callback));
     return this;
   }
 
   /**
    * Attach a click event listener to all elements
-   * @param {Function} callback - The function to call when the event occurs
-   * @returns {ElementWrapper}
    */
-  onClick(callback) {
-    return this.#on('click', callback);
+  onClick(
+    callback: (this: HTMLElement, ev: HTMLElementEventMap['click']) => any
+  ): this {
+    return this.on('click', callback);
   }
 
   /**
    * Attach a mouseover event listener to all elements
-   * @param {Function} callback - The function to call when the event occurs
-   * @returns {ElementWrapper}
    */
-  onMouseOver(callback) {
-    return this.#on('mouseover', callback);
+  onMouseOver(
+    callback: (this: HTMLElement, ev: HTMLElementEventMap['mouseover']) => any
+  ): this {
+    return this.on('mouseover', callback);
   }
 
   /**
    * Attach a mouseout event listener to all elements
-   * @param {Function} callback - The function to call when the event occurs
-   * @returns {ElementWrapper}
    */
-  onMouseOut(callback) {
-    return this.#on('mouseout', callback);
+  onMouseOut(
+    callback: (this: HTMLElement, ev: HTMLElementEventMap['mouseout']) => any
+  ): this {
+    return this.on('mouseout', callback);
   }
 
   /**
    * Attach a change event listener to all elements
-   * @param {Function} callback - The function to call when the event occurs
-   * @returns {ElementWrapper}
    */
-  onChange(callback) {
-    return this.#on('change', callback);
+  onChange(
+    callback: (this: HTMLElement, ev: HTMLElementEventMap['change']) => any
+  ): this {
+    return this.on('change', callback);
   }
 
   /**
    * Attach an input event listener to all elements
-   * @param {Function} callback - The function to call when the event occurs
-   * @returns {ElementWrapper}
    */
-  onInput(callback) {
-    return this.#on('input', callback);
+  onInput(
+    callback: (this: HTMLElement, ev: HTMLElementEventMap['input']) => any
+  ): this {
+    return this.on('input', callback);
   }
 
   /**
    * Attach a submit event listener to all elements
-   * @param {Function} callback - The function to call when the event occurs
-   * @returns {ElementWrapper}
    */
-  onSubmit(callback) {
-    return this.#on('submit', callback);
+  onSubmit(
+    callback: (this: HTMLElement, ev: HTMLElementEventMap['submit']) => any
+  ): this {
+    return this.on('submit', callback);
   }
 
   /**
    * Attach a focus event listener to all elements
-   * @param {Function} callback - The function to call when the event occurs
-   * @returns {ElementWrapper}
    */
-  onFocus(callback) {
-    return this.#on('focus', callback);
+  onFocus(
+    callback: (this: HTMLElement, ev: HTMLElementEventMap['focus']) => any
+  ): this {
+    return this.on('focus', callback);
   }
 
   /**
    * Attach a blur event listener to all elements
-   * @param {Function} callback - The function to call when the event occurs
-   * @returns {ElementWrapper}
    */
-  onBlur(callback) {
-    return this.#on('blur', callback);
+  onBlur(
+    callback: (this: HTMLElement, ev: HTMLElementEventMap['blur']) => any
+  ): this {
+    return this.on('blur', callback);
   }
 
   /**
    * Attach a keydown event listener to all elements
-   * @param {Function} callback - The function to call when the event occurs
-   * @returns {ElementWrapper}
    */
-  onKeyDown(callback) {
-    return this.#on('keydown', callback);
+  onKeyDown(
+    callback: (this: HTMLElement, ev: HTMLElementEventMap['keydown']) => any
+  ): this {
+    return this.on('keydown', callback);
   }
 
   /**
    * Attach a keyup event listener to all elements
-   * @param {Function} callback - The function to call when the event occurs
-   * @returns {ElementWrapper}
    */
-  onKeyUp(callback) {
-    return this.#on('keyup', callback);
+  onKeyUp(
+    callback: (this: HTMLElement, ev: HTMLElementEventMap['keyup']) => any
+  ): this {
+    return this.on('keyup', callback);
   }
 
   /**
    * Attach a keypress event listener to all elements
-   * @param {Function} callback - The function to call when the event occurs
-   * @returns {ElementWrapper}
    */
-  onKeyPress(callback) {
-    return this.#on('keypress', callback);
+  onKeyPress(
+    callback: (this: HTMLElement, ev: HTMLElementEventMap['keypress']) => any
+  ): this {
+    return this.on('keypress', callback);
   }
 
   /**
    * Attach a double-click event listener to all elements
-   * @param {Function} callback - The function to call when the event occurs
-   * @returns {ElementWrapper}
    */
-  onDblClick(callback) {
-    return this.#on('dblclick', callback);
+  onDblClick(
+    callback: (this: HTMLElement, ev: HTMLElementEventMap['dblclick']) => any
+  ): this {
+    return this.on('dblclick', callback);
   }
 
   /**
    * Attach a contextmenu event listener to all elements
-   * @param {Function} callback - The function to call when the event occurs
-   * @returns {ElementWrapper}
    */
-  onContextMenu(callback) {
-    return this.#on('contextmenu', callback);
+  onContextMenu(
+    callback: (this: HTMLElement, ev: HTMLElementEventMap['contextmenu']) => any
+  ): this {
+    return this.on('contextmenu', callback);
   }
 
   /**
    * Attach a scroll event listener to all elements
-   * @param {Function} callback - The function to call when the event occurs
-   * @returns {ElementWrapper}
    */
-  onScroll(callback) {
-    return this.#on('scroll', callback);
+  onScroll(
+    callback: (this: HTMLElement, ev: HTMLElementEventMap['scroll']) => any
+  ): this {
+    return this.on('scroll', callback);
   }
 
   /**
    * Attach a resize event listener to all elements
-   * @param {Function} callback - The function to call when the event occurs
-   * @returns {ElementWrapper}
    */
-  onResize(callback) {
-    return this.#on('resize', callback);
+  onResize(
+    callback: (this: HTMLElement, ev: HTMLElementEventMap['resize']) => any
+  ): this {
+    return this.on('resize', callback);
   }
 
   /**
    * Attach a load event listener to all elements
-   * @param {Function} callback - The function to call when the event occurs
-   * @returns {ElementWrapper}
    */
-  onLoad(callback) {
-    return this.#on('load', callback);
-  }
-
-  /**
-   * Attach an unload event listener to all elements
-   * @param {Function} callback - The function to call when the event occurs
-   * @returns {ElementWrapper}
-   */
-  onUnload(callback) {
-    return this.#on('unload', callback);
+  onLoad(
+    callback: (this: HTMLElement, ev: HTMLElementEventMap['load']) => any
+  ): this {
+    return this.on('load', callback);
   }
 
   /**
    * Attach a drag event listener to all elements
-   * @param {Function} callback - The function to call when the event occurs
-   * @returns {ElementWrapper}
    */
-  onDrag(callback) {
-    return this.#on('drag', callback);
+  onDrag(
+    callback: (this: HTMLElement, ev: HTMLElementEventMap['drag']) => any
+  ): this {
+    return this.on('drag', callback);
   }
 
   /**
    * Attach a drop event listener to all elements
-   * @param {Function} callback - The function to call when the event occurs
-   * @returns {ElementWrapper}
    */
-  onDrop(callback) {
-    return this.#on('drop', callback);
+  onDrop(
+    callback: (this: HTMLElement, ev: HTMLElementEventMap['drop']) => any
+  ): this {
+    return this.on('drop', callback);
   }
 }
