@@ -87,15 +87,6 @@ export class ElementWrapper {
     return Array.from(this.elements);
   }
 
-  /**
-   * Get the NodeList of elements
-   */
-  getNodeList(): NodeList {
-    return this.elements instanceof NodeList
-      ? this.elements
-      : document.querySelectorAll(this.elements);
-  }
-
   bindHTML(ref: Reactive): this {
     $watch(ref, () => {
       this.setHTML(ref.value);
