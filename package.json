@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "src/index.js",
-  "scripts": {},
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist"
+  },
   "keywords": [],
   "author": "Radosław Kaczmarczyk",
   "license": "ISC",
