@@ -87,6 +87,89 @@ export class ElementWrapper {
     return Array.from(this.elements);
   }
 
+  /**
+   * Append elements to all selected elements
+   */
+  append(content: string | HTMLElement | ElementWrapper): this {
+    this.elements.forEach(el => {
+      if (typeof content === 'string') el.innerHTML += content;
+      else if (content instanceof HTMLElement) el.appendChild(content);
+      else if (content instanceof ElementWrapper)
+        content.elements.forEach(child => {
+          el.appendChild(child.cloneNode(true));
+        });
+    });
+    return this;
+  }
+
+  /**
+   * Prepend elements to all selected elements
+   */
+  prepend(content: string | HTMLElement | ElementWrapper): this {
+    this.elements.forEach(el => {
+      if (typeof content === 'string') el.innerHTML = content + el.innerHTML;
+      else if (content instanceof HTMLElement)
+        el.insertBefore(content.cloneNode(true), el.firstChild);
+      else if (content instanceof ElementWrapper)
+        content.elements.forEach((childEl, index) => {
+          el.insertBefore(childEl.cloneNode(true), el.children[index] || null);
+        });
+    });
+    return this;
+  }
+
+  /**
+   * Insert elements after all selected elements
+   */
+  after(content: string | HTMLElement | ElementWrapper): this {
+    this.elements.forEach(el => {
+      const parent = el.parentNode;
+      if (!parent) return;
+
+      if (typeof content === 'string') {
+        const temp = document.createElement('div');
+        temp.innerHTML = content;
+
+        while (temp.firstChild) {
+          parent.insertBefore(temp.firstChild, el.nextSibling);
+        }
+      } else if (content instanceof HTMLElement) {
+        parent.insertBefore(content.cloneNode(true), el.nextSibling);
+      } else if (content instanceof ElementWrapper) {
+        content.elements.forEach(childEl => {
+          parent.insertBefore(childEl.cloneNode(true), el.nextSibling);
+        });
+      }
+    });
+    return this;
+  }
+
+  /**
+   * Insert elements before all selected elements
+   */
+  before(content: string | HTMLElement | ElementWrapper): this {
+    this.elements.forEach(el => {
+      const parent = el.parentNode;
+      if (!parent) return;
+
+      if (typeof content === 'string') {
+        const temp = document.createElement('div');
+        temp.innerHTML = content;
+
+        while (temp.firstChild) {
+          parent.insertBefore(temp.firstChild, el);
+        }
+      } else if (content instanceof HTMLElement) {
+        parent.insertBefore(content.cloneNode(true), el);
+      } else if (content instanceof ElementWrapper) {
+        content.elements.forEach(childEl => {
+          parent.insertBefore(childEl.cloneNode(true), el);
+        });
+      }
+    });
+    return this;
+  }
+
   bindHTML(ref: Reactive): this {
     $watch(ref, () => {
       this.setHTML(ref.value);
