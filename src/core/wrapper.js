@@ -118,6 +118,17 @@ export class ElementWrapper {
     return this;
   }
 
+  bind(ref) {
+    if (!(ref instanceof Reactive))
+      throw new Error('ref must be a Reactive instance');
+
+    $watch(ref, () => {
+      this.setText(ref.value);
+    });
+
+    return this;
+  }
+
   #on(event, callback) {
     this.elements.forEach(el => el.addEventListener(event, callback));
     return this;
