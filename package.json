@@ -7,5 +7,9 @@
   "keywords": [],
   "author": "Radosław Kaczmarczyk",
   "license": "ISC",
-  "packageManager": "pnpm@10.10.0"
+  "packageManager": "pnpm@10.10.0",
+  "devDependencies": {
+    "@types/node": "^24.0.4",
+    "typescript": "^5.8.3"
+  }
 }
