@@ -70,6 +70,26 @@ export class ElementWrapper {
   }
 
   /**
+   * Set the inner text of all elements
+   * @param {string} content
+   */
+  setText(content) {
+    this.elements.forEach(el => {
+      el.innerText = content;
+    });
+  }
+
+  /**
+   * Get the inner Text of the first element
+   * @returns {string}
+   */
+  getText() {
+    if (this.elements.length < 1) return null;
+
+    return this.elements[0].innerText;
+  }
+
+  /**
    *  Get the array of elements
    * @returns {Array<HTMLElement>}
    */
