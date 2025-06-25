@@ -1,4 +1,4 @@
-import { $, $ref, $watch } from './core/index.js';
+import { $, $deepRef, $ref, $watch } from './core/index.js';
 
-export { $, $ref, $watch };
+export { $, $deepRef, $ref, $watch };
 export default $;
