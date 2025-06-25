@@ -13,11 +13,22 @@ export function $ref(value: any) {
   return new Reactive(value);
 }
 
-export class Reactive {
+abstract class BaseReactive {
   watchers: Array<Function> = [];
-  _value: any = null;
+
+  protected notifyWatchers(...args: any[]) {
+    this.watchers.forEach(watcher => watcher(...args));
+  }
+
+  abstract get value(): any;
+  abstract set value(newValue: any);
+}
+
+export class Reactive extends BaseReactive {
+  private _value: any = null;
 
   constructor(value: any) {
+    super();
     this._value = value;
   }
 
@@ -46,13 +57,13 @@ export function $deepRef(value: any) {
   return new deepReactive(value);
 }
 
-export class deepReactive {
-  watchers: Array<Function> = [];
+export class deepReactive extends BaseReactive {
   private raw: any; // The initial value
   private proxy: any;
   private notifyQueued: boolean = false;
 
   constructor(value: any) {
+    super();
     this.raw = value;
 
     const notify = () => {
