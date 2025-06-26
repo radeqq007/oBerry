@@ -1,18 +1,42 @@
 {
   "name": "oberry",
   "version": "1.0.0",
-  "description": "",
+  "description": "A lightweight and modern jQuery alternative for DOM manipulation, user interactions, and reactive data binding",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist/**/*",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc --watch",
     "dev": "tsc --watch",
     "clean": "rm -rf dist"
   },
-  "keywords": [],
+  "keywords": [
+    "dom",
+    "manipulation",
+    "jquery",
+    "alternative",
+    "reactive",
+    "data-binding",
+    "typescript",
+    "frontend",
+    "javascript",
+    "selector"
+  ],
   "author": "Radosław Kaczmarczyk",
   "license": "ISC",
+  "homepage": "https://github.com/radeqq007/oberry#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/radeqq007/oberry.git"
+  },
+  "bugs": {
+    "url": "https://github.com/radeqq007/oberry/issues"
+  },
   "packageManager": "pnpm@10.10.0",
   "devDependencies": {
     "@types/node": "^24.0.4",
