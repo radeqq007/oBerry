@@ -102,6 +102,21 @@ export class ElementWrapper {
     return null;
   }
 
+  setValue(newValue: any): this {
+    const el = this.elements[0];
+    if (!el) return this;
+
+    if (
+      el instanceof HTMLInputElement ||
+      el instanceof HTMLTextAreaElement ||
+      el instanceof HTMLSelectElement
+    ) {
+      el.value = newValue;
+    }
+
+    return this;
+  }
+
   /**
    * Append elements to all selected elements
    */
