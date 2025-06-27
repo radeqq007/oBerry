@@ -1,9 +1,6 @@
 /**
  * Creates a reactive reference to a value. If the value is null or undefined,
  * creates a reactive reference with null as the initial value.
- *
- * @param {*} value - The initial value to make reactive
- * @returns {Reactive} A new Reactive instance wrapping the provided value
  */
 export function $ref(value: any) {
   if (value == null || value === undefined) {
