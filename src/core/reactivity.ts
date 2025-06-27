@@ -2,7 +2,7 @@
  * Creates a reactive reference to a value. If the value is null or undefined,
  * creates a reactive reference with null as the initial value.
  */
-export function $ref(value: any) {
+export function $ref(value: any): Reactive {
   if (value == null || value === undefined) {
     return new Reactive(null);
   }
