@@ -1,9 +1,9 @@
 import { $watch, Reactive } from './reactivity.js';
 
 export class ElementWrapper {
-  elements: Array<HTMLElement>;
+  elements: HTMLElement[];
 
-  constructor(elements: Array<HTMLElement> | NodeList) {
+  constructor(elements: HTMLElement[] | NodeList) {
     // Convert NodeList to Array and filter to only HTMLElements because typescripts yells at you otherwise
     if (elements instanceof NodeList) {
       this.elements = Array.from(elements).filter(
@@ -83,7 +83,7 @@ export class ElementWrapper {
   /**
    *  Get the array of elements
    */
-  getArray(): Array<HTMLElement> {
+  getArray(): HTMLElement[] {
     return Array.from(this.elements);
   }
 
@@ -213,7 +213,7 @@ export class ElementWrapper {
   /**
    * Get the children of the first element
    */
-  children(): Array<HTMLElement> {
+  children(): HTMLElement[] {
     const el = this.elements[0];
     if (!el) return [];
 
@@ -223,10 +223,10 @@ export class ElementWrapper {
   /**
    * Get the children of all the elements
    */
-  allChildren(): Array<HTMLElement> {
-    const children: Array<HTMLElement> = [];
+  allChildren(): HTMLElement[] {
+    const children: HTMLElement[] = [];
     this.elements.forEach(el => {
-      children.push(...(Array.from(el.children) as Array<HTMLElement>));
+      children.push(...(Array.from(el.children) as HTMLElement[]));
     });
 
     return children;
