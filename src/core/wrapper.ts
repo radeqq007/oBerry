@@ -220,6 +220,18 @@ export class ElementWrapper {
     return Array.from(el.children) as HTMLElement[];
   }
 
+  /**
+   * Get the children of all the elements
+   */
+  allChildren(): Array<HTMLElement> {
+    const children: Array<HTMLElement> = [];
+    this.elements.forEach(el => {
+      children.push(...(Array.from(el.children) as Array<HTMLElement>));
+    });
+
+    return children;
+  }
+
   bindHTML(ref: Reactive): this {
     $watch(ref, () => {
       this.setHTML(ref.value);
