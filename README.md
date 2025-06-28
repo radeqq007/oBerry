@@ -11,6 +11,9 @@ oBerry is a lightweight and modern JQuery alternative designed to simplyfy the m
 - ⚡ Reactive Data Binding - Built-in reactivity system
 - 📦 TypeScript Support - Full type definitions included
 - 🌐 Modern ES Modules - Tree-shakable imports
+- 🎨 Comprehensive DOM Manipulation - Full suite of element manipulation methods
+- 🖱️ Rich Event Handling - Support for all common DOM events
+- 🔄 Flexible Content Insertion - Multiple ways to add content to elements
 
 ## installation
 
@@ -60,41 +63,140 @@ $(document.querySelectorAll('.items'));
 
 ### DOM Manipulation
 
+#### Class Management
+
 ```js
 $('.element')
   .addClass('new-class')
   .removeClass('old-class')
-  .toggleClass('toggle-class')
-  .css({ color: 'red', fontSize: '16px' })
-  .setHTML('<p>New content</p>')
+  .toggleClass('toggle-class');
+```
+
+#### Styling
+
+```js
+$('.element').css({
+  color: 'red',
+  fontSize: '16px',
+  backgroundColor: '#f0f0f0',
+});
+```
+
+#### Content Manipulation
+
+```js
+$('.element')
+  .setHTML('<p>New HTML content</p>')
   .setText('Plain text content')
-  .append('<span>Appended</span>')
-  .prepend('<span>Prepended</span>');
+  .getHTML() // Returns HTML of first element
+  .getText(); // Returns text of first element
+```
+
+#### Form Values
+
+```js
+// Get/set values for input, textarea, select elements
+$('#input-field').setValue('New value').getValue(); // Returns current value
+```
+
+#### Element Navigation
+
+```js
+// Get parent element
+$('.child').parent();
+
+// Get children of first element
+$('.parent').children();
+
+// Get children of all elements
+$('.parents').allChildren();
+
+// Get array of wrapped elements
+$('.elements').getArray();
 ```
 
 ### Event Handling
 
 ```js
-$('.button')
+$('.element')
+  // Mouse events
   .onClick(event => console.log('Clicked'))
+  .onDblClick(event => console.log('Double clicked'))
   .onMouseOver(event => console.log('Mouse over'))
+  .onMouseOut(event => console.log('Mouse out'))
+  .onContextMenu(event => console.log('Right clicked'))
+
+  // Form events
   .onChange(event => console.log('Changed'))
-  .onInput(event => console.log('Input changed'));
+  .onInput(event => console.log('Input changed'))
+  .onSubmit(event => console.log('Form submitted'))
+  .onFocus(event => console.log('Focused'))
+  .onBlur(event => console.log('Blurred'))
+
+  // Keyboard events
+  .onKeyDown(event => console.log('Key down'))
+  .onKeyUp(event => console.log('Key up'))
+  .onKeyPress(event => console.log('Key pressed'))
+
+  // Other events
+  .onScroll(event => console.log('Scrolled'))
+  .onResize(event => console.log('Resized'))
+  .onLoad(event => console.log('Loaded'))
+  .onDrag(event => console.log('Dragged'))
+  .onDrop(event => console.log('Dropped'));
 ```
 
 ### Reactive Data
 
+#### Simple reactive references
+
 ```js
-// Simple reactive reference
+// Create reactive reference
 const count = $ref(0);
-$('#counter').bind(count);
+const message = $ref('Hello');
 
-// Deep reactive object
-const user = $deepRef({ name: 'John', age: 30 });
+// Bind to DOM elements
+$('#counter').bind(count);        // Binds as text content
+$('#message').bindHTML(message);  // Binds as HTML content
+
+// Update values
+count.value = 42;
+message.value = '<strong>Bold Hello</strong>';
+});
+```
+
+#### Deep Reactive Objects
+
+```js
+// Create deep reactive object
+const user = $deepRef({
+  name: 'John',
+  age: 30,
+  address: {
+    city: 'New York',
+    zip: '10001',
+  },
+});
+
+// Bind computed values
 $('#user-name').bind($ref(() => user.value.name));
+$('#user-info').bind($ref(() => `${user.value.name} (${user.value.age})`));
 
-// Watch for changes
-$watch(count, newValue => {
-  console.log('Count changed:', newValue);
+// Update nested properties (automatically triggers reactivity)
+user.value.name = 'Jane';
+user.value.address.city = 'Los Angeles';
+```
+
+#### Watching Changes
+
+```js
+// Watch simple refs
+$watch(count, (newValue, oldValue) => {
+  console.log(`Count changed from ${oldValue} to ${newValue}`);
+});
+
+// Watch deep reactive objects
+$watch(user, newValue => {
+  console.log('User object changed:', newValue);
 });
 ```
