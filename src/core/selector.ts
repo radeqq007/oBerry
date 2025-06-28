@@ -3,9 +3,7 @@ import { ElementWrapper } from './wrapper.js';
 /**
  * Select DOM elements using a CSS selector, HTMLElement, NodeList, or an Array of HTMLElements.
  */
-export function $(
-  selector: string | HTMLElement | NodeList | Array<HTMLElement>
-) {
+export function $(selector: string | HTMLElement | NodeList | HTMLElement[]) {
   let elements;
   if (typeof selector === 'string') {
     elements = document.querySelectorAll(selector);

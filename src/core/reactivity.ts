@@ -11,7 +11,7 @@ export function $ref(value: any): Reactive {
 }
 
 abstract class BaseReactive {
-  watchers: Array<Function> = [];
+  watchers: Function[] = [];
 
   protected notifyWatchers(...args: any[]) {
     this.watchers.forEach(watcher => watcher(...args));
