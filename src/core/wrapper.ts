@@ -200,6 +200,26 @@ export class ElementWrapper {
     return this;
   }
 
+  /**
+   * Get the parent of the first element
+   */
+  parent(): HTMLElement | null {
+    const el = this.elements[0];
+    if (!el) return null;
+
+    return el.parentElement;
+  }
+
+  /**
+   * Get the children of the first element
+   */
+  children(): Array<HTMLElement> {
+    const el = this.elements[0];
+    if (!el) return [];
+
+    return Array.from(el.children) as HTMLElement[];
+  }
+
   bindHTML(ref: Reactive): this {
     $watch(ref, () => {
       this.setHTML(ref.value);
