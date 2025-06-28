@@ -87,6 +87,9 @@ export class ElementWrapper {
     return Array.from(this.elements);
   }
 
+  /**
+   * Get the value of the first element
+   */
   getValue() {
     const el = this.elements[0];
     if (!el) return null;
@@ -102,6 +105,9 @@ export class ElementWrapper {
     return null;
   }
 
+  /**
+   * Set the value of the first element
+   */
   setValue(newValue: any): this {
     const el = this.elements[0];
     if (!el) return this;
