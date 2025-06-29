@@ -10,11 +10,11 @@ abstract class Reactive {
 }
 
 export class Ref extends Reactive {
-  private _value: any = null;
+  private _value: any;
 
   constructor(value: any) {
     super();
-    this._value = value;
+    this._value = value ?? null;
   }
 
   get value() {
