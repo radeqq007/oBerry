@@ -2,15 +2,15 @@
  * Creates a reactive reference to a value. If the value is null or undefined,
  * creates a reactive reference with null as the initial value.
  */
-export function $ref(value: any): Reactive {
+export function $ref(value: any): Ref {
   if (value == null || value === undefined) {
-    return new Reactive(null);
+    return new Ref(null);
   }
 
-  return new Reactive(value);
+  return new Ref(value);
 }
 
-abstract class BaseReactive {
+abstract class Reactive {
   watchers: Function[] = [];
 
   protected notifyWatchers(...args: any[]) {
@@ -21,7 +21,7 @@ abstract class BaseReactive {
   abstract set value(newValue: any);
 }
 
-export class Reactive extends BaseReactive {
+export class Ref extends Reactive {
   private _value: any = null;
 
   constructor(value: any) {
@@ -48,13 +48,13 @@ export function $watch(ref: Reactive, watcher: Function) {
 
 export function $deepRef(value: any) {
   if (value == null || value === undefined) {
-    return new deepReactive(null);
+    return new deepRef(null);
   }
 
-  return new deepReactive(value);
+  return new deepRef(value);
 }
 
-export class deepReactive extends BaseReactive {
+export class deepRef extends Reactive {
   private raw: any; // The initial value
   private proxy: any;
   private notifyQueued: boolean = false;
