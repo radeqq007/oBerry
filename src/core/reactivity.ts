@@ -92,10 +92,6 @@ export function $watch(ref: Reactive, watcher: Function): () => void {
   };
 }
 
-export function $deepRef(value: any) {
-  if (value == null || value === undefined) {
-    return new deepRef(null);
-  }
-
+export function $deepRef(value: any = null) {
   return new deepRef(value);
 }
