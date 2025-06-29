@@ -11,6 +11,7 @@
   ],
   "scripts": {
     "build": "tsc",
+    "prepublishOnly": "pnpm run build",
     "build:watch": "tsc --watch",
     "dev": "tsc --watch",
     "clean": "rm -rf dist"
