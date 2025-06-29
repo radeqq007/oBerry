@@ -4,7 +4,6 @@ interface CookieOptions {
   domain?: string;
   path?: string;
   secure?: boolean;
-  httpOnly?: boolean;
   sameSite?: 'Strict' | 'Lax' | 'None';
 }
 
@@ -40,10 +39,6 @@ export const $cookie = {
 
     if (options.secure) {
       cookieString += `; secure`;
-    }
-
-    if (options.httpOnly) {
-      cookieString += `; httponly`;
     }
 
     if (options.sameSite) {
