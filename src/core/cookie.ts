@@ -55,7 +55,15 @@ export const $cookie = {
     return this;
   },
 
-  delete(name: string) {
-    document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+  delete(name: string, path = '/', domain?: string) {
+    let cookieString = `${encodeURIComponent(
+      name
+    )}=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=${path}`;
+
+    if (domain) {
+      cookieString += `; domain=${domain}`;
+    }
+
+    document.cookie = cookieString;
   },
 };
