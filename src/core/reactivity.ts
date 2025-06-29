@@ -78,11 +78,7 @@ export class deepRef extends Reactive {
  * Creates a reactive reference to a value. If the value is null or undefined,
  * creates a reactive reference with null as the initial value.
  */
-export function $ref(value: any): Ref {
-  if (value == null || value === undefined) {
-    return new Ref(null);
-  }
-
+export function $ref(value: any = null): Ref {
   return new Ref(value);
 }
 
