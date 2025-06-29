@@ -1,4 +1,4 @@
-import { $watch, Reactive } from './reactivity.js';
+import { $watch, Ref } from './reactivity.js';
 
 export class ElementWrapper {
   elements: HTMLElement[];
@@ -238,7 +238,7 @@ export class ElementWrapper {
     return children;
   }
 
-  bindHTML(ref: Reactive): this {
+  bindHTML(ref: Ref): this {
     $watch(ref, () => {
       this.setHTML(ref.value);
     });
@@ -246,7 +246,7 @@ export class ElementWrapper {
     return this;
   }
 
-  bind(ref: Reactive): this {
+  bind(ref: Ref): this {
     $watch(ref, () => {
       this.setText(ref.value);
     });
