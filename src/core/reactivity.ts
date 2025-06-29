@@ -82,8 +82,14 @@ export function $ref(value: any = null): Ref {
   return new Ref(value);
 }
 
-export function $watch(ref: Reactive, watcher: Function) {
+export function $watch(ref: Reactive, watcher: Function): () => void {
   ref.watchers.push(watcher);
+
+  // Unwatch function
+  return () => {
+    const index = ref.watchers.indexOf(watcher);
+    if (index > -1) ref.watchers.splice(index, 1);
+  };
 }
 
 export function $deepRef(value: any) {
