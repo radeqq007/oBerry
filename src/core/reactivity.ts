@@ -1,15 +1,3 @@
-/**
- * Creates a reactive reference to a value. If the value is null or undefined,
- * creates a reactive reference with null as the initial value.
- */
-export function $ref(value: any): Ref {
-  if (value == null || value === undefined) {
-    return new Ref(null);
-  }
-
-  return new Ref(value);
-}
-
 abstract class Reactive {
   watchers: Function[] = [];
 
@@ -40,18 +28,6 @@ export class Ref extends Reactive {
       this.watchers.forEach(watcher => watcher(newValue, oldValue));
     }
   }
-}
-
-export function $watch(ref: Reactive, watcher: Function) {
-  ref.watchers.push(watcher);
-}
-
-export function $deepRef(value: any) {
-  if (value == null || value === undefined) {
-    return new deepRef(null);
-  }
-
-  return new deepRef(value);
 }
 
 export class deepRef extends Reactive {
@@ -96,4 +72,28 @@ export class deepRef extends Reactive {
     Object.assign(this.proxy, newValue);
     this.watchers.forEach(w => w(this.proxy));
   }
+}
+
+/**
+ * Creates a reactive reference to a value. If the value is null or undefined,
+ * creates a reactive reference with null as the initial value.
+ */
+export function $ref(value: any): Ref {
+  if (value == null || value === undefined) {
+    return new Ref(null);
+  }
+
+  return new Ref(value);
+}
+
+export function $watch(ref: Reactive, watcher: Function) {
+  ref.watchers.push(watcher);
+}
+
+export function $deepRef(value: any) {
+  if (value == null || value === undefined) {
+    return new deepRef(null);
+  }
+
+  return new deepRef(value);
 }
