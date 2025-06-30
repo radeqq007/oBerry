@@ -221,6 +221,17 @@ export class ElementWrapper {
     return $(parent);
   }
 
+  children(): ElementWrapper | null {
+    const el = this.elements[0];
+    if (!el) return null;
+
+    const children = el.children;
+
+    if (!children) return null;
+
+    return $(Array.from(children) as HTMLElement[]);
+  }
+
   /**
    * Get the children of the first element
    */
