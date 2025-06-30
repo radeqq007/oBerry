@@ -1,4 +1,5 @@
 import { $watch, Ref } from './reactivity.js';
+import { $ } from './selector.js';
 
 export class ElementWrapper {
   elements: HTMLElement[];
@@ -209,11 +210,15 @@ export class ElementWrapper {
   /**
    * Get the parent of the first element
    */
-  parent(): HTMLElement | null {
+  parent(): ElementWrapper | null {
     const el = this.elements[0];
     if (!el) return null;
 
-    return el.parentElement;
+    const parent = el.parentElement;
+
+    if (!parent) return null;
+
+    return $(parent);
   }
 
   /**
