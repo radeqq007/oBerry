@@ -208,7 +208,7 @@ export class ElementWrapper {
   }
 
   /**
-   * Get the parent of the first element
+   * Get the parent wrapper of the first element
    */
   parent(): ElementWrapper | null {
     const el = this.elements[0];
