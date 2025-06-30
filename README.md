@@ -102,14 +102,18 @@ $('#input-field').setValue('New value').getValue(); // Returns current value
 #### Element Navigation
 
 ```js
-// Get parent element
+// Get parent element (wrapped)
 $('.child').parent();
 
-// Get children of first element
+// Get children of first element (wrapped)
 $('.parent').children();
 
-// Get children of all elements
+// Get children of all elements (wrapped)
 $('.parents').allChildren();
+
+// Get children as arrays
+$('.parent').childrenArray(); // Children of first element
+$('.parents').allChildrenArray(); // Children of all elements
 
 // Get array of wrapped elements
 $('.elements').getArray();
@@ -199,4 +203,32 @@ $watch(count, (newValue, oldValue) => {
 $watch(user, newValue => {
   console.log('User object changed:', newValue);
 });
+```
+
+#### Cookie Management
+
+```js
+import { $cookie } from 'oberry';
+
+// Set a cookie
+$cookie.set('username', 'john_doe');
+
+// Set a cookie with options
+$cookie.set('session_token', 'abc123', {
+  expires: new Date(Date.now() + 86400000), // 1 day
+  maxAge: 3600, // 1 hour in seconds
+  domain: '.example.com',
+  path: '/admin',
+  secure: true,
+  sameSite: 'Strict',
+});
+
+// Get a cookie
+const username = $cookie.get('username');
+
+// Delete a cookie
+$cookie.delete('session_token');
+
+// Delete a cookie with specific path and domain
+$cookie.delete('session_token', '/admin', '.example.com');
 ```
