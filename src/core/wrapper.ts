@@ -232,6 +232,17 @@ export class ElementWrapper {
     return $(Array.from(children) as HTMLElement[]);
   }
 
+  allChildren(): ElementWrapper | null {
+    const children: HTMLElement[] = [];
+    this.elements.forEach(el => {
+      children.push(...(Array.from(el.children) as HTMLElement[]));
+    });
+
+    if (!children) return null;
+
+    return $(Array.from(children) as HTMLElement[]);
+  }
+
   /**
    * Get the children of the first element
    */
