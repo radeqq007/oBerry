@@ -224,7 +224,7 @@ export class ElementWrapper {
   /**
    * Get the children of the first element
    */
-  children(): HTMLElement[] {
+  childrenArray(): HTMLElement[] {
     const el = this.elements[0];
     if (!el) return [];
 
@@ -234,7 +234,7 @@ export class ElementWrapper {
   /**
    * Get the children of all the elements
    */
-  allChildren(): HTMLElement[] {
+  allChildrenArray(): HTMLElement[] {
     const children: HTMLElement[] = [];
     this.elements.forEach(el => {
       children.push(...(Array.from(el.children) as HTMLElement[]));
