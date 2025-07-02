@@ -450,4 +450,22 @@ export class ElementWrapper {
   ): this {
     return this.on('drop', callback);
   }
+
+  even() {
+    const elements: HTMLElement[] = [];
+    for (let i = 0; i < this.elements.length; i++) {
+      if ((i + 1) % 2 == 0 && this.elements[i])
+        elements.push(this.elements[i] as HTMLElement);
+    }
+    return new ElementWrapper(elements);
+  }
+
+  odd() {
+    const elements: HTMLElement[] = [];
+    for (let i = 0; i < this.elements.length; i++) {
+      if ((i + 1) % 2 == 1 && this.elements[i])
+        elements.push(this.elements[i] as HTMLElement);
+    }
+    return new ElementWrapper(elements);
+  }
 }
