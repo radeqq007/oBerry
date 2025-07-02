@@ -14,7 +14,8 @@
     "prepublishOnly": "pnpm run build",
     "build:watch": "tsc --watch",
     "dev": "tsc --watch",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "format": "pnpm dlx ultracite format"
   },
   "keywords": [
     "dom",
