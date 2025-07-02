@@ -1,28 +1,39 @@
+# Source and config files not needed in npm package
 src/
 tsconfig.json
+biome.jsonc
 
+# Dependency and lock files
 pnpm-lock.yaml
 node_modules/
 
+# Git and GitHub files
 .git/
 .github/
+
+# Logs and archives
 *.log
 *.tgz
 
+# Documentation and examples
 docs/
 examples/
 
+# Tests and test outputs
 test/
 tests/
+coverage/
 *.test.js
 *.test.ts
 *.spec.js
 *.spec.ts
 
+# Editor/IDE settings
 .vscode/
 .idea/
 *.swp
 *.swo
 
+# OS-specific files
 .DS_Store
 Thumbs.db
