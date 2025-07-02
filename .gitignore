@@ -1,2 +1,33 @@
-node_modules
-dist
+# Node.js dependencies
+node_modules/
+
+# Build output
+dist/
+
+# IDE/editor settings
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Package manager files
+*.tgz
+pnpm-lock.yaml
+
+# Test output
+coverage/
+test/
+tests/
+*.test.js
+*.test.ts
+*.spec.js
+*.spec.ts
+
+# Misc
+*.swp
+*.swo
