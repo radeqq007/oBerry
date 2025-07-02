@@ -13,7 +13,7 @@ export const $cookie = {
     const parts = value.split(`; ${name}=`);
     if (parts.length === 2) return parts.pop()?.split(';').shift();
 
-    return undefined;
+    return;
   },
 
   set(name: string, value: string, options: CookieOptions = {}) {
@@ -38,7 +38,7 @@ export const $cookie = {
     }
 
     if (options.secure) {
-      cookieString += `; secure`;
+      cookieString += '; secure';
     }
 
     if (options.sameSite) {
