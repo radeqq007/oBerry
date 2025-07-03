@@ -46,7 +46,7 @@ export class deepRef extends Reactive {
       // Use microtask to batch notifications (no idea how it works, ai generated it for me)
       Promise.resolve().then(() => {
         this.notifyQueued = false;
-        for (let w of this.watchers) {
+        for (const w of this.watchers) {
           w(this.proxy);
         }
       });
