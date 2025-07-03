@@ -26,6 +26,9 @@ export class Ref extends Reactive {
       const oldValue = this._value;
       this._value = newValue;
       this.watchers.forEach(watcher => watcher(newValue, oldValue));
+      for (const w of this.watchers) {
+        w(newValue, oldValue);
+      }
     }
   }
 }
