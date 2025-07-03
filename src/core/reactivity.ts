@@ -2,7 +2,9 @@ abstract class Reactive {
   watchers: Function[] = [];
 
   protected notifyWatchers(...args: any[]) {
-    this.watchers.forEach(watcher => watcher(...args));
+    for (const w of this.watchers) {
+      w(...args);
+    }
   }
 
   abstract get value(): any;
