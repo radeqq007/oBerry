@@ -1,5 +1,3 @@
-import { $cookie } from './cookie.js';
-import { $deepRef, $ref, $watch } from './reactivity.js';
-import { $ } from './selector.js';
-
-export { $, $cookie, $deepRef, $ref, $watch };
+export { $cookie } from './cookie.js';
+export { $deepRef, $ref, $watch } from './reactivity.js';
+export { $ } from './selector.js';
