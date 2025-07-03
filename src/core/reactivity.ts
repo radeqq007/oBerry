@@ -2,7 +2,7 @@ abstract class Reactive {
   watchers: Function[] = [];
 
   protected notifyWatchers(...args: any[]) {
-    this.watchers.forEach((watcher) => watcher(...args));
+    this.watchers.forEach(watcher => watcher(...args));
   }
 
   abstract get value(): any;
@@ -25,7 +25,7 @@ export class Ref extends Reactive {
     if (this._value !== newValue) {
       const oldValue = this._value;
       this._value = newValue;
-      this.watchers.forEach((watcher) => watcher(newValue, oldValue));
+      this.watchers.forEach(watcher => watcher(newValue, oldValue));
     }
   }
 }
@@ -46,7 +46,9 @@ export class deepRef extends Reactive {
       // Use microtask to batch notifications (no idea how it works, ai generated it for me)
       Promise.resolve().then(() => {
         this.notifyQueued = false;
-        this.watchers.forEach((w) => w(this.proxy));
+        for (let w of this.watchers) {
+          w(this.proxy);
+        }
       });
     };
 
