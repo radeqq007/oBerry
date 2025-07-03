@@ -4,7 +4,7 @@ import { ElementWrapper } from './wrapper.js';
  * Select DOM elements using a CSS selector, HTMLElement, NodeList, or an Array of HTMLElements.
  */
 export function $(selector: string | HTMLElement | NodeList | HTMLElement[]) {
-  let elements;
+  let elements: HTMLElement[] | NodeList;
   if (typeof selector === 'string') {
     elements = document.querySelectorAll(selector);
   } else if (selector instanceof HTMLElement) {
