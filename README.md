@@ -205,7 +205,17 @@ $watch(user, newValue => {
 });
 ```
 
-#### Cookie Management
+#### Input Binding
+
+```js
+// Bind an input element to a reactive reference
+const name = $ref('');
+$('#name-input').bindInput(name);
+
+// Now, whenever the input value changes, `name.value` is updated automatically
+```
+
+### Cookie Management
 
 ```js
 import { $cookie } from 'oberry';
