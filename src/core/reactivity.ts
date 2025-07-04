@@ -37,29 +37,27 @@ export class Ref extends Reactive {
 export class deepRef extends Reactive {
   private raw: any; // The initial value
   private proxy: any;
-  private notifyQueued = false;
 
   constructor(value: any) {
     super();
     this.raw = value;
 
     const notify = () => {
-      if (this.notifyQueued) return;
-      this.notifyQueued = true;
-
-      // Use microtask to batch notifications (no idea how it works, ai generated it for me)
-      Promise.resolve().then(() => {
-        this.notifyQueued = false;
-        for (const w of this.watchers) {
-          w(this.proxy);
-        }
-      });
+      for (const w of this.watchers) {
+        w(this.proxy);
+      }
     };
 
     this.proxy = new Proxy(this.raw, {
       set(target, prop, value, reciever): boolean {
         const res = Reflect.set(target, prop, value, reciever);
-        notify();
+
+        // When pushing to an array watchers would get notified twice because both the values and the length changes
+        // Therefore we ignore the length change
+        // ^^^ probably no the best solution
+        if (prop !== 'length') {
+          notify();
+        }
         return res;
       },
 
