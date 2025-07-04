@@ -1,1 +1,1 @@
-export { $, $cookie, $deepRef, $ref, $watch } from './core/index';
+export { $, $cookie, $deepRef, $ref, $watch } from './core/index.js';
