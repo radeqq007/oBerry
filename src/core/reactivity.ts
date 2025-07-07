@@ -1,5 +1,5 @@
 abstract class Reactive {
-  watchers: Function[] = [];
+  watchers: Array<(...args: any[]) => void> = [];
 
   protected notifyWatchers(...args: any[]) {
     for (const w of this.watchers) {
@@ -90,7 +90,10 @@ export function $ref(value: any = null): Ref {
   return new Ref(value);
 }
 
-export function $watch(ref: Reactive, watcher: Function): () => void {
+export function $watch(
+  ref: Reactive,
+  watcher: (...args: any[]) => void
+): () => void {
   ref.watchers.push(watcher);
 
   // Unwatch function
