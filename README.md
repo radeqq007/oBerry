@@ -92,6 +92,30 @@ $('.element')
   .getText(); // Returns text of first element
 ```
 
+#### Content insertion
+
+```js
+// Append content to elements
+$('.element').append('<p>Appended content</p>');
+$('.element').append(document.createElement('div'));
+$('.element').append($('.other-element'));
+
+// Prepend content to elements
+$('.element').prepend('<p>Prepended content</p>');
+$('.element').prepend(document.createElement('div'));
+$('.element').prepend($('.other-element'));
+
+// Insert content after elements
+$('.element').after('<p>Content after</p>');
+$('.element').after(document.createElement('div'));
+$('.element').after($('.other-element'));
+
+// Insert content before elements
+$('.element').before('<p>Content before</p>');
+$('.element').before(document.createElement('div'));
+$('.element').before($('.other-element'));
+```
+
 #### Form Values
 
 ```js
@@ -117,6 +141,38 @@ $('.parents').allChildrenArray(); // Children of all elements
 
 // Get array of wrapped elements
 $('.elements').getArray();
+```
+
+#### Element Filtering and Selection
+
+```js
+// Get specific element by index
+$('.elements').eq(2); // Get the 3rd element (zero-indexed)
+
+// Get first element
+$('.elements').first();
+
+// Get last element
+$('.elements').last();
+
+// Get even-indexed elements (2nd, 4th, 6th, etc.)
+$('.elements').even();
+
+// Get odd-indexed elements (1st, 3rd, 5th, etc.)
+$('.elements').odd();
+```
+
+#### Visibility Control
+
+```js
+// Hide elements (preserves original display value)
+$('.element').hide();
+
+// Show elements (restores original display value)
+$('.element').show();
+
+// Toggle visibility
+$('.element').toggle();
 ```
 
 ### Event Handling
@@ -203,6 +259,14 @@ $watch(count, (newValue, oldValue) => {
 $watch(user, newValue => {
   console.log('User object changed:', newValue);
 });
+
+// Unwatch functionality
+const unwatch = $watch(count, (newValue, oldValue) => {
+  console.log('Watching...');
+});
+
+// Stop watching
+unwatch();
 ```
 
 #### Input Binding
