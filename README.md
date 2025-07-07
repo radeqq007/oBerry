@@ -277,31 +277,3 @@ $('#name-input').bindInput(name);
 
 // Now, whenever the input value changes, `name.value` is updated automatically
 ```
-
-### Cookie Management
-
-```js
-import { $cookie } from 'oberry';
-
-// Set a cookie
-$cookie.set('username', 'john_doe');
-
-// Set a cookie with options
-$cookie.set('session_token', 'abc123', {
-  expires: new Date(Date.now() + 86400000), // 1 day
-  maxAge: 3600, // 1 hour in seconds
-  domain: '.example.com',
-  path: '/admin',
-  secure: true,
-  sameSite: 'Strict',
-});
-
-// Get a cookie
-const username = $cookie.get('username');
-
-// Delete a cookie
-$cookie.delete('session_token');
-
-// Delete a cookie with specific path and domain
-$cookie.delete('session_token', '/admin', '.example.com');
-```
