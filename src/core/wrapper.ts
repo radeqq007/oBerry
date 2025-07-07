@@ -533,4 +533,18 @@ export class ElementWrapper {
 
     return this;
   }
+
+  eq(idx: number): ElementWrapper {
+    const el = this.elements[idx];
+    return new ElementWrapper(el ? [el] : []);
+  }
+
+  first() {
+    return this.eq(0);
+  }
+
+  last() {
+    if (this.elements.length === 0) return new ElementWrapper([]);
+    return this.eq(this.elements.length - 1);
+  }
 }
