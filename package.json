@@ -9,6 +9,7 @@
     "README.md",
     "LICENSE"
   ],
+  "sideEffects": false,
   "scripts": {
     "build": "tsc",
     "prepublishOnly": "pnpm run build",
