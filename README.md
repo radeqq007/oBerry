@@ -215,13 +215,12 @@ const count = $ref(0);
 const message = $ref('Hello');
 
 // Bind to DOM elements
-$('#counter').bind(count);        // Binds as text content
-$('#message').bindHTML(message);  // Binds as HTML content
+$('#counter').bind(count); // Binds as text content
+$('#message').bindHTML(message); // Binds as HTML content
 
 // Update values
 count.value = 42;
 message.value = '<strong>Bold Hello</strong>';
-});
 ```
 
 #### Deep Reactive Objects
