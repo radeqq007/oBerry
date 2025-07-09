@@ -55,7 +55,7 @@ export class deepRef extends Reactive {
         // When pushing to an array watchers would get notified twice because both the values and the length changes
         // Therefore we ignore the length change
         // ^^^ probably not the best solution
-        if (prop !== 'length') {
+        if (prop !== 'length' && Array.isArray(target)) {
           notify();
         }
         return res;
