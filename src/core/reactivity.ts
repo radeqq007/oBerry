@@ -34,7 +34,7 @@ export class Ref extends Reactive {
   }
 }
 
-export class deepRef extends Reactive {
+export class DeepRef extends Reactive {
   private raw: any; // The initial value
   private proxy: any;
 
@@ -104,5 +104,5 @@ export function $watch(
 }
 
 export function $deepRef(value: any = null) {
-  return new deepRef(value);
+  return new DeepRef(value);
 }
