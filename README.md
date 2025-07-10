@@ -134,10 +134,6 @@ $('.parent').children();
 // Get children of all elements (wrapped)
 $('.parents').allChildren();
 
-// Get children as arrays
-$('.parent').childrenArray(); // Children of first element
-$('.parents').allChildrenArray(); // Children of all elements
-
 // Get array of wrapped elements
 $('.elements').getArray();
 ```
