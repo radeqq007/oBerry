@@ -243,28 +243,6 @@ export class ElementWrapper {
     return $(Array.from(children) as HTMLElement[]);
   }
 
-  /**
-   * Get the children of the first element
-   */
-  childrenArray(): HTMLElement[] {
-    const el = this.elements[0];
-    if (!el) return [];
-
-    return Array.from(el.children) as HTMLElement[];
-  }
-
-  /**
-   * Get the children of all the elements
-   */
-  allChildrenArray(): HTMLElement[] {
-    const children: HTMLElement[] = [];
-    this.elements.forEach((el) => {
-      children.push(...(Array.from(el.children) as HTMLElement[]));
-    });
-
-    return children;
-  }
-
   bindHTML(ref: Ref): this {
     $watch(ref, () => {
       this.setHTML(ref.value);
