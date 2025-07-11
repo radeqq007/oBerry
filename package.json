@@ -11,10 +11,10 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "build": "tsc",
+    "build": "tsup src/index.ts --dts",
     "prepublishOnly": "pnpm run build",
-    "build:watch": "tsc --watch",
-    "dev": "tsc --watch",
+    "build:watch": "tsup src/index.ts --watch --dts",
+    "dev": "tsup src/index.ts --watch --dts",
     "clean": "rm -rf dist",
     "format": "pnpm dlx ultracite format"
   },
@@ -44,6 +44,7 @@
   "devDependencies": {
     "@biomejs/biome": "2.0.6",
     "@types/node": "^24.0.4",
+    "tsup": "^8.5.0",
     "typescript": "^5.8.3",
     "ultracite": "5.0.29"
   }
