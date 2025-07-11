@@ -13,7 +13,6 @@
   "scripts": {
     "build": "tsup src/index.ts --dts",
     "prepublishOnly": "pnpm run build",
-    "build:watch": "tsup src/index.ts --watch --dts",
     "dev": "tsup src/index.ts --watch --dts",
     "clean": "rm -rf dist",
     "format": "pnpm dlx ultracite format"
