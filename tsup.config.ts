@@ -5,5 +5,4 @@ export default {
   outDir: 'dist',
   sourceMap: true,
   clean: true,
-  watch: process.env.WATCH === 'true',
 };
