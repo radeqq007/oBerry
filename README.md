@@ -1,5 +1,4 @@
-# oBerry
-
+# oBerry ![oberry](https://img.shields.io/npm/v/oberry.svg) ![downloads](https://img.shields.io/npm/dm/oberry)
 ## Overview
 
 oBerry is a lightweight and modern JQuery alternative designed to simplyfy the manipulation of HTML elements, handling user interactions and biding reactive data to HTML content.
