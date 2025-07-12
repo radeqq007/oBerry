@@ -1,6 +1,7 @@
 # Source and config files not needed in npm package
 src/
 tsconfig.json
+tsup.config.ts
 biome.jsonc
 
 # Dependency and lock files
