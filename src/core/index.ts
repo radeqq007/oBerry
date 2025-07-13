@@ -1,2 +1,2 @@
-export { $deepRef, $ref, $watch } from './reactivity/reactivity.js';
-export { $ } from './selector/selector.js';
+export { $deepRef, $ref, $watch } from './reactivity/index.js';
+export { $ } from './selector/index.js';

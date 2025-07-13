@@ -1,4 +1,4 @@
-import { ElementWrapper } from '../wrapper/wrapper.js';
+import { ElementWrapper } from '../wrapper/index.js';
 
 /**
  * Select DOM elements using a CSS selector, HTMLElement, NodeList, or an Array of HTMLElements.

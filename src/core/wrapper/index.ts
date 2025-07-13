@@ -1,5 +1,5 @@
-import { $watch, type Ref } from '../reactivity/reactivity.js';
-import { $ } from '../selector/selector.js';
+import { $watch, type Ref } from '../reactivity/index.js';
+import { $ } from '../selector/index.js';
 
 export class ElementWrapper {
   elements: HTMLElement[];
