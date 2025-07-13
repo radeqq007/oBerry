@@ -16,7 +16,7 @@ export class ElementWrapper {
   }
 
   /**
-   * Add a class to all elements
+   * Add a class to all elements.
    */
   addClass(className: string): this {
     this.elements.forEach(el => el.classList.add(className));
@@ -24,7 +24,7 @@ export class ElementWrapper {
   }
 
   /**
-   * Remove a class to all elements
+   * Remove a class to all elements.
    */
   removeClass(className: string): this {
     this.elements.forEach(el => el.classList.remove(className));
@@ -32,7 +32,7 @@ export class ElementWrapper {
   }
 
   /**
-   * Toggle a class on all elements
+   * Toggle a class on all elements.
    */
   toggleClass(className: string): this {
     this.elements.forEach(el => el.classList.toggle(className));
@@ -40,7 +40,7 @@ export class ElementWrapper {
   }
 
   /**
-   * Modify the style of all elements
+   * Modify the style of all elements.
    */
   css(styles: Partial<CSSStyleDeclaration>): this {
     this.elements.forEach(el => {
@@ -50,7 +50,7 @@ export class ElementWrapper {
   }
 
   /**
-   * Set the inner HTML of all elements
+   * Set the inner HTML of all elements.
    */
   setHTML(content: string) {
     this.elements.forEach(el => {
@@ -59,14 +59,14 @@ export class ElementWrapper {
   }
 
   /**
-   * Get the inner HTML of the first element
+   * Get the inner HTML of the first element.
    */
   getHTML(): string | null {
     return this.elements[0]?.innerHTML ?? null;
   }
 
   /**
-   * Set the inner text of all elements
+   * Set the inner text of all elements.
    */
   setText(content: string) {
     this.elements.forEach(el => {
@@ -75,21 +75,21 @@ export class ElementWrapper {
   }
 
   /**
-   * Get the inner Text of the first element
+   * Get the inner Text of the first element.
    */
   getText(): string | null {
     return this.elements[0]?.innerText ?? null;
   }
 
   /**
-   *  Get the array of elements
+   *  Get the array of elements.
    */
   getArray(): HTMLElement[] {
     return Array.from(this.elements);
   }
 
   /**
-   * Get the value of the first element
+   * Get the value of the first element.
    */
   getValue() {
     const el = this.elements[0];
@@ -107,7 +107,7 @@ export class ElementWrapper {
   }
 
   /**
-   * Set the value of the first element
+   * Set the value of the first element.
    */
   setValue(newValue: any): this {
     const el = this.elements[0];
@@ -125,7 +125,7 @@ export class ElementWrapper {
   }
 
   /**
-   * Append elements to all selected elements
+   * Append elements to all selected elements.
    */
   append(content: string | HTMLElement | ElementWrapper): this {
     this.elements.forEach(el => {
@@ -140,7 +140,7 @@ export class ElementWrapper {
   }
 
   /**
-   * Prepend elements to all selected elements
+   * Prepend elements to all selected elements.
    */
   prepend(content: string | HTMLElement | ElementWrapper): this {
     this.elements.forEach(el => {
@@ -156,7 +156,7 @@ export class ElementWrapper {
   }
 
   /**
-   * Insert elements after all selected elements
+   * Insert elements after all selected elements.
    */
   after(content: string | HTMLElement | ElementWrapper): this {
     this.elements.forEach(el => {
@@ -182,7 +182,7 @@ export class ElementWrapper {
   }
 
   /**
-   * Insert elements before all selected elements
+   * Insert elements before all selected elements.
    */
   before(content: string | HTMLElement | ElementWrapper): this {
     this.elements.forEach(el => {
@@ -208,7 +208,7 @@ export class ElementWrapper {
   }
 
   /**
-   * Get the parent wrapper of the first element
+   * Get the parent wrapper of the first element.
    */
   parent(): ElementWrapper | null {
     const el = this.elements[0];
@@ -221,6 +221,9 @@ export class ElementWrapper {
     return $(parent);
   }
 
+  /**
+   * Get the children wrapper of the first element.
+   */
   children(): ElementWrapper | null {
     const el = this.elements[0];
     if (!el) return null;
@@ -232,6 +235,9 @@ export class ElementWrapper {
     return $(Array.from(children) as HTMLElement[]);
   }
 
+  /**
+   * Get the children wrapper of the all elements.
+   */
   allChildren(): ElementWrapper | null {
     const children: HTMLElement[] = [];
     this.elements.forEach(el => {
@@ -243,6 +249,9 @@ export class ElementWrapper {
     return $(Array.from(children) as HTMLElement[]);
   }
 
+  /**
+   * Bind the value of a ref into the element's inner HTML.
+   */
   bindHTML(ref: Ref): this {
     $watch(ref, () => {
       this.setHTML(ref.value);
@@ -251,6 +260,9 @@ export class ElementWrapper {
     return this;
   }
 
+  /**
+   * Bind the value of a ref into the element's text content.
+   */
   bind(ref: Ref): this {
     $watch(ref, () => {
       this.setText(ref.value);
@@ -259,6 +271,9 @@ export class ElementWrapper {
     return this;
   }
 
+  /**
+   * Bind the input value of the first element into a ref value.
+   */
   bindInput(ref: Ref): this {
     const el = this.elements[0];
     if (!el) return this;
@@ -278,7 +293,7 @@ export class ElementWrapper {
   }
 
   /**
-   * Attach a click event listener to all elements
+   * Attach a click event listener to all elements.
    */
   onClick(
     callback: (this: HTMLElement, ev: HTMLElementEventMap['click']) => any
@@ -287,7 +302,7 @@ export class ElementWrapper {
   }
 
   /**
-   * Attach a mouseover event listener to all elements
+   * Attach a mouseover event listener to all elements.
    */
   onMouseOver(
     callback: (this: HTMLElement, ev: HTMLElementEventMap['mouseover']) => any
@@ -296,7 +311,7 @@ export class ElementWrapper {
   }
 
   /**
-   * Attach a mouseout event listener to all elements
+   * Attach a mouseout event listener to all elements.
    */
   onMouseOut(
     callback: (this: HTMLElement, ev: HTMLElementEventMap['mouseout']) => any
@@ -305,7 +320,7 @@ export class ElementWrapper {
   }
 
   /**
-   * Attach a change event listener to all elements
+   * Attach a change event listener to all elements.
    */
   onChange(
     callback: (this: HTMLElement, ev: HTMLElementEventMap['change']) => any
@@ -314,7 +329,7 @@ export class ElementWrapper {
   }
 
   /**
-   * Attach an input event listener to all elements
+   * Attach an input event listener to all elements.
    */
   onInput(
     callback: (this: HTMLElement, ev: HTMLElementEventMap['input']) => any
@@ -323,7 +338,7 @@ export class ElementWrapper {
   }
 
   /**
-   * Attach a submit event listener to all elements
+   * Attach a submit event listener to all elements.
    */
   onSubmit(
     callback: (this: HTMLElement, ev: HTMLElementEventMap['submit']) => any
@@ -332,7 +347,7 @@ export class ElementWrapper {
   }
 
   /**
-   * Attach a focus event listener to all elements
+   * Attach a focus event listener to all elements.
    */
   onFocus(
     callback: (this: HTMLElement, ev: HTMLElementEventMap['focus']) => any
@@ -341,7 +356,7 @@ export class ElementWrapper {
   }
 
   /**
-   * Attach a blur event listener to all elements
+   * Attach a blur event listener to all elements.
    */
   onBlur(
     callback: (this: HTMLElement, ev: HTMLElementEventMap['blur']) => any
@@ -350,7 +365,7 @@ export class ElementWrapper {
   }
 
   /**
-   * Attach a keydown event listener to all elements
+   * Attach a keydown event listener to all elements.
    */
   onKeyDown(
     callback: (this: HTMLElement, ev: HTMLElementEventMap['keydown']) => any
@@ -359,7 +374,7 @@ export class ElementWrapper {
   }
 
   /**
-   * Attach a keyup event listener to all elements
+   * Attach a keyup event listener to all elements.
    */
   onKeyUp(
     callback: (this: HTMLElement, ev: HTMLElementEventMap['keyup']) => any
@@ -368,7 +383,7 @@ export class ElementWrapper {
   }
 
   /**
-   * Attach a keypress event listener to all elements
+   * Attach a keypress event listener to all elements.
    */
   onKeyPress(
     callback: (this: HTMLElement, ev: HTMLElementEventMap['keypress']) => any
@@ -377,7 +392,7 @@ export class ElementWrapper {
   }
 
   /**
-   * Attach a double-click event listener to all elements
+   * Attach a double-click event listener to all elements.
    */
   onDblClick(
     callback: (this: HTMLElement, ev: HTMLElementEventMap['dblclick']) => any
@@ -386,7 +401,7 @@ export class ElementWrapper {
   }
 
   /**
-   * Attach a contextmenu event listener to all elements
+   * Attach a contextmenu event listener to all elements.
    */
   onContextMenu(
     callback: (this: HTMLElement, ev: HTMLElementEventMap['contextmenu']) => any
@@ -395,7 +410,7 @@ export class ElementWrapper {
   }
 
   /**
-   * Attach a scroll event listener to all elements
+   * Attach a scroll event listener to all elements.
    */
   onScroll(
     callback: (this: HTMLElement, ev: HTMLElementEventMap['scroll']) => any
@@ -404,7 +419,7 @@ export class ElementWrapper {
   }
 
   /**
-   * Attach a resize event listener to all elements
+   * Attach a resize event listener to all elements.
    */
   onResize(
     callback: (this: HTMLElement, ev: HTMLElementEventMap['resize']) => any
@@ -413,7 +428,7 @@ export class ElementWrapper {
   }
 
   /**
-   * Attach a load event listener to all elements
+   * Attach a load event listener to all elements.
    */
   onLoad(
     callback: (this: HTMLElement, ev: HTMLElementEventMap['load']) => any
@@ -422,7 +437,7 @@ export class ElementWrapper {
   }
 
   /**
-   * Attach a drag event listener to all elements
+   * Attach a drag event listener to all elements.
    */
   onDrag(
     callback: (this: HTMLElement, ev: HTMLElementEventMap['drag']) => any
@@ -431,7 +446,7 @@ export class ElementWrapper {
   }
 
   /**
-   * Attach a drop event listener to all elements
+   * Attach a drop event listener to all elements.
    */
   onDrop(
     callback: (this: HTMLElement, ev: HTMLElementEventMap['drop']) => any
@@ -439,6 +454,9 @@ export class ElementWrapper {
     return this.on('drop', callback);
   }
 
+  /**
+   * Get the elements at even positions (1-based indexing).
+   */
   even() {
     const elements: HTMLElement[] = [];
     for (let i = 0; i < this.elements.length; i++) {
@@ -448,6 +466,9 @@ export class ElementWrapper {
     return new ElementWrapper(elements);
   }
 
+  /**
+   * Get the elements at odd positions (1-based indexing).
+   */
   odd() {
     const elements: HTMLElement[] = [];
     for (let i = 0; i < this.elements.length; i++) {
@@ -457,7 +478,7 @@ export class ElementWrapper {
     return new ElementWrapper(elements);
   }
   /**
-   * Hide all elements
+   * Hide all elements.
    */
   hide(): this {
     this.elements.forEach(el => {
@@ -473,7 +494,7 @@ export class ElementWrapper {
   }
 
   /**
-   * Show all elements
+   * Show all elements.
    */
   show(): this {
     this.elements.forEach(el => {
@@ -488,7 +509,7 @@ export class ElementWrapper {
   }
 
   /**
-   * Toggle visibility of all elements
+   * Toggle visibility of all elements.
    */
   toggle(): this {
     this.elements.forEach(el => {
@@ -512,15 +533,24 @@ export class ElementWrapper {
     return this;
   }
 
+  /**
+   * Get the nth element (0-based indexing).
+   */
   eq(idx: number): ElementWrapper {
     const el = this.elements[idx];
     return new ElementWrapper(el ? [el] : []);
   }
 
+  /**
+   * Get the first element.
+   */
   first() {
     return this.eq(0);
   }
 
+  /**
+   * Get the last element.
+   */
   last() {
     if (this.elements.length === 0) return new ElementWrapper([]);
     return this.eq(this.elements.length - 1);
