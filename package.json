@@ -31,7 +31,8 @@
     "typescript",
     "frontend",
     "javascript",
-    "selector"
+    "selector",
+    "signals"
   ],
   "author": "Radosław Kaczmarczyk",
   "license": "MIT",
