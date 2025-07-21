@@ -296,6 +296,20 @@ export class ElementWrapper {
     return this;
   }
 
+  setAttr(key: string, value: string): this {
+    for (const el of this.elements) {
+      el.setAttribute(key, value);
+    }
+    return this;
+  }
+
+  getAttr(key: string): string | null {
+    const el = this.elements[0];
+    if (!el) return null;
+
+    return el.getAttribute(key);
+  }
+
   private on<K extends keyof HTMLElementEventMap>(
     event: K,
     callback: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any
