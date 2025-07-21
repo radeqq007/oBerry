@@ -40,6 +40,17 @@ export class ElementWrapper {
     return this;
   }
 
+  getId(): string | undefined {
+    return this.elements[0]?.id;
+  }
+
+  setId(id: string): this {
+    const el = this.elements[0];
+    if (!el) return this;
+
+    el.id = id;
+    return this;
+  }
   /**
    * Modify the style of all elements.
    */
