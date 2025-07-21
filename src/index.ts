@@ -1,2 +1,2 @@
 export { $, $create, $deepRef, $ref, $watch } from './core';
-export type { DeepRef, ElementWrapper, Ref } from './types';
+export type { CreateOptions, DeepRef, ElementWrapper, Ref } from './types';
