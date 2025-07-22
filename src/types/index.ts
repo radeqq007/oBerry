@@ -1,6 +1,6 @@
 export type { ElementWrapper } from '../core/wrapper';
 
-export type Signal<T> = {
+export type Ref<T> = {
   (): T;
   (value: T): void;
 };

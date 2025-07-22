@@ -1,4 +1,4 @@
-import { type Ref } from '../../types';
+import { type Ref } from '../../types/index';
 import { $effect } from '../reactivity';
 import { $ } from '../selector';
 
