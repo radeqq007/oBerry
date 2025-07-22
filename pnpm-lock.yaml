@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      alien-signals:
+        specifier: ^2.0.5
+        version: 2.0.5
     devDependencies:
       '@biomejs/biome':
         specifier: 2.0.6
@@ -401,6 +405,9 @@ packages:
     resolution: {integrity: sha512-NZyJarBfL7nWwIq+FDL6Zp/yHEhePMNnnJ0y3qfieCrmNvYct8uvtiV41UvlSe6apAfk0fY1FbWx+NwfmpvtTg==}
     engines: {node: '>=0.4.0'}
     hasBin: true
+
+  alien-signals@2.0.5:
+    resolution: {integrity: sha512-PdJB6+06nUNAClInE3Dweq7/2xVAYM64vvvS1IHVHSJmgeOtEdrAGyp7Z2oJtYm0B342/Exd2NT0uMJaThcjLQ==}
 
   ansi-regex@5.0.1:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
@@ -1174,6 +1181,8 @@ snapshots:
       tinyrainbow: 2.0.0
 
   acorn@8.15.0: {}
+
+  alien-signals@2.0.5: {}
 
   ansi-regex@5.0.1: {}
 

@@ -51,5 +51,8 @@
     "tsup": "^8.5.0",
     "typescript": "^5.8.3",
     "ultracite": "5.0.29"
+  },
+  "dependencies": {
+    "alien-signals": "^2.0.5"
   }
 }
