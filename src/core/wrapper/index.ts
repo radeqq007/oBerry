@@ -80,10 +80,12 @@ export class ElementWrapper {
   /**
    * Set the inner text of all elements.
    */
-  setText(content: string) {
+  setText(content: string): this {
     this.elements.forEach(el => {
       el.innerText = content;
     });
+
+    return this;
   }
 
   /**
