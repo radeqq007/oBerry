@@ -1,2 +1,2 @@
-export { $, $deepRef, $new, $ref, $watch } from './core';
+export { $, $computed, $effect, $effectScope, $new, $ref } from './core';
 export type { DeepRef, ElementWrapper, Ref } from './types';

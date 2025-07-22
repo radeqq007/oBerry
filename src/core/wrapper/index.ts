@@ -1,5 +1,5 @@
 import { clearLine } from 'readline';
-import { $watch, type Ref } from '../reactivity';
+import { $watch } from '../reactivity';
 import { $ } from '../selector';
 
 export class ElementWrapper {
@@ -266,7 +266,7 @@ export class ElementWrapper {
   /**
    * Bind the value of a ref into the element's inner HTML.
    */
-  bindHTML(ref: Ref): this {
+  bindHTML(ref): this {
     $watch(ref, () => {
       this.setHTML(ref.value);
     });
@@ -277,7 +277,7 @@ export class ElementWrapper {
   /**
    * Bind the value of a ref into the element's text content.
    */
-  bind(ref: Ref): this {
+  bind(ref): this {
     $watch(ref, () => {
       this.setText(ref.value);
     });
@@ -288,7 +288,7 @@ export class ElementWrapper {
   /**
    * Bind the input value of the first element into a ref value.
    */
-  bindInput(ref: Ref): this {
+  bindInput(ref): this {
     const el = this.elements[0];
     if (!el) return this;
 

@@ -1,3 +1,3 @@
 export { $new } from './creator';
-export { $deepRef, $ref, $watch } from './reactivity';
+export { $computed, $effect, $effectScope, $ref } from './reactivity';
 export { $ } from './selector';
