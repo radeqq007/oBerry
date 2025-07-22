@@ -1,4 +1,4 @@
-# oBerry ![oberry](https://img.shields.io/npm/v/oberry.svg) ![License](https://img.shields.io/github/license/radeqq007/oberry) ![downloads](https://img.shields.io/npm/dm/oberry) 
+# oBerry ![oberry](https://img.shields.io/npm/v/oberry.svg) ![License](https://img.shields.io/github/license/radeqq007/oberry) ![downloads](https://img.shields.io/npm/dm/oberry)
 
 ## Overview
 
@@ -115,6 +115,15 @@ $('.element').before(document.createElement('div'));
 $('.element').before($('.other-element'));
 ```
 
+#### Element Creation
+
+```js
+import { $new } from 'oberry';
+
+// Create new elements
+const newDiv = $new('div').addClass('my-class').setText('Hello World');
+```
+
 #### Form Values
 
 ```js
@@ -201,74 +210,89 @@ $('.element')
   .onDrop(event => console.log('Dropped'));
 ```
 
-### Reactive Data
+### Reactivity
 
-#### Simple reactive references
+oBerry's reactivity system is built on top of `alien-signals`, providing efficient and fine-grained reactivity.
+
+#### Reactive References
 
 ```js
 // Create reactive reference
 const count = $ref(0);
 const message = $ref('Hello');
 
+// Reading values
+console.log(count()); // 0
+console.log(message()); // 'Hello'
+
+// Setting values
+count(42);
+message('Hello World');
+
 // Bind to DOM elements
 $('#counter').bind(count); // Binds as text content
 $('#message').bindHTML(message); // Binds as HTML content
-
-// Update values
-count.value = 42;
-message.value = '<strong>Bold Hello</strong>';
 ```
 
-#### Deep Reactive Objects
+#### Computed Values
 
 ```js
-// Create deep reactive object
-const user = $deepRef({
-  name: 'John',
-  age: 30,
-  address: {
-    city: 'New York',
-    zip: '10001',
-  },
+const firstName = $ref('John');
+const lastName = $ref('Doe');
+
+// Create computed value that automatically updates
+const fullName = $computed(() => {
+  return `${firstName()} ${lastName()}`;
 });
 
-// Bind computed values
-$('#user-name').bind($ref(() => user.value.name));
-$('#user-info').bind($ref(() => `${user.value.name} (${user.value.age})`));
+// Bind computed to DOM
+$('#full-name').bind(fullName);
 
-// Update nested properties (automatically triggers reactivity)
-user.value.name = 'Jane';
-user.value.address.city = 'Los Angeles';
+// Updates automatically when dependencies change
+firstName('Jane'); // '#full-name' will show 'Jane Doe'
 ```
 
-#### Watching Changes
+#### Effects
 
 ```js
-// Watch simple refs
-$watch(count, (newValue, oldValue) => {
-  console.log(`Count changed from ${oldValue} to ${newValue}`);
+const count = $ref(0);
+
+// Run side effects when reactive values change
+$effect(() => {
+  console.log(`Count is now: ${count()}`);
+  document.title = `Count: ${count()}`;
 });
 
-// Watch deep reactive objects
-$watch(user, newValue => {
-  console.log('User object changed:', newValue);
+count(1); // Console: 'Count is now: 1', Title updates
+count(2); // Console: 'Count is now: 2', Title updates
+```
+
+#### Effect Scope
+
+```js
+// Group multiple effects together for cleanup
+const scope = $effectScope(() => {
+  $effect(() => {
+    console.log('Effect 1:', count());
+  });
+
+  $effect(() => {
+    console.log('Effect 2:', count());
+  });
 });
 
-// Unwatch functionality
-const unwatch = $watch(count, (newValue, oldValue) => {
-  console.log('Watching...');
-});
-
-// Stop watching
-unwatch();
+// Stop all effects in the scope
+scope.stop();
 ```
 
 #### Input Binding
 
 ```js
-// Bind an input element to a reactive reference
+// Two-way binding with form inputs
 const name = $ref('');
 $('#name-input').bindInput(name);
 
-// Now, whenever the input value changes, `name.value` is updated automatically
+// The input value and ref stay in sync
+name('John'); // Input shows 'John'
+// User types 'Jane' -> name() returns 'Jane'
 ```
