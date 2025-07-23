@@ -115,15 +115,6 @@ $('.element').before(document.createElement('div'));
 $('.element').before($('.other-element'));
 ```
 
-#### Element Creation
-
-```js
-import { $new } from 'oberry';
-
-// Create new elements
-const newDiv = $new('div').addClass('my-class').setText('Hello World');
-```
-
 #### Form Values
 
 ```js
@@ -179,6 +170,15 @@ $('.element').show();
 $('.element').toggle();
 ```
 
+#### Element Creation
+
+```js
+import { $new } from 'oberry';
+
+// Create new elements
+const newDiv = $new('div').addClass('my-class').setText('Hello World');
+```
+
 ### Event Handling
 
 ```js
@@ -212,7 +212,7 @@ $('.element')
 
 ### Reactivity
 
-oBerry's reactivity system is built on top of `alien-signals`, providing efficient and fine-grained reactivity.
+oBerry's reactivity system is built on top of [alien-signals](https://github.com/stackblitz/alien-signals), providing efficient and fine-grained reactivity.
 
 #### Reactive References
 
@@ -271,18 +271,14 @@ count(2); // Console: 'Count is now: 2', Title updates
 
 ```js
 // Group multiple effects together for cleanup
-const scope = $effectScope(() => {
+const stopScope = $effectScope(() => {
   $effect(() => {
-    console.log('Effect 1:', count());
-  });
-
-  $effect(() => {
-    console.log('Effect 2:', count());
+    console.log(`Count in scope: ${count()}`);
   });
 });
 
 // Stop all effects in the scope
-scope.stop();
+stopScope();
 ```
 
 #### Input Binding
