@@ -20,7 +20,7 @@ export class ElementWrapper {
    * Add a class to all elements.
    */
   addClass(className: string): this {
-    this.elements.forEach(el => el.classList.add(className));
+    for (const el of this.elements) el.classList.add(className);
     return this;
   }
 
@@ -28,7 +28,7 @@ export class ElementWrapper {
    * Remove a class to all elements.
    */
   removeClass(className: string): this {
-    this.elements.forEach(el => el.classList.remove(className));
+    for (const el of this.elements) el.classList.remove(className);
     return this;
   }
 
@@ -36,7 +36,7 @@ export class ElementWrapper {
    * Toggle a class on all elements.
    */
   toggleClass(className: string): this {
-    this.elements.forEach(el => el.classList.toggle(className));
+    for (const el of this.elements) el.classList.toggle(className);
     return this;
   }
 
@@ -59,9 +59,7 @@ export class ElementWrapper {
    * Modify the style of all elements.
    */
   css(styles: Partial<CSSStyleDeclaration>): this {
-    this.elements.forEach(el => {
-      Object.assign(el.style, styles);
-    });
+    for (const el of this.elements) Object.assign(el.style, styles);
     return this;
   }
 
@@ -72,9 +70,9 @@ export class ElementWrapper {
       return this.elements[0]?.innerHTML;
     }
 
-    this.elements.forEach(el => {
+    for (const el of this.elements) {
       el.innerHTML = content;
-    });
+    }
 
     return this;
   }
@@ -86,10 +84,9 @@ export class ElementWrapper {
       return this.elements[0]?.innerText;
     }
 
-    // TODO: this should be a for...of for performance
-    this.elements.forEach(el => {
+    for (const el of this.elements) {
       el.innerText = content;
-    });
+    }
 
     return this;
   }
@@ -144,9 +141,9 @@ export class ElementWrapper {
       if (typeof content === 'string') el.innerHTML += content;
       else if (content instanceof HTMLElement) el.appendChild(content);
       else if (content instanceof ElementWrapper)
-        content.elements.forEach(child => {
+        for (const child of content.elements) {
           el.appendChild(child.cloneNode(true));
-        });
+        }
     }
     return this;
   }
@@ -177,9 +174,9 @@ export class ElementWrapper {
   after(content: HTMLElement): this;
   after(content: ElementWrapper): this;
   after(content: string | HTMLElement | ElementWrapper): this {
-    this.elements.forEach(el => {
+    for (const el of this.elements) {
       const parent = el.parentNode;
-      if (!parent) return;
+      if (!parent) continue;
 
       if (typeof content === 'string') {
         const temp = document.createElement('div');
@@ -191,11 +188,11 @@ export class ElementWrapper {
       } else if (content instanceof HTMLElement) {
         parent.insertBefore(content.cloneNode(true), el.nextSibling);
       } else if (content instanceof ElementWrapper) {
-        content.elements.forEach(childEl => {
+        for (const childEl of content.elements) {
           parent.insertBefore(childEl.cloneNode(true), el.nextSibling);
-        });
+        }
       }
-    });
+    }
     return this;
   }
 
@@ -220,9 +217,9 @@ export class ElementWrapper {
       } else if (content instanceof HTMLElement) {
         parent.insertBefore(content.cloneNode(true), el);
       } else if (content instanceof ElementWrapper) {
-        content.elements.forEach(childEl => {
+        for (const childEl of content.elements) {
           parent.insertBefore(childEl.cloneNode(true), el);
-        });
+        }
       }
     }
     return this;
@@ -261,9 +258,9 @@ export class ElementWrapper {
    */
   allChildren(): ElementWrapper | null {
     const children: HTMLElement[] = [];
-    this.elements.forEach(el => {
+    for (const el of this.elements) {
       children.push(...(Array.from(el.children) as HTMLElement[]));
-    });
+    }
 
     if (!children) return null;
 
@@ -325,7 +322,9 @@ export class ElementWrapper {
     event: K,
     callback: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any
   ): this {
-    this.elements.forEach(el => el.addEventListener(event, callback));
+    for (const el of this.elements) {
+      el.addEventListener(event, callback);
+    }
     return this;
   }
 
@@ -518,14 +517,14 @@ export class ElementWrapper {
    * Hide all elements.
    */
   hide(): this {
-    this.elements.forEach(el => {
+    for (const el of this.elements) {
       if (!el.dataset.originalDisplay) {
         const computedStyle = window.getComputedStyle(el);
         el.dataset.originalDisplay = computedStyle.display;
       }
 
       el.style.display = 'none';
-    });
+    }
 
     return this;
   }
@@ -534,13 +533,13 @@ export class ElementWrapper {
    * Show all elements.
    */
   show(): this {
-    this.elements.forEach(el => {
+    for (const el of this.elements) {
       const originalDisplay = el.dataset.originalDisplay || '';
       el.style.display = originalDisplay === 'none' ? 'block' : originalDisplay;
 
       // Clean up the data attribute
       delete el.dataset.originalDisplay;
-    });
+    }
 
     return this;
   }
@@ -549,7 +548,7 @@ export class ElementWrapper {
    * Toggle visibility of all elements.
    */
   toggle(): this {
-    this.elements.forEach(el => {
+    for (const el of this.elements) {
       const isVisible = window.getComputedStyle(el).display !== 'none';
 
       if (isVisible) {
@@ -565,7 +564,7 @@ export class ElementWrapper {
         // Clean up the data attribute
         delete el.dataset.originalDisplay;
       }
-    });
+    }
 
     return this;
   }
