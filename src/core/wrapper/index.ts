@@ -101,9 +101,6 @@ export class ElementWrapper {
     return Array.from(this.elements);
   }
 
-  /**
-   * Get the value of the first element.
-   */
   value(newValue: string): this;
   value(): string | undefined;
   value(newValue?: string): this | string | undefined {
