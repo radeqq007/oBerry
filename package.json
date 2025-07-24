@@ -46,11 +46,11 @@
   },
   "packageManager": "pnpm@10.10.0",
   "devDependencies": {
-    "@biomejs/biome": "2.0.6",
+    "@biomejs/biome": "2.1.2",
     "@types/node": "^24.0.4",
     "tsup": "^8.5.0",
     "typescript": "^5.8.3",
-    "ultracite": "5.0.29"
+    "ultracite": "5.0.47"
   },
   "dependencies": {
     "alien-signals": "^2.0.5"
