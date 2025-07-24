@@ -20,7 +20,7 @@ export class ElementWrapper {
    * Add a class to all elements.
    */
   addClass(className: string): this {
-    this.elements.forEach((el) => el.classList.add(className));
+    this.elements.forEach(el => el.classList.add(className));
     return this;
   }
 
@@ -28,7 +28,7 @@ export class ElementWrapper {
    * Remove a class to all elements.
    */
   removeClass(className: string): this {
-    this.elements.forEach((el) => el.classList.remove(className));
+    this.elements.forEach(el => el.classList.remove(className));
     return this;
   }
 
@@ -36,7 +36,7 @@ export class ElementWrapper {
    * Toggle a class on all elements.
    */
   toggleClass(className: string): this {
-    this.elements.forEach((el) => el.classList.toggle(className));
+    this.elements.forEach(el => el.classList.toggle(className));
     return this;
   }
 
@@ -59,7 +59,7 @@ export class ElementWrapper {
    * Modify the style of all elements.
    */
   css(styles: Partial<CSSStyleDeclaration>): this {
-    this.elements.forEach((el) => {
+    this.elements.forEach(el => {
       Object.assign(el.style, styles);
     });
     return this;
@@ -72,7 +72,7 @@ export class ElementWrapper {
       return this.elements[0]?.innerHTML;
     }
 
-    this.elements.forEach((el) => {
+    this.elements.forEach(el => {
       el.innerHTML = content;
     });
 
@@ -87,7 +87,7 @@ export class ElementWrapper {
     }
 
     // TODO: this should be a for...of for performance
-    this.elements.forEach((el) => {
+    this.elements.forEach(el => {
       el.innerText = content;
     });
 
@@ -136,12 +136,16 @@ export class ElementWrapper {
   /**
    * Append elements to all selected elements.
    */
+  append(content: string): this;
+  append(content: HTMLElement): this;
+  append(content: ElementWrapper): this;
   append(content: string | HTMLElement | ElementWrapper): this {
-    this.elements.forEach((el) => {
+    // TODO: make this a for...of loop cause its more efficient
+    this.elements.forEach(el => {
       if (typeof content === 'string') el.innerHTML += content;
       else if (content instanceof HTMLElement) el.appendChild(content);
       else if (content instanceof ElementWrapper)
-        content.elements.forEach((child) => {
+        content.elements.forEach(child => {
           el.appendChild(child.cloneNode(true));
         });
     });
@@ -151,8 +155,12 @@ export class ElementWrapper {
   /**
    * Prepend elements to all selected elements.
    */
+  prepend(content: string): this;
+  prepend(content: HTMLElement): this;
+  prepend(content: ElementWrapper): this;
   prepend(content: string | HTMLElement | ElementWrapper): this {
-    this.elements.forEach((el) => {
+    // TODO: MAKE THIS A FOR...OF
+    this.elements.forEach(el => {
       if (typeof content === 'string') el.innerHTML = content + el.innerHTML;
       else if (content instanceof HTMLElement)
         el.insertBefore(content.cloneNode(true), el.firstChild);
@@ -167,8 +175,11 @@ export class ElementWrapper {
   /**
    * Insert elements after all selected elements.
    */
+  after(content: string): this;
+  after(content: HTMLElement): this;
+  after(content: ElementWrapper): this;
   after(content: string | HTMLElement | ElementWrapper): this {
-    this.elements.forEach((el) => {
+    this.elements.forEach(el => {
       const parent = el.parentNode;
       if (!parent) return;
 
@@ -182,7 +193,7 @@ export class ElementWrapper {
       } else if (content instanceof HTMLElement) {
         parent.insertBefore(content.cloneNode(true), el.nextSibling);
       } else if (content instanceof ElementWrapper) {
-        content.elements.forEach((childEl) => {
+        content.elements.forEach(childEl => {
           parent.insertBefore(childEl.cloneNode(true), el.nextSibling);
         });
       }
@@ -193,8 +204,12 @@ export class ElementWrapper {
   /**
    * Insert elements before all selected elements.
    */
+  before(content: string): this;
+  before(content: HTMLElement): this;
+  before(content: ElementWrapper): this;
   before(content: string | HTMLElement | ElementWrapper): this {
-    this.elements.forEach((el) => {
+    // TODO: FOR OFFFFF
+    this.elements.forEach(el => {
       const parent = el.parentNode;
       if (!parent) return;
 
@@ -208,7 +223,7 @@ export class ElementWrapper {
       } else if (content instanceof HTMLElement) {
         parent.insertBefore(content.cloneNode(true), el);
       } else if (content instanceof ElementWrapper) {
-        content.elements.forEach((childEl) => {
+        content.elements.forEach(childEl => {
           parent.insertBefore(childEl.cloneNode(true), el);
         });
       }
@@ -249,7 +264,7 @@ export class ElementWrapper {
    */
   allChildren(): ElementWrapper | null {
     const children: HTMLElement[] = [];
-    this.elements.forEach((el) => {
+    this.elements.forEach(el => {
       children.push(...(Array.from(el.children) as HTMLElement[]));
     });
 
@@ -313,7 +328,7 @@ export class ElementWrapper {
     event: K,
     callback: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any
   ): this {
-    this.elements.forEach((el) => el.addEventListener(event, callback));
+    this.elements.forEach(el => el.addEventListener(event, callback));
     return this;
   }
 
@@ -506,7 +521,7 @@ export class ElementWrapper {
    * Hide all elements.
    */
   hide(): this {
-    this.elements.forEach((el) => {
+    this.elements.forEach(el => {
       if (!el.dataset.originalDisplay) {
         const computedStyle = window.getComputedStyle(el);
         el.dataset.originalDisplay = computedStyle.display;
@@ -522,7 +537,7 @@ export class ElementWrapper {
    * Show all elements.
    */
   show(): this {
-    this.elements.forEach((el) => {
+    this.elements.forEach(el => {
       const originalDisplay = el.dataset.originalDisplay || '';
       el.style.display = originalDisplay === 'none' ? 'block' : originalDisplay;
 
@@ -537,7 +552,7 @@ export class ElementWrapper {
    * Toggle visibility of all elements.
    */
   toggle(): this {
-    this.elements.forEach((el) => {
+    this.elements.forEach(el => {
       const isVisible = window.getComputedStyle(el).display !== 'none';
 
       if (isVisible) {
