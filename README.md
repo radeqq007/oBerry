@@ -85,10 +85,10 @@ $('.element').css({
 
 ```js
 $('.element')
-  .setHTML('<p>New HTML content</p>')
-  .setText('Plain text content')
-  .getHTML() // Returns HTML of first element
-  .getText(); // Returns text of first element
+  .html('<p>New HTML content</p>')
+  .text('Plain text content')
+  .html() // Returns HTML of first element
+  .text(); // Returns text of first element
 ```
 
 #### Content insertion
