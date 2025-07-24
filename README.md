@@ -23,7 +23,7 @@ npm install oberry
 ## Quick start
 
 ```js
-import { $, $ref, $watch } from 'oberry';
+import { $, $ref } from 'oberry';
 
 // Select and manipulate elements
 $('.my-button')
@@ -34,13 +34,8 @@ $('.my-button')
 const message = $ref('Hello World');
 $('#output').bind(message);
 
-// Watch for changes
-$watch(message, (newValue, oldValue) => {
-  console.log(`Changed from ${oldValue} to ${newValue}`);
-});
-
 // Update reactive value
-message.value = 'Hello OBerry!';
+message('Hello!');
 ```
 
 ## API Reference
@@ -119,7 +114,9 @@ $('.element').before($('.other-element'));
 
 ```js
 // Get/set values for input, textarea, select elements
-$('#input-field').setValue('New value').getValue(); // Returns current value
+$('#input-field')
+  .value('New value') // Sets the current value
+  .value(); // Returns current value
 ```
 
 #### Element Navigation
@@ -176,7 +173,7 @@ $('.element').toggle();
 import { $new } from 'oberry';
 
 // Create new elements
-const newDiv = $new('div').addClass('my-class').setText('Hello World');
+const newDiv = $new('div').addClass('my-class').text('Hello World');
 ```
 
 ### Event Handling
