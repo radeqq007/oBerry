@@ -20,7 +20,7 @@ export class ElementWrapper {
    * Add a class to all elements.
    */
   addClass(className: string): this {
-    this.elements.forEach((el) => el.classList.add(className));
+    this.elements.forEach(el => el.classList.add(className));
     return this;
   }
 
@@ -28,7 +28,7 @@ export class ElementWrapper {
    * Remove a class to all elements.
    */
   removeClass(className: string): this {
-    this.elements.forEach((el) => el.classList.remove(className));
+    this.elements.forEach(el => el.classList.remove(className));
     return this;
   }
 
@@ -36,63 +36,62 @@ export class ElementWrapper {
    * Toggle a class on all elements.
    */
   toggleClass(className: string): this {
-    this.elements.forEach((el) => el.classList.toggle(className));
+    this.elements.forEach(el => el.classList.toggle(className));
     return this;
   }
 
-  getId(): string | undefined {
-    return this.elements[0]?.id;
-  }
+  id(): string | undefined;
+  id(id: string): this;
+  id(id?: string): string | undefined | this {
+    if (id === undefined) {
+      const el = this.elements[0];
+      return el?.id || undefined;
+    }
 
-  setId(id: string): this {
-    const el = this.elements[0];
-    if (!el) return this;
+    for (const el of this.elements) {
+      el.id = id;
+    }
 
-    el.id = id;
     return this;
   }
+
   /**
    * Modify the style of all elements.
    */
   css(styles: Partial<CSSStyleDeclaration>): this {
-    this.elements.forEach((el) => {
+    this.elements.forEach(el => {
       Object.assign(el.style, styles);
     });
     return this;
   }
 
-  /**
-   * Set the inner HTML of all elements.
-   */
-  setHTML(content: string) {
-    this.elements.forEach((el) => {
+  html(content: string): this;
+  html(): string | undefined;
+  html(content?: string): this | string | undefined {
+    if (content === undefined) {
+      return this.elements[0]?.innerHTML;
+    }
+
+    this.elements.forEach(el => {
       el.innerHTML = content;
-    });
-  }
-
-  /**
-   * Get the inner HTML of the first element.
-   */
-  getHTML(): string | null {
-    return this.elements[0]?.innerHTML ?? null;
-  }
-
-  /**
-   * Set the inner text of all elements.
-   */
-  setText(content: string): this {
-    this.elements.forEach((el) => {
-      el.innerText = content;
     });
 
     return this;
   }
 
-  /**
-   * Get the inner Text of the first element.
-   */
-  getText(): string | null {
-    return this.elements[0]?.innerText ?? null;
+  text(content: string): this;
+  text(): string | undefined;
+  text(content?: string): this | string | undefined {
+    if (content === undefined) {
+      return this.elements[0]?.innerText;
+    }
+
+    // TODO: this should be a for...of for performance
+    this.elements.forEach(el => {
+      el.innerText = content;
+    });
+
+    return this;
   }
 
   /**
@@ -105,26 +104,25 @@ export class ElementWrapper {
   /**
    * Get the value of the first element.
    */
-  getValue() {
+  value(newValue: string): this;
+  value(): string | undefined;
+  value(newValue?: string): this | string | undefined {
     const el = this.elements[0];
-    if (!el) return null;
 
-    if (
-      el instanceof HTMLInputElement ||
-      el instanceof HTMLTextAreaElement ||
-      el instanceof HTMLSelectElement
-    ) {
-      return el.value;
+    if (newValue === undefined) {
+      if (!el) return undefined;
+
+      if (
+        el instanceof HTMLInputElement ||
+        el instanceof HTMLTextAreaElement ||
+        el instanceof HTMLSelectElement
+      ) {
+        return el.value;
+      }
+
+      return undefined;
     }
 
-    return null;
-  }
-
-  /**
-   * Set the value of the first element.
-   */
-  setValue(newValue: any): this {
-    const el = this.elements[0];
     if (!el) return this;
 
     if (
@@ -142,11 +140,11 @@ export class ElementWrapper {
    * Append elements to all selected elements.
    */
   append(content: string | HTMLElement | ElementWrapper): this {
-    this.elements.forEach((el) => {
+    this.elements.forEach(el => {
       if (typeof content === 'string') el.innerHTML += content;
       else if (content instanceof HTMLElement) el.appendChild(content);
       else if (content instanceof ElementWrapper)
-        content.elements.forEach((child) => {
+        content.elements.forEach(child => {
           el.appendChild(child.cloneNode(true));
         });
     });
@@ -157,7 +155,7 @@ export class ElementWrapper {
    * Prepend elements to all selected elements.
    */
   prepend(content: string | HTMLElement | ElementWrapper): this {
-    this.elements.forEach((el) => {
+    this.elements.forEach(el => {
       if (typeof content === 'string') el.innerHTML = content + el.innerHTML;
       else if (content instanceof HTMLElement)
         el.insertBefore(content.cloneNode(true), el.firstChild);
@@ -173,7 +171,7 @@ export class ElementWrapper {
    * Insert elements after all selected elements.
    */
   after(content: string | HTMLElement | ElementWrapper): this {
-    this.elements.forEach((el) => {
+    this.elements.forEach(el => {
       const parent = el.parentNode;
       if (!parent) return;
 
@@ -187,7 +185,7 @@ export class ElementWrapper {
       } else if (content instanceof HTMLElement) {
         parent.insertBefore(content.cloneNode(true), el.nextSibling);
       } else if (content instanceof ElementWrapper) {
-        content.elements.forEach((childEl) => {
+        content.elements.forEach(childEl => {
           parent.insertBefore(childEl.cloneNode(true), el.nextSibling);
         });
       }
@@ -199,7 +197,7 @@ export class ElementWrapper {
    * Insert elements before all selected elements.
    */
   before(content: string | HTMLElement | ElementWrapper): this {
-    this.elements.forEach((el) => {
+    this.elements.forEach(el => {
       const parent = el.parentNode;
       if (!parent) return;
 
@@ -213,7 +211,7 @@ export class ElementWrapper {
       } else if (content instanceof HTMLElement) {
         parent.insertBefore(content.cloneNode(true), el);
       } else if (content instanceof ElementWrapper) {
-        content.elements.forEach((childEl) => {
+        content.elements.forEach(childEl => {
           parent.insertBefore(childEl.cloneNode(true), el);
         });
       }
@@ -254,7 +252,7 @@ export class ElementWrapper {
    */
   allChildren(): ElementWrapper | null {
     const children: HTMLElement[] = [];
-    this.elements.forEach((el) => {
+    this.elements.forEach(el => {
       children.push(...(Array.from(el.children) as HTMLElement[]));
     });
 
@@ -268,7 +266,7 @@ export class ElementWrapper {
    */
   bindHTML<T>(ref: Ref<T>): this {
     $effect(() => {
-      this.setHTML(String(ref()));
+      this.html(String(ref()));
     });
 
     return this;
@@ -279,7 +277,7 @@ export class ElementWrapper {
    */
   bind<T>(ref: Ref<T>): this {
     $effect(() => {
-      this.setText(String(ref()));
+      this.text(String(ref()));
     });
 
     return this;
@@ -298,25 +296,27 @@ export class ElementWrapper {
     return this;
   }
 
-  setAttr(key: string, value: string): this {
+  attr(key: string): string | null;
+  attr(key: string, value: string): this;
+  attr(key: string, value?: string): this | string | null {
+    if (value === undefined) {
+      const el = this.elements[0];
+      if (!el) return null;
+
+      return el.getAttribute(key);
+    }
+
     for (const el of this.elements) {
       el.setAttribute(key, value);
     }
     return this;
   }
 
-  getAttr(key: string): string | null {
-    const el = this.elements[0];
-    if (!el) return null;
-
-    return el.getAttribute(key);
-  }
-
   private on<K extends keyof HTMLElementEventMap>(
     event: K,
     callback: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any
   ): this {
-    this.elements.forEach((el) => el.addEventListener(event, callback));
+    this.elements.forEach(el => el.addEventListener(event, callback));
     return this;
   }
 
@@ -509,7 +509,7 @@ export class ElementWrapper {
    * Hide all elements.
    */
   hide(): this {
-    this.elements.forEach((el) => {
+    this.elements.forEach(el => {
       if (!el.dataset.originalDisplay) {
         const computedStyle = window.getComputedStyle(el);
         el.dataset.originalDisplay = computedStyle.display;
@@ -525,7 +525,7 @@ export class ElementWrapper {
    * Show all elements.
    */
   show(): this {
-    this.elements.forEach((el) => {
+    this.elements.forEach(el => {
       const originalDisplay = el.dataset.originalDisplay || '';
       el.style.display = originalDisplay === 'none' ? 'block' : originalDisplay;
 
@@ -540,7 +540,7 @@ export class ElementWrapper {
    * Toggle visibility of all elements.
    */
   toggle(): this {
-    this.elements.forEach((el) => {
+    this.elements.forEach(el => {
       const isVisible = window.getComputedStyle(el).display !== 'none';
 
       if (isVisible) {
