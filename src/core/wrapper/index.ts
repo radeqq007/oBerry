@@ -140,15 +140,14 @@ export class ElementWrapper {
   append(content: HTMLElement): this;
   append(content: ElementWrapper): this;
   append(content: string | HTMLElement | ElementWrapper): this {
-    // TODO: make this a for...of loop cause its more efficient
-    this.elements.forEach(el => {
+    for (const el of this.elements) {
       if (typeof content === 'string') el.innerHTML += content;
       else if (content instanceof HTMLElement) el.appendChild(content);
       else if (content instanceof ElementWrapper)
         content.elements.forEach(child => {
           el.appendChild(child.cloneNode(true));
         });
-    });
+    }
     return this;
   }
 
@@ -159,8 +158,7 @@ export class ElementWrapper {
   prepend(content: HTMLElement): this;
   prepend(content: ElementWrapper): this;
   prepend(content: string | HTMLElement | ElementWrapper): this {
-    // TODO: MAKE THIS A FOR...OF
-    this.elements.forEach(el => {
+    for (const el of this.elements) {
       if (typeof content === 'string') el.innerHTML = content + el.innerHTML;
       else if (content instanceof HTMLElement)
         el.insertBefore(content.cloneNode(true), el.firstChild);
@@ -168,7 +166,7 @@ export class ElementWrapper {
         content.elements.forEach((childEl, index) => {
           el.insertBefore(childEl.cloneNode(true), el.children[index] || null);
         });
-    });
+    }
     return this;
   }
 
@@ -208,10 +206,9 @@ export class ElementWrapper {
   before(content: HTMLElement): this;
   before(content: ElementWrapper): this;
   before(content: string | HTMLElement | ElementWrapper): this {
-    // TODO: FOR OFFFFF
-    this.elements.forEach(el => {
+    for (const el of this.elements) {
       const parent = el.parentNode;
-      if (!parent) return;
+      if (!parent) continue;
 
       if (typeof content === 'string') {
         const temp = document.createElement('div');
@@ -227,7 +224,7 @@ export class ElementWrapper {
           parent.insertBefore(childEl.cloneNode(true), el);
         });
       }
-    });
+    }
     return this;
   }
 
