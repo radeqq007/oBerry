@@ -592,6 +592,27 @@ export class ElementWrapper {
     return this.eq(this.elements.length - 1);
   }
 
+  /**
+   * Filter elements based on a predicate function or CSS selector.
+   */
+  filter(
+    predicate: string | ((element: HTMLElement, index: number) => boolean)
+  ): ElementWrapper {
+    let filteredElements: HTMLElement[];
+
+    if (typeof predicate === 'string') {
+      // Filter by CSS selector
+      filteredElements = this.elements.filter(el => el.matches(predicate));
+    } else {
+      // Filter by predicate function
+      filteredElements = this.elements.filter((el, index) =>
+        predicate(el, index)
+      );
+    }
+
+    return new ElementWrapper(filteredElements);
+  }
+
   forEach(callback: (el: ElementWrapper) => {}) {
     for (const el of this.elements) {
       callback(new ElementWrapper([el]));
