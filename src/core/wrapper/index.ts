@@ -235,6 +235,22 @@ export class ElementWrapper {
   }
 
   /**
+   * Find descendants matching the selector within all elements.
+   */
+  find(selector: string): ElementWrapper {
+    const foundElements: HTMLElement[] = [];
+    for (const el of this.elements) {
+      const found = el.querySelectorAll(selector);
+      foundElements.push(
+        ...Array.from(found).filter(
+          (node): node is HTMLElement => node.nodeType === Node.ELEMENT_NODE
+        )
+      );
+    }
+    return new ElementWrapper(foundElements);
+  }
+
+  /**
    * Get the parent wrapper of the first element.
    */
   parent(): ElementWrapper | null {
