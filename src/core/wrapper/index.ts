@@ -225,6 +225,15 @@ export class ElementWrapper {
     return this;
   }
 
+  remove(): this {
+    for (const el of this.elements) {
+      el.parentNode?.removeChild(el);
+    }
+    // Clear the elements array since they're no longer in the DOM
+    this.elements = [];
+    return this;
+  }
+
   /**
    * Get the parent wrapper of the first element.
    */
