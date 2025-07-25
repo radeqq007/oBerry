@@ -251,6 +251,19 @@ export class ElementWrapper {
   }
 
   /**
+   * Find the closest ancestor matching the selector for the first element.
+   */
+  closest(selector: string): ElementWrapper | null {
+    const el = this.elements[0];
+    if (!el) return null;
+
+    const closest = el.closest(selector) as HTMLElement | null;
+    if (!closest) return null;
+
+    return new ElementWrapper([closest]);
+  }
+
+  /**
    * Get the parent wrapper of the first element.
    */
   parent(): ElementWrapper | null {
