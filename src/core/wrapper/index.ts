@@ -356,6 +356,25 @@ export class ElementWrapper {
     return this;
   }
 
+  /**
+   * Get or set data attributes.
+   */
+  data(key: string): string | undefined;
+  data(key: string, value: string): this;
+  data(key: string, value?: string): this | string | undefined {
+    if (value === undefined) {
+      const el = this.elements[0];
+      if (!el) return undefined;
+
+      return el.dataset[key];
+    }
+
+    for (const el of this.elements) {
+      el.dataset[key] = value;
+    }
+    return this;
+  }
+
   private on<K extends keyof HTMLElementEventMap>(
     event: K,
     callback: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any
