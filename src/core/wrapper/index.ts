@@ -347,7 +347,9 @@ export class ElementWrapper {
   attr(key: string, value?: string): this | string | null {
     if (value === undefined) {
       const el = this.elements[0];
-      if (!el) return null;
+      if (!el) {
+        return null;
+      }
 
       return el.getAttribute(key);
     }
