@@ -274,7 +274,7 @@ export class ElementWrapper {
 
     if (!parent) return null;
 
-    return $(parent);
+    return $([parent]);
   }
 
   /**
