@@ -364,7 +364,7 @@ export class ElementWrapper {
   data(key: string, value?: string): this | string | undefined {
     if (value === undefined) {
       const el = this.elements[0];
-      if (!el) return undefined;
+      if (!el) return;
 
       return el.dataset[key];
     }
@@ -659,7 +659,7 @@ export class ElementWrapper {
 
     if (typeof predicate === 'string') {
       // Filter by CSS selector
-      filteredElements = this.elements.filter(el => el.matches(predicate));
+      filteredElements = this.elements.filter((el) => el.matches(predicate));
     } else {
       // Filter by predicate function
       filteredElements = this.elements.filter((el, index) =>
