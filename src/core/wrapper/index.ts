@@ -418,7 +418,7 @@ export class ElementWrapper {
 
   private on<K extends keyof HTMLElementEventMap>(
     event: K,
-    callback: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any
+    callback: (this: HTMLElement, ev: HTMLElementEventMap[K]) => void
   ): this {
     for (const el of this.elements) {
       el.addEventListener(event, callback);
@@ -430,7 +430,7 @@ export class ElementWrapper {
    * Attach a click event listener to all elements.
    */
   onClick(
-    callback: (this: HTMLElement, ev: HTMLElementEventMap['click']) => any
+    callback: (this: HTMLElement, ev: HTMLElementEventMap['click']) => void
   ): this {
     return this.on('click', callback);
   }
@@ -439,7 +439,7 @@ export class ElementWrapper {
    * Attach a mouseover event listener to all elements.
    */
   onMouseOver(
-    callback: (this: HTMLElement, ev: HTMLElementEventMap['mouseover']) => any
+    callback: (this: HTMLElement, ev: HTMLElementEventMap['mouseover']) => void
   ): this {
     return this.on('mouseover', callback);
   }
@@ -448,7 +448,7 @@ export class ElementWrapper {
    * Attach a mouseout event listener to all elements.
    */
   onMouseOut(
-    callback: (this: HTMLElement, ev: HTMLElementEventMap['mouseout']) => any
+    callback: (this: HTMLElement, ev: HTMLElementEventMap['mouseout']) => void
   ): this {
     return this.on('mouseout', callback);
   }
@@ -457,7 +457,7 @@ export class ElementWrapper {
    * Attach a change event listener to all elements.
    */
   onChange(
-    callback: (this: HTMLElement, ev: HTMLElementEventMap['change']) => any
+    callback: (this: HTMLElement, ev: HTMLElementEventMap['change']) => void
   ): this {
     return this.on('change', callback);
   }
@@ -466,7 +466,7 @@ export class ElementWrapper {
    * Attach an input event listener to all elements.
    */
   onInput(
-    callback: (this: HTMLElement, ev: HTMLElementEventMap['input']) => any
+    callback: (this: HTMLElement, ev: HTMLElementEventMap['input']) => void
   ): this {
     return this.on('input', callback);
   }
@@ -475,7 +475,7 @@ export class ElementWrapper {
    * Attach a submit event listener to all elements.
    */
   onSubmit(
-    callback: (this: HTMLElement, ev: HTMLElementEventMap['submit']) => any
+    callback: (this: HTMLElement, ev: HTMLElementEventMap['submit']) => void
   ): this {
     return this.on('submit', callback);
   }
@@ -484,7 +484,7 @@ export class ElementWrapper {
    * Attach a focus event listener to all elements.
    */
   onFocus(
-    callback: (this: HTMLElement, ev: HTMLElementEventMap['focus']) => any
+    callback: (this: HTMLElement, ev: HTMLElementEventMap['focus']) => void
   ): this {
     return this.on('focus', callback);
   }
@@ -493,7 +493,7 @@ export class ElementWrapper {
    * Attach a blur event listener to all elements.
    */
   onBlur(
-    callback: (this: HTMLElement, ev: HTMLElementEventMap['blur']) => any
+    callback: (this: HTMLElement, ev: HTMLElementEventMap['blur']) => void
   ): this {
     return this.on('blur', callback);
   }
@@ -502,7 +502,7 @@ export class ElementWrapper {
    * Attach a keydown event listener to all elements.
    */
   onKeyDown(
-    callback: (this: HTMLElement, ev: HTMLElementEventMap['keydown']) => any
+    callback: (this: HTMLElement, ev: HTMLElementEventMap['keydown']) => void
   ): this {
     return this.on('keydown', callback);
   }
@@ -511,7 +511,7 @@ export class ElementWrapper {
    * Attach a keyup event listener to all elements.
    */
   onKeyUp(
-    callback: (this: HTMLElement, ev: HTMLElementEventMap['keyup']) => any
+    callback: (this: HTMLElement, ev: HTMLElementEventMap['keyup']) => void
   ): this {
     return this.on('keyup', callback);
   }
@@ -520,7 +520,7 @@ export class ElementWrapper {
    * Attach a keypress event listener to all elements.
    */
   onKeyPress(
-    callback: (this: HTMLElement, ev: HTMLElementEventMap['keypress']) => any
+    callback: (this: HTMLElement, ev: HTMLElementEventMap['keypress']) => void
   ): this {
     return this.on('keypress', callback);
   }
@@ -529,7 +529,7 @@ export class ElementWrapper {
    * Attach a double-click event listener to all elements.
    */
   onDblClick(
-    callback: (this: HTMLElement, ev: HTMLElementEventMap['dblclick']) => any
+    callback: (this: HTMLElement, ev: HTMLElementEventMap['dblclick']) => void
   ): this {
     return this.on('dblclick', callback);
   }
@@ -538,7 +538,10 @@ export class ElementWrapper {
    * Attach a contextmenu event listener to all elements.
    */
   onContextMenu(
-    callback: (this: HTMLElement, ev: HTMLElementEventMap['contextmenu']) => any
+    callback: (
+      this: HTMLElement,
+      ev: HTMLElementEventMap['contextmenu']
+    ) => void
   ): this {
     return this.on('contextmenu', callback);
   }
@@ -547,7 +550,7 @@ export class ElementWrapper {
    * Attach a scroll event listener to all elements.
    */
   onScroll(
-    callback: (this: HTMLElement, ev: HTMLElementEventMap['scroll']) => any
+    callback: (this: HTMLElement, ev: HTMLElementEventMap['scroll']) => void
   ): this {
     return this.on('scroll', callback);
   }
@@ -556,7 +559,7 @@ export class ElementWrapper {
    * Attach a resize event listener to all elements.
    */
   onResize(
-    callback: (this: HTMLElement, ev: HTMLElementEventMap['resize']) => any
+    callback: (this: HTMLElement, ev: HTMLElementEventMap['resize']) => void
   ): this {
     return this.on('resize', callback);
   }
@@ -565,7 +568,7 @@ export class ElementWrapper {
    * Attach a load event listener to all elements.
    */
   onLoad(
-    callback: (this: HTMLElement, ev: HTMLElementEventMap['load']) => any
+    callback: (this: HTMLElement, ev: HTMLElementEventMap['load']) => void
   ): this {
     return this.on('load', callback);
   }
@@ -574,7 +577,7 @@ export class ElementWrapper {
    * Attach a drag event listener to all elements.
    */
   onDrag(
-    callback: (this: HTMLElement, ev: HTMLElementEventMap['drag']) => any
+    callback: (this: HTMLElement, ev: HTMLElementEventMap['drag']) => void
   ): this {
     return this.on('drag', callback);
   }
@@ -583,7 +586,7 @@ export class ElementWrapper {
    * Attach a drop event listener to all elements.
    */
   onDrop(
-    callback: (this: HTMLElement, ev: HTMLElementEventMap['drop']) => any
+    callback: (this: HTMLElement, ev: HTMLElementEventMap['drop']) => void
   ): this {
     return this.on('drop', callback);
   }
@@ -594,8 +597,9 @@ export class ElementWrapper {
   even() {
     const elements: HTMLElement[] = [];
     for (let i = 0; i < this.elements.length; i++) {
-      if ((i + 1) % 2 == 0 && this.elements[i])
+      if ((i + 1) % 2 === 0 && this.elements[i]) {
         elements.push(this.elements[i] as HTMLElement);
+      }
     }
     return new ElementWrapper(elements);
   }
@@ -606,8 +610,9 @@ export class ElementWrapper {
   odd() {
     const elements: HTMLElement[] = [];
     for (let i = 0; i < this.elements.length; i++) {
-      if ((i + 1) % 2 == 1 && this.elements[i])
+      if ((i + 1) % 2 === 1 && this.elements[i]) {
         elements.push(this.elements[i] as HTMLElement);
+      }
     }
     return new ElementWrapper(elements);
   }
@@ -686,7 +691,9 @@ export class ElementWrapper {
    * Get the last element.
    */
   last() {
-    if (this.elements.length === 0) return new ElementWrapper([]);
+    if (this.elements.length === 0) {
+      return new ElementWrapper([]);
+    }
     return this.eq(this.elements.length - 1);
   }
 
@@ -711,7 +718,7 @@ export class ElementWrapper {
     return new ElementWrapper(filteredElements);
   }
 
-  forEach(callback: (el: ElementWrapper) => {}) {
+  forEach(callback: (el: ElementWrapper) => void) {
     for (const el of this.elements) {
       callback(new ElementWrapper([el]));
     }
