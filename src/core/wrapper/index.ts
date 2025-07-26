@@ -20,7 +20,9 @@ export class ElementWrapper {
    * Add a class to all elements.
    */
   addClass(className: string): this {
-    for (const el of this.elements) el.classList.add(className);
+    for (const el of this.elements) {
+      el.classList.add(className);
+    }
     return this;
   }
 
@@ -28,7 +30,9 @@ export class ElementWrapper {
    * Remove a class to all elements.
    */
   removeClass(className: string): this {
-    for (const el of this.elements) el.classList.remove(className);
+    for (const el of this.elements) {
+      el.classList.remove(className);
+    }
     return this;
   }
 
@@ -36,7 +40,9 @@ export class ElementWrapper {
    * Toggle a class on all elements.
    */
   toggleClass(className: string): this {
-    for (const el of this.elements) el.classList.toggle(className);
+    for (const el of this.elements) {
+      el.classList.toggle(className);
+    }
     return this;
   }
 
@@ -59,7 +65,9 @@ export class ElementWrapper {
    * Modify the style of all elements.
    */
   css(styles: Partial<CSSStyleDeclaration>): this {
-    for (const el of this.elements) Object.assign(el.style, styles);
+    for (const el of this.elements) {
+      Object.assign(el.style, styles);
+    }
     return this;
   }
 
@@ -104,7 +112,9 @@ export class ElementWrapper {
     const el = this.elements[0];
 
     if (newValue === undefined) {
-      if (!el) return;
+      if (!el) {
+        return;
+      }
 
       if (
         el instanceof HTMLInputElement ||
@@ -117,7 +127,9 @@ export class ElementWrapper {
       return;
     }
 
-    if (!el) return this;
+    if (!el) {
+      return this;
+    }
 
     if (
       el instanceof HTMLInputElement ||
@@ -138,12 +150,15 @@ export class ElementWrapper {
   append(content: ElementWrapper): this;
   append(content: string | HTMLElement | ElementWrapper): this {
     for (const el of this.elements) {
-      if (typeof content === 'string') el.innerHTML += content;
-      else if (content instanceof HTMLElement) el.appendChild(content);
-      else if (content instanceof ElementWrapper)
+      if (typeof content === 'string') {
+        el.innerHTML += content;
+      } else if (content instanceof HTMLElement) {
+        el.appendChild(content);
+      } else if (content instanceof ElementWrapper) {
         for (const child of content.elements) {
           el.appendChild(child.cloneNode(true));
         }
+      }
     }
     return this;
   }
@@ -178,7 +193,9 @@ export class ElementWrapper {
   after(content: string | HTMLElement | ElementWrapper): this {
     for (const el of this.elements) {
       const parent = el.parentNode;
-      if (!parent) continue;
+      if (!parent) {
+        continue;
+      }
 
       if (typeof content === 'string') {
         const temp = document.createElement('div');
@@ -207,7 +224,9 @@ export class ElementWrapper {
   before(content: string | HTMLElement | ElementWrapper): this {
     for (const el of this.elements) {
       const parent = el.parentNode;
-      if (!parent) continue;
+      if (!parent) {
+        continue;
+      }
 
       if (typeof content === 'string') {
         const temp = document.createElement('div');
@@ -257,10 +276,14 @@ export class ElementWrapper {
    */
   closest(selector: string): ElementWrapper | null {
     const el = this.elements[0];
-    if (!el) return null;
+    if (!el) {
+      return null;
+    }
 
     const closest = el.closest(selector) as HTMLElement | null;
-    if (!closest) return null;
+    if (!closest) {
+      return null;
+    }
 
     return new ElementWrapper([closest]);
   }
@@ -270,11 +293,15 @@ export class ElementWrapper {
    */
   parent(): ElementWrapper | null {
     const el = this.elements[0];
-    if (!el) return null;
+    if (!el) {
+      return null;
+    }
 
     const parent = el.parentElement;
 
-    if (!parent) return null;
+    if (!parent) {
+      return null;
+    }
 
     return $([parent]);
   }
@@ -284,11 +311,15 @@ export class ElementWrapper {
    */
   children(): ElementWrapper | null {
     const el = this.elements[0];
-    if (!el) return null;
+    if (!el) {
+      return null;
+    }
 
     const children = el.children;
 
-    if (!children) return null;
+    if (!children) {
+      return null;
+    }
 
     return $(Array.from(children) as HTMLElement[]);
   }
@@ -302,7 +333,9 @@ export class ElementWrapper {
       children.push(...(Array.from(el.children) as HTMLElement[]));
     }
 
-    if (!children) return null;
+    if (!children) {
+      return null;
+    }
 
     return $(Array.from(children) as HTMLElement[]);
   }
@@ -334,7 +367,9 @@ export class ElementWrapper {
    */
   bindInput<T>(ref: Ref<T>): this {
     const el = this.elements[0];
-    if (!el) return this;
+    if (!el) {
+      return this;
+    }
 
     el.addEventListener('input', () => {
       ref((el as HTMLInputElement).value as T);
@@ -368,7 +403,9 @@ export class ElementWrapper {
   data(key: string, value?: string): this | string | undefined {
     if (value === undefined) {
       const el = this.elements[0];
-      if (!el) return;
+      if (!el) {
+        return;
+      }
 
       return el.dataset[key];
     }
