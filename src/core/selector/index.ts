@@ -5,6 +5,7 @@ import { ElementWrapper } from '../wrapper';
  */
 export function $(selector: string): ElementWrapper;
 export function $(selector: NodeList): ElementWrapper;
+export function $(selector: HTMLElement): ElementWrapper;
 export function $(selector: HTMLElement[]): ElementWrapper;
 export function $(
   selector: string | HTMLElement | NodeList | HTMLElement[]
