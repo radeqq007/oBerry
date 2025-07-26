@@ -156,13 +156,15 @@ export class ElementWrapper {
   prepend(content: ElementWrapper): this;
   prepend(content: string | HTMLElement | ElementWrapper): this {
     for (const el of this.elements) {
-      if (typeof content === 'string') el.innerHTML = content + el.innerHTML;
-      else if (content instanceof HTMLElement)
+      if (typeof content === 'string') {
+        el.innerHTML = content + el.innerHTML;
+      } else if (content instanceof HTMLElement) {
         el.insertBefore(content.cloneNode(true), el.firstChild);
-      else if (content instanceof ElementWrapper)
+      } else if (content instanceof ElementWrapper) {
         content.elements.forEach((childEl, index) => {
           el.insertBefore(childEl.cloneNode(true), el.children[index] || null);
         });
+      }
     }
     return this;
   }
@@ -659,7 +661,7 @@ export class ElementWrapper {
 
     if (typeof predicate === 'string') {
       // Filter by CSS selector
-      filteredElements = this.elements.filter((el) => el.matches(predicate));
+      filteredElements = this.elements.filter(el => el.matches(predicate));
     } else {
       // Filter by predicate function
       filteredElements = this.elements.filter((el, index) =>
