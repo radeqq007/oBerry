@@ -246,6 +246,9 @@ export class ElementWrapper {
     return this;
   }
 
+  /**
+   * Remove all the elements from DOM.
+   */
   remove(): this {
     for (const el of this.elements) {
       el.parentNode?.removeChild(el);
