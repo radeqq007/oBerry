@@ -426,117 +426,78 @@ export class ElementWrapper {
     return this;
   }
 
-  /**
-   * Attach a click event listener to all elements.
-   */
   onClick(
     callback: (this: HTMLElement, ev: HTMLElementEventMap['click']) => void
   ): this {
     return this.on('click', callback);
   }
 
-  /**
-   * Attach a mouseover event listener to all elements.
-   */
   onMouseOver(
     callback: (this: HTMLElement, ev: HTMLElementEventMap['mouseover']) => void
   ): this {
     return this.on('mouseover', callback);
   }
 
-  /**
-   * Attach a mouseout event listener to all elements.
-   */
   onMouseOut(
     callback: (this: HTMLElement, ev: HTMLElementEventMap['mouseout']) => void
   ): this {
     return this.on('mouseout', callback);
   }
 
-  /**
-   * Attach a change event listener to all elements.
-   */
   onChange(
     callback: (this: HTMLElement, ev: HTMLElementEventMap['change']) => void
   ): this {
     return this.on('change', callback);
   }
 
-  /**
-   * Attach an input event listener to all elements.
-   */
   onInput(
     callback: (this: HTMLElement, ev: HTMLElementEventMap['input']) => void
   ): this {
     return this.on('input', callback);
   }
 
-  /**
-   * Attach a submit event listener to all elements.
-   */
   onSubmit(
     callback: (this: HTMLElement, ev: HTMLElementEventMap['submit']) => void
   ): this {
     return this.on('submit', callback);
   }
 
-  /**
-   * Attach a focus event listener to all elements.
-   */
   onFocus(
     callback: (this: HTMLElement, ev: HTMLElementEventMap['focus']) => void
   ): this {
     return this.on('focus', callback);
   }
 
-  /**
-   * Attach a blur event listener to all elements.
-   */
   onBlur(
     callback: (this: HTMLElement, ev: HTMLElementEventMap['blur']) => void
   ): this {
     return this.on('blur', callback);
   }
 
-  /**
-   * Attach a keydown event listener to all elements.
-   */
   onKeyDown(
     callback: (this: HTMLElement, ev: HTMLElementEventMap['keydown']) => void
   ): this {
     return this.on('keydown', callback);
   }
 
-  /**
-   * Attach a keyup event listener to all elements.
-   */
   onKeyUp(
     callback: (this: HTMLElement, ev: HTMLElementEventMap['keyup']) => void
   ): this {
     return this.on('keyup', callback);
   }
 
-  /**
-   * Attach a keypress event listener to all elements.
-   */
   onKeyPress(
     callback: (this: HTMLElement, ev: HTMLElementEventMap['keypress']) => void
   ): this {
     return this.on('keypress', callback);
   }
 
-  /**
-   * Attach a double-click event listener to all elements.
-   */
   onDblClick(
     callback: (this: HTMLElement, ev: HTMLElementEventMap['dblclick']) => void
   ): this {
     return this.on('dblclick', callback);
   }
 
-  /**
-   * Attach a contextmenu event listener to all elements.
-   */
   onContextMenu(
     callback: (
       this: HTMLElement,
@@ -546,45 +507,30 @@ export class ElementWrapper {
     return this.on('contextmenu', callback);
   }
 
-  /**
-   * Attach a scroll event listener to all elements.
-   */
   onScroll(
     callback: (this: HTMLElement, ev: HTMLElementEventMap['scroll']) => void
   ): this {
     return this.on('scroll', callback);
   }
 
-  /**
-   * Attach a resize event listener to all elements.
-   */
   onResize(
     callback: (this: HTMLElement, ev: HTMLElementEventMap['resize']) => void
   ): this {
     return this.on('resize', callback);
   }
 
-  /**
-   * Attach a load event listener to all elements.
-   */
   onLoad(
     callback: (this: HTMLElement, ev: HTMLElementEventMap['load']) => void
   ): this {
     return this.on('load', callback);
   }
 
-  /**
-   * Attach a drag event listener to all elements.
-   */
   onDrag(
     callback: (this: HTMLElement, ev: HTMLElementEventMap['drag']) => void
   ): this {
     return this.on('drag', callback);
   }
 
-  /**
-   * Attach a drop event listener to all elements.
-   */
   onDrop(
     callback: (this: HTMLElement, ev: HTMLElementEventMap['drop']) => void
   ): this {
@@ -707,7 +653,7 @@ export class ElementWrapper {
 
     if (typeof predicate === 'string') {
       // Filter by CSS selector
-      filteredElements = this.elements.filter((el) => el.matches(predicate));
+      filteredElements = this.elements.filter(el => el.matches(predicate));
     } else {
       // Filter by predicate function
       filteredElements = this.elements.filter((el, index) =>
