@@ -106,6 +106,9 @@ export class ElementWrapper {
     return Array.from(this.elements);
   }
 
+  /**
+   * Get or set elements values.
+   */
   value(newValue: string): this;
   value(): string | undefined;
   value(newValue?: string): this | string | undefined {
