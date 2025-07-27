@@ -22,8 +22,26 @@ npm install oberry
 
 ## Quick start
 
+1. Using with a bundler (e.g. Vite, Webpack)
 ```js
 import { $, $ref } from 'oberry';
+
+// Select and manipulate elements
+$('.my-button')
+  .addClass('active')
+  .onClick(() => console.log('Clicked!'));
+
+// Reactive data binding
+const message = $ref('Hello World');
+$('#output').bind(message);
+
+// Update reactive value
+message('Hello!');
+```
+
+2. Using via CDN
+```js
+import { $, $ref } from 'https://cdn.skypack.dev/oberry';
 
 // Select and manipulate elements
 $('.my-button')
