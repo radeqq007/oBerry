@@ -23,6 +23,7 @@ npm install oberry
 ## Quick start
 
 1. Using with a bundler (e.g. Vite, Webpack)
+
 ```js
 import { $, $ref } from 'oberry';
 
@@ -40,6 +41,7 @@ message('Hello!');
 ```
 
 2. Using via CDN
+
 ```js
 import { $, $ref } from 'https://cdn.skypack.dev/oberry';
 
@@ -82,6 +84,16 @@ $('.element')
   .addClass('new-class')
   .removeClass('old-class')
   .toggleClass('toggle-class');
+```
+
+#### ID Management
+
+```js
+// Get ID of first element
+const elementId = $('.element').id();
+
+// Set ID for all elements
+$('.element').id('new-id');
 ```
 
 #### Styling
@@ -128,6 +140,13 @@ $('.element').before(document.createElement('div'));
 $('.element').before($('.other-element'));
 ```
 
+#### Element Removal
+
+```js
+// Remove all elements from DOM
+$('.element').remove();
+```
+
 #### Form Values
 
 ```js
@@ -151,6 +170,12 @@ $('.parents').allChildren();
 
 // Get array of wrapped elements
 $('.elements').getArray();
+
+// Find descendants matching selector
+$('.parent').find('.child-class');
+
+// Find closest ancestor matching selector
+$('.element').closest('.ancestor-class');
 ```
 
 #### Element Filtering and Selection
@@ -170,6 +195,23 @@ $('.elements').even();
 
 // Get odd-indexed elements (1st, 3rd, 5th, etc.)
 $('.elements').odd();
+
+// Filter elements by CSS selector
+$('.elements').filter('.active');
+
+// Filter elements by predicate function
+$('.elements').filter((element, index) => {
+  return element.classList.contains('highlight');
+});
+```
+
+#### Element Iteration
+
+```js
+// Iterate over each element
+$('.elements').forEach(wrappedElement => {
+  wrappedElement.addClass('processed');
+});
 ```
 
 #### Visibility Control
