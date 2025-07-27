@@ -377,6 +377,9 @@ export class ElementWrapper {
     return this;
   }
 
+  /**
+   * Get or set elements attributes.
+   */
   attr(key: string): string | null;
   attr(key: string, value: string): this;
   attr(key: string, value?: string): this | string | null {
