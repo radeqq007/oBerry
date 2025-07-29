@@ -678,4 +678,8 @@ export class ElementWrapper {
       callback(new ElementWrapper([el]));
     }
   }
+
+  static extend(name: string, func: Function) {
+    (this as any).prototype[name] = func;
+  }
 }
