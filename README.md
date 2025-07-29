@@ -2,7 +2,7 @@
 
 ## Overview
 
-oBerry is a lightweight and modern JQuery alternative designed to simplyfy the manipulation of HTML elements, handling user interactions and biding reactive data to HTML content.
+oBerry is a lightweight and modern JQuery alternative designed to simplify the manipulation of HTML elements, handling user interactions and binding reactive data to HTML content.
 
 ## Features
 
@@ -14,7 +14,7 @@ oBerry is a lightweight and modern JQuery alternative designed to simplyfy the m
 - 🖱️ Rich Event Handling - Support for all common DOM events
 - 🔄 Flexible Content Insertion - Multiple ways to add content to elements
 
-## installation
+## Installation
 
 ```sh
 npm install oberry
