@@ -349,3 +349,27 @@ $('#name-input').bindInput(name);
 name('John'); // Input shows 'John'
 // User types 'Jane' -> name() returns 'Jane'
 ```
+
+### Plugins
+
+```js
+// Create the plugin
+const myPlugin = new Plugin('myPlugin', extend => {
+  // Add custom method to ElementWrapper
+  extend('customMethod', function (value) {
+    return this.css({ backgroundColor: value });
+  });
+
+  extend('fadeIn', function (duration = 300) {
+    this.css({ opacity: 0, transition: `opacity ${duration}ms` });
+    setTimeout(() => this.css({ opacity: 1 }), 10);
+    return this;
+  });
+
+  // Install the plugin
+  use(myPlugin);
+
+  // Use the custom methods
+  $('.element').customMethod('red').fadeIn(500);
+});
+```
