@@ -662,7 +662,7 @@ export class ElementWrapper {
 
     if (typeof predicate === 'string') {
       // Filter by CSS selector
-      filteredElements = this.elements.filter((el) => el.matches(predicate));
+      filteredElements = this.elements.filter(el => el.matches(predicate));
     } else {
       // Filter by predicate function
       filteredElements = this.elements.filter((el, index) =>
@@ -679,7 +679,7 @@ export class ElementWrapper {
     }
   }
 
-  static extend(name: string, func: Function) {
+  static extend(name: string, func: (...args: any[]) => any) {
     (ElementWrapper as any).prototype[name] = func;
   }
 }
