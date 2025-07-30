@@ -662,7 +662,7 @@ export class ElementWrapper {
 
     if (typeof predicate === 'string') {
       // Filter by CSS selector
-      filteredElements = this.elements.filter(el => el.matches(predicate));
+      filteredElements = this.elements.filter((el) => el.matches(predicate));
     } else {
       // Filter by predicate function
       filteredElements = this.elements.filter((el, index) =>
