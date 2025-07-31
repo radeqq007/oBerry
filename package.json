@@ -19,7 +19,8 @@
     "prepublishOnly": "pnpm run build",
     "dev": "tsup src/index.ts --watch --dts",
     "clean": "rm -rf dist",
-    "format": "pnpm dlx ultracite format"
+    "format": "pnpm dlx ultracite format",
+    "lint": "pnpm dlx ultracite lint"
   },
   "keywords": [
     "dom",
