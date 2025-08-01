@@ -2,6 +2,8 @@ import type { Ref } from '../../types/index';
 import { $effect } from '../reactivity';
 import { $ } from '../selector';
 
+type classMode = 'add' | 'remove' | 'toggle';
+
 export class ElementWrapper {
   elements: HTMLElement[];
 
@@ -16,33 +18,38 @@ export class ElementWrapper {
     }
   }
 
-  /**
-   * Add a class to all elements.
-   */
-  addClass(className: string): this {
-    for (const el of this.elements) {
-      el.classList.add(className);
+  class(): string[];
+  class(name: string): this;
+  class(name: string, mode: classMode): this;
+  class(name?: string, mode?: classMode): string[] | this {
+    if (name === undefined) {
+      // Return the classes of the first element
+      // ? Should this return classes of all the elements?
+      return Array.from(this.elements[0]?.classList ?? []);
     }
-    return this;
-  }
 
-  /**
-   * Remove a class to all elements.
-   */
-  removeClass(className: string): this {
-    for (const el of this.elements) {
-      el.classList.remove(className);
+    // Toggle class by default
+    if (mode === undefined || mode === 'toggle') {
+      for (const el of this.elements) {
+        el.classList.toggle(name);
+      }
+      return this;
     }
-    return this;
-  }
 
-  /**
-   * Toggle a class on all elements.
-   */
-  toggleClass(className: string): this {
-    for (const el of this.elements) {
-      el.classList.toggle(className);
+    if (mode === 'add') {
+      for (const el of this.elements) {
+        el.classList.add(name);
+      }
+      return this;
     }
+
+    if (mode === 'remove') {
+      for (const el of this.elements) {
+        el.classList.remove(name);
+      }
+      return this;
+    }
+
     return this;
   }
 
