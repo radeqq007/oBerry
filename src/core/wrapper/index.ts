@@ -61,8 +61,8 @@ export class ElementWrapper {
       return el?.id || undefined;
     }
 
-    for (const el of this.elements) {
-      el.id = id;
+    if (this.elements[0]) {
+      this.elements[0].id = id;
     }
 
     return this;
