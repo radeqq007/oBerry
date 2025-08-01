@@ -29,7 +29,7 @@ import { $, $ref } from 'oberry';
 
 // Select and manipulate elements
 $('.my-button')
-  .addClass('active')
+  .class('active')
   .onClick(() => console.log('Clicked!'));
 
 // Reactive data binding
@@ -81,9 +81,16 @@ $(document.querySelectorAll('.items'));
 
 ```js
 $('.element')
-  .addClass('new-class')
-  .removeClass('old-class')
-  .toggleClass('toggle-class');
+  .class() // Get the array of classes
+  .class('old-class', 'remove') // Remove a class
+  .class('new-class', 'add'); // Add a class
+  .class('toggled-class', 'toggle') // Toggle a class
+```
+
+if you don't specify the mode it will toggle the class by default:
+
+```js
+$('.element').class('this-will-toggle-a-class');
 ```
 
 #### ID Management
