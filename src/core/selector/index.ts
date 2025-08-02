@@ -10,7 +10,7 @@ export function $(selector: HTMLElement[]): ElementWrapper;
 export function $(
   selector: string | HTMLElement | NodeList | HTMLElement[]
 ): ElementWrapper {
-  let elements: HTMLElement[] | NodeList;
+  let elements: HTMLElement[] | NodeList = [];
   if (typeof selector === 'string') {
     // Use getElementById, getElementsByClassName etc. for simple selectors
     // Fallback to .querySelectorAll() for complex or space-seperated selectors
@@ -18,7 +18,9 @@ export function $(
       elements = document.querySelectorAll(selector);
     } else if (selector.startsWith('#')) {
       const el = document.getElementById(selector.slice(1));
-      elements = [el as HTMLElement];
+      if (el !== null) {
+        elements = [el as HTMLElement];
+      }
     } else if (selector.startsWith('.')) {
       elements = Array.from(
         document.getElementsByClassName(selector.slice(1))
