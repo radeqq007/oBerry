@@ -1,4 +1,5 @@
-# oBerry ![oberry](https://img.shields.io/npm/v/oberry.svg) ![License](https://img.shields.io/github/license/radeqq007/oberry) ![downloads](https://img.shields.io/npm/dm/oberry)
+# oBerry
+![oberry](https://img.shields.io/npm/v/oberry.svg) ![License](https://img.shields.io/github/license/radeqq007/oberry) ![downloads](https://img.shields.io/npm/dm/oberry) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/oberry)
 
 ## Overview
 
@@ -47,7 +48,7 @@ import { $, $ref } from 'https://cdn.skypack.dev/oberry';
 
 // Select and manipulate elements
 $('.my-button')
-  .addClass('active')
+  .class('active')
   .onClick(() => console.log('Clicked!'));
 
 // Reactive data binding
@@ -217,7 +218,7 @@ $('.elements').filter((element, index) => {
 ```js
 // Iterate over each element
 $('.elements').forEach(wrappedElement => {
-  wrappedElement.addClass('processed');
+  wrappedElement.class('processed');
 });
 ```
 
@@ -240,7 +241,7 @@ $('.element').toggle();
 import { $new } from 'oberry';
 
 // Create new elements
-const newDiv = $new('div').addClass('my-class').text('Hello World');
+const newDiv = $new('div').class('my-class').text('Hello World');
 ```
 
 ### Event Handling
