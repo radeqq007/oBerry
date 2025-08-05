@@ -287,6 +287,14 @@ export class ElementWrapper {
   }
 
   /**
+  * Filter out elements that match the given selector, returning those that don't match.
+  */
+  not(selector: string) {
+    const filteredElements = this.elements.filter(el => !el.matches(selector));
+    return new ElementWrapper(filteredElements);
+  }
+
+  /**
    * Find descendants matching the selector within all elements.
    */
   find(selector: string): ElementWrapper {
