@@ -277,6 +277,15 @@ export class ElementWrapper {
     return this;
   }
 
+  is(selector: string): boolean {
+    const el = this.elements[0];
+    if (!el) {
+      return false;
+    }
+
+    return el.matches(selector);
+  }
+
   /**
    * Find descendants matching the selector within all elements.
    */
