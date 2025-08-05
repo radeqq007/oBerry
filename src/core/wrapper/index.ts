@@ -53,6 +53,15 @@ export class ElementWrapper {
     return this;
   }
 
+  hasClass(className: string): boolean {
+    const el = this.elements[0];
+    if (!el) {
+      return false;
+    }
+
+    return el.classList.contains(className);
+  }
+
   id(): string | undefined;
   id(id: string): this;
   id(id?: string): string | undefined | this {
