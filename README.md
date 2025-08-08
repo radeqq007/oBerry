@@ -5,6 +5,22 @@
 
 oBerry is a lightweight and modern JQuery alternative designed to simplify the manipulation of HTML elements, handling user interactions and binding reactive data to HTML content.
 
+### So... why oBerry?
+
+|                           | oBerry                            | jQuery                          |
+|---------------------------|-----------------------------------|---------------------------------|
+| **Bundle size**           | ~11 KB (3.5 KB gzipped)           | ~90 KB (30 KB gzipped)          |
+| **API style**             | jQuery-like, modern ES modules    | jQuery-style, legacy-friendly   |
+| **Reactivity**            | ✅ Built-in reactive data binding | ❌ Not built-in                 |
+| **TypeScript support**    | ✅ Full type definitions          | ❌ Limited (community typings)  |
+| **Plugin system**         | ✅ Simple `Plugin` API            | ✅ `$.fn` plugin interface      |
+| **DOM manipulation**      | ✅ Yes, full API                  | ✅ Yes, full API                |
+| **Event handling**        | ✅ Yes, with typed callbacks      | ✅ Yes                          |
+| **Modern build support**  | ✅ ESM / tree-shakable            | ❌ UMD only                     |
+| **Legacy browser support**| ❌ Modern browsers only           | ✅ IE9+                         |
+| **Learning curve**        | Low for jQuery users              | Low                             |
+
+
 ## Features
 
 - 🚀 Lightweight - Minimal footprint
