@@ -389,11 +389,11 @@ const myPlugin = new Plugin('myPlugin', extend => {
     setTimeout(() => this.css({ opacity: 1 }), 10);
     return this;
   });
-
-  // Install the plugin
-  use(myPlugin);
-
-  // Use the custom methods
-  $('.element').customMethod('red').fadeIn(500);
 });
+
+// Install the plugin
+use(myPlugin);
+
+// Use the custom methods
+$('.element').customMethod('red').fadeIn(500);
 ```
