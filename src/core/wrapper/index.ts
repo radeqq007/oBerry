@@ -401,6 +401,18 @@ export class ElementWrapper {
     return this;
   }
 
+  
+  /**
+   * Bind the value of a ref into the element's attribute.
+   */
+  bindAttr<T>(attr: string, ref: Ref<T>): this {
+    $effect(() => {
+      this.attr(attr, String(ref()));
+    });
+
+    return this;
+  }
+
   /**
    * Bind the input value of the first element into a ref value.
    */
