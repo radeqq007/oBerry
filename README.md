@@ -1,4 +1,5 @@
 # oBerry
+
 ![oberry](https://img.shields.io/npm/v/oberry.svg) ![License](https://img.shields.io/github/license/radeqq007/oberry) ![downloads](https://img.shields.io/npm/dm/oberry) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/oberry)
 
 ## Overview
@@ -7,19 +8,18 @@ oBerry is a lightweight and modern JQuery alternative designed to simplify the m
 
 ### So... why oBerry?
 
-|                           | oBerry                            | jQuery                          |
-|---------------------------|-----------------------------------|---------------------------------|
-| **Bundle size**           | ~6 KB (2 KB gzipped)              | ~90 KB (30 KB gzipped)          |
-| **API style**             | jQuery-like, modern ES modules    | jQuery-style, legacy-friendly   |
-| **Reactivity**            | ✅ Built-in reactive data binding | ❌ Not built-in                 |
-| **TypeScript support**    | ✅ Full type definitions          | ❌ Limited (community typings)  |
-| **Plugin system**         | ✅ Simple `Plugin` API            | ✅ `$.fn` plugin interface      |
-| **DOM manipulation**      | ✅ Yes, full API                  | ✅ Yes, full API                |
-| **Event handling**        | ✅ Yes, with typed callbacks      | ✅ Yes                          |
-| **Modern build support**  | ✅ ESM / tree-shakable            | ❌ UMD only                     |
-| **Legacy browser support**| ❌ Modern browsers only           | ✅ IE9+                         |
-| **Learning curve**        | Low for jQuery users              | Low                             |
-
+|                            | oBerry                            | jQuery                         |
+| -------------------------- | --------------------------------- | ------------------------------ |
+| **Bundle size**            | ~6 KB (2 KB gzipped)              | ~90 KB (30 KB gzipped)         |
+| **API style**              | jQuery-like, modern ES modules    | jQuery-style, legacy-friendly  |
+| **Reactivity**             | ✅ Built-in reactive data binding | ❌ Not built-in                |
+| **TypeScript support**     | ✅ Full type definitions          | ❌ Limited (community typings) |
+| **Plugin system**          | ✅ Simple `Plugin` API            | ✅ `$.fn` plugin interface     |
+| **DOM manipulation**       | ✅ Yes, full API                  | ✅ Yes, full API               |
+| **Event handling**         | ✅ Yes, with typed callbacks      | ✅ Yes                         |
+| **Modern build support**   | ✅ ESM / tree-shakable            | ❌ UMD only                    |
+| **Legacy browser support** | ❌ Modern browsers only           | ✅ IE9+                        |
+| **Learning curve**         | Low for jQuery users              | Low                            |
 
 ## Features
 
@@ -102,6 +102,7 @@ $('.element')
   .class('old-class', 'remove') // Remove a class
   .class('new-class', 'add'); // Add a class
   .class('toggled-class', 'toggle') // Toggle a class
+  .hasClass('my-class') // Check if element has class
 ```
 
 if you don't specify the mode it will toggle the class by default:
@@ -118,6 +119,16 @@ const elementId = $('.element').id();
 
 // Set ID for all elements
 $('.element').id('new-id');
+```
+
+#### Element Testing and Matching
+
+```js
+// Check if element matches selector
+$('.element').is('.active'); // Returns boolean
+
+// Filter out elements that match selector
+$('.elements').not('.disabled'); // Returns wrapper with non-matching elements
 ```
 
 #### Styling
@@ -180,6 +191,20 @@ $('#input-field')
   .value(); // Returns current value
 ```
 
+#### Attributes and Data
+
+```js
+// Get/set attributes
+$('.element')
+  .attr('data-id', '123') // Set attribute
+  .attr('data-id'); // Get attribute
+
+// Get/set data attributes
+$('.element')
+  .data('userId', '456') // Set data attribute
+  .data('userId'); // Get data attribute
+```
+
 #### Element Navigation
 
 ```js
@@ -236,6 +261,16 @@ $('.elements').filter((element, index) => {
 $('.elements').forEach(wrappedElement => {
   wrappedElement.class('processed');
 });
+```
+
+#### Element Information
+
+```js
+// Get number of elements
+$('.elements').length();
+
+// Check if selection is empty
+$('.elements').isEmpty();
 ```
 
 #### Visibility Control
@@ -313,6 +348,7 @@ message('Hello World');
 // Bind to DOM elements
 $('#counter').bind(count); // Binds as text content
 $('#message').bindHTML(message); // Binds as HTML content
+$('#title').bindAttr('title', message); // Binds to attribute
 ```
 
 #### Computed Values
