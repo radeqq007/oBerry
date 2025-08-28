@@ -19,7 +19,7 @@ oBerry is a lightweight and modern JQuery alternative designed to simplify the m
 | **Event handling**         | ✅ Yes, with typed callbacks      | ✅ Yes                         |
 | **Modern build support**   | ✅ ESM / tree-shakable            | ❌ UMD only                    |
 | **Legacy browser support** | ❌ Modern browsers only           | ✅ IE9+                        |
-| **Learning curve**         | Low for jQuery users              | Low                            |
+| **Learning curve**         | Low                               | Low                             |
 
 ## Features
 
