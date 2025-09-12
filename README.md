@@ -47,7 +47,7 @@ import { $, $ref } from 'oberry';
 // Select and manipulate elements
 $('.my-button')
   .class('active')
-  .onClick(() => console.log('Clicked!'));
+  .on('click', () => console.log('Clicked!'));
 
 // Reactive data binding
 const message = $ref('Hello World');
@@ -65,7 +65,7 @@ import { $, $ref } from 'https://cdn.skypack.dev/oberry';
 // Select and manipulate elements
 $('.my-button')
   .class('active')
-  .onClick(() => console.log('Clicked!'));
+  .on('click', () => console.log('Clicked!'));
 
 // Reactive data binding
 const message = $ref('Hello World');
@@ -298,32 +298,7 @@ const newDiv = $new('div').class('my-class').text('Hello World');
 ### Event Handling
 
 ```js
-$('.element')
-  // Mouse events
-  .onClick(event => console.log('Clicked'))
-  .onDblClick(event => console.log('Double clicked'))
-  .onMouseOver(event => console.log('Mouse over'))
-  .onMouseOut(event => console.log('Mouse out'))
-  .onContextMenu(event => console.log('Right clicked'))
-
-  // Form events
-  .onChange(event => console.log('Changed'))
-  .onInput(event => console.log('Input changed'))
-  .onSubmit(event => console.log('Form submitted'))
-  .onFocus(event => console.log('Focused'))
-  .onBlur(event => console.log('Blurred'))
-
-  // Keyboard events
-  .onKeyDown(event => console.log('Key down'))
-  .onKeyUp(event => console.log('Key up'))
-  .onKeyPress(event => console.log('Key pressed'))
-
-  // Other events
-  .onScroll(event => console.log('Scrolled'))
-  .onResize(event => console.log('Resized'))
-  .onLoad(event => console.log('Loaded'))
-  .onDrag(event => console.log('Dragged'))
-  .onDrop(event => console.log('Dropped'));
+$('.element').on('click' () => console.log("Clicked!"))
 ```
 
 ### Reactivity
