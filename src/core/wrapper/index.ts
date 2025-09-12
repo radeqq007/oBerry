@@ -471,7 +471,7 @@ export class ElementWrapper {
     return this;
   }
 
-  private on<K extends keyof HTMLElementEventMap>(
+  on<K extends keyof HTMLElementEventMap>(
     event: K,
     callback: (this: HTMLElement, ev: HTMLElementEventMap[K]) => void
   ): this {
@@ -479,117 +479,6 @@ export class ElementWrapper {
       el.addEventListener(event, callback);
     }
     return this;
-  }
-
-  onClick(
-    callback: (this: HTMLElement, ev: HTMLElementEventMap['click']) => void
-  ): this {
-    return this.on('click', callback);
-  }
-
-  onMouseOver(
-    callback: (this: HTMLElement, ev: HTMLElementEventMap['mouseover']) => void
-  ): this {
-    return this.on('mouseover', callback);
-  }
-
-  onMouseOut(
-    callback: (this: HTMLElement, ev: HTMLElementEventMap['mouseout']) => void
-  ): this {
-    return this.on('mouseout', callback);
-  }
-
-  onChange(
-    callback: (this: HTMLElement, ev: HTMLElementEventMap['change']) => void
-  ): this {
-    return this.on('change', callback);
-  }
-
-  onInput(
-    callback: (this: HTMLElement, ev: HTMLElementEventMap['input']) => void
-  ): this {
-    return this.on('input', callback);
-  }
-
-  onSubmit(
-    callback: (this: HTMLElement, ev: HTMLElementEventMap['submit']) => void
-  ): this {
-    return this.on('submit', callback);
-  }
-
-  onFocus(
-    callback: (this: HTMLElement, ev: HTMLElementEventMap['focus']) => void
-  ): this {
-    return this.on('focus', callback);
-  }
-
-  onBlur(
-    callback: (this: HTMLElement, ev: HTMLElementEventMap['blur']) => void
-  ): this {
-    return this.on('blur', callback);
-  }
-
-  onKeyDown(
-    callback: (this: HTMLElement, ev: HTMLElementEventMap['keydown']) => void
-  ): this {
-    return this.on('keydown', callback);
-  }
-
-  onKeyUp(
-    callback: (this: HTMLElement, ev: HTMLElementEventMap['keyup']) => void
-  ): this {
-    return this.on('keyup', callback);
-  }
-
-  onKeyPress(
-    callback: (this: HTMLElement, ev: HTMLElementEventMap['keypress']) => void
-  ): this {
-    return this.on('keypress', callback);
-  }
-
-  onDblClick(
-    callback: (this: HTMLElement, ev: HTMLElementEventMap['dblclick']) => void
-  ): this {
-    return this.on('dblclick', callback);
-  }
-
-  onContextMenu(
-    callback: (
-      this: HTMLElement,
-      ev: HTMLElementEventMap['contextmenu']
-    ) => void
-  ): this {
-    return this.on('contextmenu', callback);
-  }
-
-  onScroll(
-    callback: (this: HTMLElement, ev: HTMLElementEventMap['scroll']) => void
-  ): this {
-    return this.on('scroll', callback);
-  }
-
-  onResize(
-    callback: (this: HTMLElement, ev: HTMLElementEventMap['resize']) => void
-  ): this {
-    return this.on('resize', callback);
-  }
-
-  onLoad(
-    callback: (this: HTMLElement, ev: HTMLElementEventMap['load']) => void
-  ): this {
-    return this.on('load', callback);
-  }
-
-  onDrag(
-    callback: (this: HTMLElement, ev: HTMLElementEventMap['drag']) => void
-  ): this {
-    return this.on('drag', callback);
-  }
-
-  onDrop(
-    callback: (this: HTMLElement, ev: HTMLElementEventMap['drop']) => void
-  ): this {
-    return this.on('drop', callback);
   }
 
   /**
