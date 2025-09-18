@@ -297,7 +297,7 @@ const newDiv = $new('div').class('my-class').text('Hello World');
 ### Event Handling
 
 ```js
-$('.element').on('click' () => console.log("Clicked!"))
+$('.element').on('click', () => console.log("Clicked!"))
 ```
 
 ### Reactivity
