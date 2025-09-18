@@ -28,7 +28,6 @@ oBerry is a lightweight and modern JQuery alternative designed to simplify the m
 - ⚡ Reactive Data Binding - Built-in reactivity system
 - 📦 TypeScript Support - Full type definitions included
 - 🎨 Comprehensive DOM Manipulation - Full suite of element manipulation methods
-- 🖱️ Rich Event Handling - Support for all common DOM events
 - 🔄 Flexible Content Insertion - Multiple ways to add content to elements
 
 ## Installation
