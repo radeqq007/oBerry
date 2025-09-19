@@ -1,4 +1,24 @@
 {
   "$schema": "https://biomejs.dev/schemas/2.2.4/schema.json",
-  "extends": ["ultracite"]
+  "extends": ["ultracite"],
+  "linter": {
+    "rules": {
+      "performance": {
+        "noBarrelFile": "off"
+      },
+      "suspicious": {
+        "noExplicitAny": "off",
+        "noConsole": "off"
+      },
+      "style": {
+        "useBlockStatements": "off",
+        "useConsistentMemberAccessibility": "off",
+        "useUnifiedTypeSignatures": "off",
+        "noNonNullAssertion": "off"
+      },
+      "complexity": {
+        "noExcessiveCognitiveComplexity": "off"
+      }
+    }
+  }
 }
