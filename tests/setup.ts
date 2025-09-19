@@ -1,4 +1,4 @@
-import { beforeEach, vi } from 'vitest';
+import { beforeEach, vi } from "vitest";
 
 // Clean up DOM before each test
 beforeEach(() => {
@@ -6,7 +6,7 @@ beforeEach(() => {
   document.head.innerHTML = "";
 });
 
-vi.mock('alien-signals', () => ({
+vi.mock("alien-signals", () => ({
   signal: (initialValue: any) => {
     let value = initialValue;
     const fn = (newValue?: any) => {
