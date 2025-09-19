@@ -20,7 +20,7 @@
     "dev": "tsup src/index.ts --watch --dts",
     "clean": "rm -rf dist",
     "format": "pnpm dlx ultracite format",
-    "lint": "pnpm dlx ultracite lint",
+    "lint": "pnpm dlx ultracite check",
     "test": "vitest",
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage",
