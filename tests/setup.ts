@@ -1,12 +1,12 @@
-import { beforeEach, vi } from "vitest";
+import { beforeEach, vi } from 'vitest';
 
 // Clean up DOM before each test
 beforeEach(() => {
-  document.body.innerHTML = "";
-  document.head.innerHTML = "";
+  document.body.innerHTML = '';
+  document.head.innerHTML = '';
 });
 
-vi.mock("alien-signals", () => ({
+vi.mock('alien-signals', () => ({
   signal: (initialValue: any) => {
     let value = initialValue;
     const fn = (newValue?: any) => {
@@ -25,10 +25,14 @@ vi.mock("alien-signals", () => ({
 
   effect: (callback: () => void) => {
     callback();
-    return () => {}; // cleanup func
+    return () => {
+      /* Cleanup function */
+    };
   },
   effectScope: (callback: () => void) => {
     callback();
-    return () => {}; // stop function
+    return () => {
+      /* Stop function */
+    };
   },
 }));
