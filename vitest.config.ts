@@ -3,18 +3,20 @@ import { defineConfig } from 'vitest/config';
 export default defineConfig({
   test: {
     environment: 'happy-dom',
-    globals: true,
+    setupFiles: ['./tests/setup.ts'],
     coverage: {
       provider: 'v8',
-      reporter: ['text', 'json', 'html'],
+      include: ['src/**/*.ts'],
       exclude: [
-        'node_modules/',
-        'dist/',
-        'coverage/',
+        'src/**/*.test.ts',
+        'src/**/*.spec.ts',
+        'tests/**/*',
+        'dist/**/*',
+        'node_modules/**/*',
         '**/*.d.ts',
-        '**/*.config.*',
-        '**/index.ts',
       ],
+      reporter: ['text', 'json', 'html'],
+      reportsDirectory: './coverage',
     },
   },
 });
