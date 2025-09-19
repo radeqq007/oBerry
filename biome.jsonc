@@ -14,7 +14,8 @@
         "useBlockStatements": "off",
         "useConsistentMemberAccessibility": "off",
         "useUnifiedTypeSignatures": "off",
-        "noNonNullAssertion": "off"
+        "noNonNullAssertion": "off",
+        "noMagicNumbers": "off"
       },
       "complexity": {
         "noExcessiveCognitiveComplexity": "off"
