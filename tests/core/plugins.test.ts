@@ -7,8 +7,13 @@ describe("Plugins", () => {
     document.body.innerHTML = '<div id="test">test</div>';
 
     // Clear console warnings for clean tests
-    vi.spyOn(console, "warn").mockImplementation(() => {});
-    vi.spyOn(console, "error").mockImplementation(() => {});
+    vi.spyOn(console, "warn").mockImplementation(() => {
+      /* */
+    });
+
+    vi.spyOn(console, "error").mockImplementation(() => {
+      /* */
+    });
   });
 
   describe("Plugin class", () => {
