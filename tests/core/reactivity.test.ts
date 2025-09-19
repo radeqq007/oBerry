@@ -1,15 +1,15 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import {
   $computed,
   $effect,
   $effectScope,
   $ref,
-} from '../../src/core/reactivity';
-import { $ } from '../../src/core/selector';
+} from "../../src/core/reactivity";
+import { $ } from "../../src/core/selector";
 
-describe('Reactivity', () => {
-  describe('$ref', () => {
-    it('should create reactive reference', () => {
+describe("Reactivity", () => {
+  describe("$ref", () => {
+    it("should create reactive reference", () => {
       const count = $ref(0);
       expect(count()).toBe(0);
 
@@ -17,29 +17,29 @@ describe('Reactivity', () => {
       expect(count()).toBe(5);
     });
 
-    it('should work with different types', () => {
-      const stringRef = $ref('hello');
+    it("should work with different types", () => {
+      const stringRef = $ref("hello");
       const numberRef = $ref(42);
       const booleanRef = $ref(true);
-      const objectRef = $ref({ key: 'value' });
+      const objectRef = $ref({ key: "value" });
 
-      expect(stringRef()).toBe('hello');
+      expect(stringRef()).toBe("hello");
       expect(numberRef()).toBe(42);
       expect(booleanRef()).toBe(true);
-      expect(objectRef()).toEqual({ key: 'value' });
+      expect(objectRef()).toEqual({ key: "value" });
     });
   });
 
-  describe('$computed', () => {
-    it('should create computed values', () => {
-      const firstName = $ref('John');
-      const lastName = $ref('Doe');
+  describe("$computed", () => {
+    it("should create computed values", () => {
+      const firstName = $ref("John");
+      const lastName = $ref("Doe");
       const fullName = $computed(() => `${firstName()} ${lastName()}`);
 
-      expect(fullName()).toBe('John Doe');
+      expect(fullName()).toBe("John Doe");
     });
 
-    it('should update when dependencies change', () => {
+    it("should update when dependencies change", () => {
       const a = $ref(1);
       const b = $ref(2);
       const sum = $computed(() => a() + b());
@@ -54,8 +54,8 @@ describe('Reactivity', () => {
     });
   });
 
-  describe('$effect', () => {
-    it('should run effects', () => {
+  describe("$effect", () => {
+    it("should run effects", () => {
       const mockFn = vi.fn();
       const count = $ref(0);
 
@@ -67,8 +67,8 @@ describe('Reactivity', () => {
     });
   });
 
-  describe('$effectScope', () => {
-    it('should create effect scopes', () => {
+  describe("$effectScope", () => {
+    it("should create effect scopes", () => {
       const mockFn = vi.fn();
 
       $effectScope(() => {
@@ -79,7 +79,7 @@ describe('Reactivity', () => {
     });
   });
 
-  describe('DOM binding', () => {
+  describe("DOM binding", () => {
     beforeEach(() => {
       document.body.innerHTML = `
         <div id="output"></div>
@@ -89,44 +89,44 @@ describe('Reactivity', () => {
       `;
     });
 
-    it('should bind text content', () => {
-      const message = $ref('Hello World');
-      $('#output').bind(message);
+    it("should bind text content", () => {
+      const message = $ref("Hello World");
+      $("#output").bind(message);
 
-      expect(document.getElementById('output')?.textContent).toBe(
-        'Hello World'
+      expect(document.getElementById("output")?.textContent).toBe(
+        "Hello World"
       );
     });
 
-    it('should bind HTML content', () => {
-      const html = $ref('<strong>Bold text</strong>');
-      $('#html-output').bindHTML(html);
+    it("should bind HTML content", () => {
+      const html = $ref("<strong>Bold text</strong>");
+      $("#html-output").bindHTML(html);
 
-      expect(document.getElementById('html-output')?.innerHTML).toBe(
-        '<strong>Bold text</strong>'
+      expect(document.getElementById("html-output")?.innerHTML).toBe(
+        "<strong>Bold text</strong>"
       );
     });
 
-    it('should bind to attributes', () => {
-      const title = $ref('Test title');
-      $('#attr-output').bindAttr('title', title);
+    it("should bind to attributes", () => {
+      const title = $ref("Test title");
+      $("#attr-output").bindAttr("title", title);
 
       expect(
-        document.getElementById('attr-output')?.getAttribute('title')
-      ).toBe('Test title');
+        document.getElementById("attr-output")?.getAttribute("title")
+      ).toBe("Test title");
     });
 
-    it('should bind input values', () => {
-      const value = $ref('initial');
-      const input = $('#input');
+    it("should bind input values", () => {
+      const value = $ref("initial");
+      const input = $("#input");
       input.bindInput(value);
 
       // Simulate user input
-      const inputElement = document.getElementById('input') as HTMLInputElement;
-      inputElement.value = 'new value';
-      inputElement.dispatchEvent(new Event('input'));
+      const inputElement = document.getElementById("input") as HTMLInputElement;
+      inputElement.value = "new value";
+      inputElement.dispatchEvent(new Event("input"));
 
-      expect(value()).toBe('new value');
+      expect(value()).toBe("new value");
     });
   });
 });

@@ -1,8 +1,8 @@
-import type { Ref } from '../../types/index';
-import { $effect } from '../reactivity';
-import { $ } from '../selector';
+import type { Ref } from "../../types/index";
+import { $effect } from "../reactivity";
+import { $ } from "../selector";
 
-type classMode = 'add' | 'remove' | 'toggle';
+type classMode = "add" | "remove" | "toggle";
 
 export class ElementWrapper {
   elements: HTMLElement[];
@@ -29,21 +29,21 @@ export class ElementWrapper {
     }
 
     // Toggle class by default
-    if (mode === undefined || mode === 'toggle') {
+    if (mode === undefined || mode === "toggle") {
       for (const el of this.elements) {
         el.classList.toggle(name);
       }
       return this;
     }
 
-    if (mode === 'add') {
+    if (mode === "add") {
       for (const el of this.elements) {
         el.classList.add(name);
       }
       return this;
     }
 
-    if (mode === 'remove') {
+    if (mode === "remove") {
       for (const el of this.elements) {
         el.classList.remove(name);
       }
@@ -169,7 +169,7 @@ export class ElementWrapper {
   append(content: ElementWrapper): this;
   append(content: string | HTMLElement | ElementWrapper): this {
     for (const el of this.elements) {
-      if (typeof content === 'string') {
+      if (typeof content === "string") {
         el.innerHTML += content;
       } else if (content instanceof HTMLElement) {
         el.appendChild(content);
@@ -190,7 +190,7 @@ export class ElementWrapper {
   prepend(content: ElementWrapper): this;
   prepend(content: string | HTMLElement | ElementWrapper): this {
     for (const el of this.elements) {
-      if (typeof content === 'string') {
+      if (typeof content === "string") {
         el.innerHTML = content + el.innerHTML;
       } else if (content instanceof HTMLElement) {
         el.insertBefore(content.cloneNode(true), el.firstChild);
@@ -216,8 +216,8 @@ export class ElementWrapper {
         continue;
       }
 
-      if (typeof content === 'string') {
-        const temp = document.createElement('div');
+      if (typeof content === "string") {
+        const temp = document.createElement("div");
         temp.innerHTML = content;
 
         while (temp.firstChild) {
@@ -247,8 +247,8 @@ export class ElementWrapper {
         continue;
       }
 
-      if (typeof content === 'string') {
-        const temp = document.createElement('div');
+      if (typeof content === "string") {
+        const temp = document.createElement("div");
         temp.innerHTML = content;
 
         while (temp.firstChild) {
@@ -423,7 +423,7 @@ export class ElementWrapper {
       return this;
     }
 
-    el.addEventListener('input', () => {
+    el.addEventListener("input", () => {
       ref((el as HTMLInputElement).value as T);
     });
     return this;
@@ -516,7 +516,7 @@ export class ElementWrapper {
         el.dataset.originalDisplay = computedStyle.display;
       }
 
-      el.style.display = 'none';
+      el.style.display = "none";
     }
 
     return this;
@@ -527,8 +527,8 @@ export class ElementWrapper {
    */
   show(): this {
     for (const el of this.elements) {
-      const originalDisplay = el.dataset.originalDisplay || '';
-      el.style.display = originalDisplay === 'none' ? 'block' : originalDisplay;
+      const originalDisplay = el.dataset.originalDisplay || "";
+      el.style.display = originalDisplay === "none" ? "block" : originalDisplay;
 
       // Clean up the data attribute
       delete el.dataset.originalDisplay;
@@ -542,16 +542,16 @@ export class ElementWrapper {
    */
   toggle(): this {
     for (const el of this.elements) {
-      const isVisible = window.getComputedStyle(el).display !== 'none';
+      const isVisible = window.getComputedStyle(el).display !== "none";
 
       if (isVisible) {
         if (!el.dataset.originalDisplay) {
           el.dataset.originalDisplay = window.getComputedStyle(el).display;
         }
 
-        el.style.display = 'none';
+        el.style.display = "none";
       } else {
-        const originalDisplay = el.dataset.originalDisplay || 'block';
+        const originalDisplay = el.dataset.originalDisplay || "block";
         el.style.display = originalDisplay;
 
         // Clean up the data attribute
@@ -595,7 +595,7 @@ export class ElementWrapper {
   ): ElementWrapper {
     let filteredElements: HTMLElement[];
 
-    if (typeof predicate === 'string') {
+    if (typeof predicate === "string") {
       // Filter by CSS selector
       filteredElements = this.elements.filter((el) => el.matches(predicate));
     } else {

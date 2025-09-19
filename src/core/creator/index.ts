@@ -1,4 +1,4 @@
-import { ElementWrapper } from '../wrapper';
+import { ElementWrapper } from "../wrapper";
 
 export function $new(tag: string): ElementWrapper {
   const el = document.createElement(tag);

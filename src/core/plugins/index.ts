@@ -1,4 +1,4 @@
-import { ElementWrapper } from '../wrapper';
+import { ElementWrapper } from "../wrapper";
 
 type ExtendFunction = (
   name: string,
