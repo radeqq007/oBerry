@@ -19,14 +19,6 @@ Thumbs.db
 *.tgz
 pnpm-lock.yaml
 
-# Test output
-coverage/
-test/
-tests/
-*.test.js
-*.test.ts
-*.spec.js
-*.spec.ts
 
 # Misc
 *.swp
