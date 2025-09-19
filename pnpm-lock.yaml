@@ -26,6 +26,9 @@ importers:
       ultracite:
         specifier: 5.3.4
         version: 5.3.4(@types/node@24.4.0)(typescript@5.9.2)
+      vitest:
+        specifier: ^3.2.4
+        version: 3.2.4(@types/node@24.4.0)
 
 packages:
 
