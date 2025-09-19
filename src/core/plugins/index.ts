@@ -7,7 +7,7 @@ type ExtendFunction = (
 
 export class Plugin {
   public name: string;
-  private install: ($: ExtendFunction) => void;
+  private readonly install: ($: ExtendFunction) => void;
 
   constructor(name: string, install: (extend: ExtendFunction) => void) {
     this.name = name;
