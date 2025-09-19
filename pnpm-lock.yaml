@@ -17,6 +17,9 @@ importers:
       alien-signals:
         specifier: ^2.0.5
         version: 2.0.7
+      happy-dom:
+        specifier: ^18.0.1
+        version: 18.0.1
       tsup:
         specifier: ^8.5.0
         version: 8.5.0(postcss@8.5.6)(typescript@5.9.2)
@@ -25,10 +28,10 @@ importers:
         version: 5.9.2
       ultracite:
         specifier: 5.3.4
-        version: 5.3.4(@types/node@24.4.0)(typescript@5.9.2)
+        version: 5.3.4(@types/node@24.4.0)(happy-dom@18.0.1)(typescript@5.9.2)
       vitest:
         specifier: ^3.2.4
-        version: 3.2.4(@types/node@24.4.0)
+        version: 3.2.4(@types/node@24.4.0)(happy-dom@18.0.1)
 
 packages:
 
@@ -640,11 +643,17 @@ packages:
   '@types/estree@1.0.8':
     resolution: {integrity: sha512-dWHzHa2WqEXI/O1E9OjrocMTKJl2mSrEolh1Iomrv6U+JuNwaHXsXx9bLu5gG7BUWFIN0skIQJQ/L1rIex4X6w==}
 
+  '@types/node@20.19.17':
+    resolution: {integrity: sha512-gfehUI8N1z92kygssiuWvLiwcbOB3IRktR6hTDgJlXMYh5OvkPSRmgfoBUmfZt+vhwJtX7v1Yw4KvvAf7c5QKQ==}
+
   '@types/node@24.4.0':
     resolution: {integrity: sha512-gUuVEAK4/u6F9wRLznPUU4WGUacSEBDPoC2TrBkw3GAnOLHBL45QdfHOXp1kJ4ypBGLxTOB+t7NJLpKoC3gznQ==}
 
   '@types/omelette@0.4.5':
     resolution: {integrity: sha512-zUCJpVRwfMcZfkxSCGp73mgd3/xesvPz5tQJIORlfP/zkYEyp9KUfF7IP3RRjyZR3DwxkPs96/IFf70GmYZYHQ==}
+
+  '@types/whatwg-mimetype@3.0.2':
+    resolution: {integrity: sha512-c2AKvDT8ToxLIOUlN51gTiHXflsfIFisS4pO7pDPoKouJCESkhZnEy623gwP9laCy5lnLDAw1vAzu2vM2YLOrA==}
 
   '@vitest/expect@3.2.4':
     resolution: {integrity: sha512-Io0yyORnB6sikFlt8QW5K7slY4OjqNX9jmJQ02QDda8lyM6B5oNgVWoSoKPac8/kgnCUzuHQKrSLtu/uOqqrig==}
@@ -847,6 +856,10 @@ packages:
   glob@10.4.5:
     resolution: {integrity: sha512-7Bv8RF0k6xjo7d4A/PxYLbUCfb6c+Vpd2/mB2yRDlew7Jb5hEXiCD9ibfO7wpk8i4sevK6DFny9h7EYbM3/sHg==}
     hasBin: true
+
+  happy-dom@18.0.1:
+    resolution: {integrity: sha512-qn+rKOW7KWpVTtgIUi6RVmTBZJSe2k0Db0vh1f7CWrWclkkc7/Q+FrOfkZIb2eiErLyqu5AXEzE7XthO9JVxRA==}
+    engines: {node: '>=20.0.0'}
 
   is-fullwidth-code-point@3.0.0:
     resolution: {integrity: sha512-zymm5+u+sCsSWyD9qNaejV3DFvhCKclKdizYaJUuHA83RLjb7nSuGnddCHGv0hk+KY7BMAlsWeK4Ueg6EV6XQg==}
@@ -1155,6 +1168,9 @@ packages:
     resolution: {integrity: sha512-N8n4O2rxv8IA9iX/xb2MBNCjgLQBHMiwMg8YJEzCn+vzRI0Z33ZRAFurZfbP/SDwE/5N0wRYgZHzBt/xczaomg==}
     hasBin: true
 
+  undici-types@6.21.0:
+    resolution: {integrity: sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==}
+
   undici-types@7.11.0:
     resolution: {integrity: sha512-kt1ZriHTi7MU+Z/r9DOdAI3ONdaR3M3csEaRc6ewa4f4dTvX4cQCbJ4NkEn0ohE4hHtq85+PhPSTY+pO/1PwgA==}
 
@@ -1233,6 +1249,10 @@ packages:
 
   webidl-conversions@4.0.2:
     resolution: {integrity: sha512-YQ+BmxuTgd6UXZW3+ICGfyqRyHXVlD5GtQr5+qjiNW7bF0cqrzX500HVXPBOvgXb5YnzDd+h0zqyv61KUD7+Sg==}
+
+  whatwg-mimetype@3.0.0:
+    resolution: {integrity: sha512-nt+N2dzIutVRxARx1nghPKGv1xHikU7HKdfafKkLNLindmPU/ch3U31NOCGGA/dmPcmb1VlofO0vnKAcsm0o/Q==}
+    engines: {node: '>=12'}
 
   whatwg-url@7.1.0:
     resolution: {integrity: sha512-WUu7Rg1DroM7oQvGWfOiAK21n74Gg+T4elXEQYkOhtyLeWiJFoOGLXPKI/9gzIie9CtwVLm8wtw6YJdKyxSjeg==}
@@ -1630,11 +1650,17 @@ snapshots:
 
   '@types/estree@1.0.8': {}
 
+  '@types/node@20.19.17':
+    dependencies:
+      undici-types: 6.21.0
+
   '@types/node@24.4.0':
     dependencies:
       undici-types: 7.11.0
 
   '@types/omelette@0.4.5': {}
+
+  '@types/whatwg-mimetype@3.0.2': {}
 
   '@vitest/expect@3.2.4':
     dependencies:
@@ -1860,6 +1886,12 @@ snapshots:
       minipass: 7.1.2
       package-json-from-dist: 1.0.1
       path-scurry: 1.11.1
+
+  happy-dom@18.0.1:
+    dependencies:
+      '@types/node': 20.19.17
+      '@types/whatwg-mimetype': 3.0.2
+      whatwg-mimetype: 3.0.0
 
   is-fullwidth-code-point@3.0.0: {}
 
@@ -2171,14 +2203,14 @@ snapshots:
 
   ufo@1.6.1: {}
 
-  ultracite@5.3.4(@types/node@24.4.0)(typescript@5.9.2):
+  ultracite@5.3.4(@types/node@24.4.0)(happy-dom@18.0.1)(typescript@5.9.2):
     dependencies:
       '@clack/prompts': 0.11.0
       deepmerge: 4.3.1
       jsonc-parser: 3.3.1
       nypm: 0.6.1
       trpc-cli: 0.10.2(typescript@5.9.2)
-      vitest: 3.2.4(@types/node@24.4.0)
+      vitest: 3.2.4(@types/node@24.4.0)(happy-dom@18.0.1)
       zod: 4.1.5
     transitivePeerDependencies:
       - '@edge-runtime/vm'
@@ -2203,6 +2235,8 @@ snapshots:
       - tsx
       - typescript
       - yaml
+
+  undici-types@6.21.0: {}
 
   undici-types@7.11.0: {}
 
@@ -2239,7 +2273,7 @@ snapshots:
       '@types/node': 24.4.0
       fsevents: 2.3.3
 
-  vitest@3.2.4(@types/node@24.4.0):
+  vitest@3.2.4(@types/node@24.4.0)(happy-dom@18.0.1):
     dependencies:
       '@types/chai': 5.2.2
       '@vitest/expect': 3.2.4
@@ -2266,6 +2300,7 @@ snapshots:
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@types/node': 24.4.0
+      happy-dom: 18.0.1
     transitivePeerDependencies:
       - jiti
       - less
@@ -2281,6 +2316,8 @@ snapshots:
       - yaml
 
   webidl-conversions@4.0.2: {}
+
+  whatwg-mimetype@3.0.0: {}
 
   whatwg-url@7.1.0:
     dependencies:
