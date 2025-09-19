@@ -1,6 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { $ } from "../../src/core/selector";
-import { ElementWrapper } from "../../src/core/wrapper";
 
 describe("ElementWrapper", () => {
   beforeEach(() => {
@@ -135,7 +134,7 @@ describe("ElementWrapper", () => {
       const originalHTML = $("#test").html();
       const wrapper = $("#test").prepend("<div>Prepended</div>");
       expect(wrapper.elements[0].innerHTML).toBe(
-        "<div>Prepended</div>" + originalHTML
+        `<div>Prepended</div>${originalHTML}`
       );
     });
 
@@ -274,7 +273,7 @@ describe("ElementWrapper", () => {
     });
 
     it("should filter by predicate function", () => {
-      const filtered = $(".item").filter((el, index) => index % 2 === 0);
+      const filtered = $(".item").filter((_, index) => index % 2 === 0);
       expect(filtered.elements).toHaveLength(2);
     });
   });
