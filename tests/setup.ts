@@ -2,8 +2,8 @@ import { beforeEach, vi } from 'vitest';
 
 // Clean up DOM before each test
 beforeEach(() => {
-  document.body.innerHTML = '';
-  document.head.innerHTML = '';
+  document.body.innerHTML = "";
+  document.head.innerHTML = "";
 });
 
 vi.mock('alien-signals', () => ({
