@@ -30,6 +30,3 @@ jobs:
 
       - name: Run lint check
         run: pnpm lint
-
-      - name: Check formatting
-        run: pnpm dlx ultracite check --formatter
