@@ -481,6 +481,13 @@ export class ElementWrapper {
     return this;
   }
 
+  off<K extends keyof HTMLElementEventMap>(event: K, callback: EventListener) {
+    for (const el of this.elements) {
+      el.removeEventListener(event, callback);
+    }
+    return this;
+  }
+
   /**
    * Get the elements at even positions (1-based indexing).
    */
