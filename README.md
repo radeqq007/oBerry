@@ -5,6 +5,7 @@
 ![downloads](https://img.shields.io/npm/dm/oberry)
 ![npm bundle size](https://img.shields.io/bundlephobia/minzip/oberry)
 [![Tests](https://github.com/radeqq007/oBerry/actions/workflows/test.yml/badge.svg)](https://github.com/radeqq007/oBerry/actions/workflows/test.yml)
+[![Lint](https://github.com/radeqq007/oBerry/actions/workflows/lint.yml/badge.svg)](https://github.com/radeqq007/oBerry/actions/workflows/lint.yml)
 
 ## Overview
 
