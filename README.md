@@ -299,11 +299,13 @@ import { $new } from 'oberry';
 const newDiv = $new('div').class('my-class').text('Hello World');
 ```
 
-### Event Handling
+### Event Listeners
 
 ```js
 $('.element').on('click', () => console.log("Clicked!"))
+$('.element').off('click', () => console.log("Clicked!")) // Remove event listener
 ```
+
 
 ### Reactivity
 
