@@ -131,10 +131,10 @@ describe("ElementWrapper", () => {
     });
 
     it("should prepend string content", () => {
-      const originalHTML = $("#test").html();
+      const originalHtml = $("#test").html();
       const wrapper = $("#test").prepend("<div>Prepended</div>");
       expect(wrapper.elements[0].innerHTML).toBe(
-        `<div>Prepended</div>${originalHTML}`
+        `<div>Prepended</div>${originalHtml}`
       );
     });
 
