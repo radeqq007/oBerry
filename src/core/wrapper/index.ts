@@ -2,7 +2,7 @@ import type { Ref } from "../../types/index";
 import { $effect } from "../reactivity";
 import { $ } from "../selector";
 
-type classMode = "add" | "remove" | "toggle";
+type ClassMode = "add" | "remove" | "toggle";
 
 export class ElementWrapper {
   elements: HTMLElement[];
@@ -20,8 +20,8 @@ export class ElementWrapper {
 
   class(): string[];
   class(name: string): this;
-  class(name: string, mode: classMode): this;
-  class(name?: string, mode?: classMode): string[] | this {
+  class(name: string, mode: ClassMode): this;
+  class(name?: string, mode?: ClassMode): string[] | this {
     if (name === undefined) {
       // Return the classes of the first element
       // ? Should this return classes of all the elements?
