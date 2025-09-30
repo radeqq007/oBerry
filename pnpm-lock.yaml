@@ -21,8 +21,8 @@ importers:
         specifier: 3.2.4
         version: 3.2.4(vitest@3.2.4)
       alien-signals:
-        specifier: ^2.0.5
-        version: 2.0.7
+        specifier: ^3.0.0
+        version: 3.0.0
       happy-dom:
         specifier: ^18.0.1
         version: 18.0.1
@@ -741,8 +741,8 @@ packages:
     engines: {node: '>=0.4.0'}
     hasBin: true
 
-  alien-signals@2.0.7:
-    resolution: {integrity: sha512-wE7y3jmYeb0+h6mr5BOovuqhFv22O/MV9j5p0ndJsa7z1zJNPGQ4ph5pQk/kTTCWRC3xsA4SmtwmkzQO+7NCNg==}
+  alien-signals@3.0.0:
+    resolution: {integrity: sha512-JHoRJf18Y6HN4/KZALr3iU+0vW9LKG+8FMThQlbn4+gv8utsLIkwpomjElGPccGeNwh0FI2HN6BLnyFLo6OyLQ==}
 
   ansi-regex@5.0.1:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
@@ -1883,7 +1883,7 @@ snapshots:
 
   acorn@8.15.0: {}
 
-  alien-signals@2.0.7: {}
+  alien-signals@3.0.0: {}
 
   ansi-regex@5.0.1: {}
 
