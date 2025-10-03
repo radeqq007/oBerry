@@ -47,15 +47,15 @@ describe("Creator ($new)", () => {
   it("should create an element with a child element", () => {
     const newElement = $new("ul", $new("li"));
     document.body.appendChild(newElement.elements[0]);
-    const child = document.querySelectorAll("ul > *")
+    const child = document.querySelectorAll("ul > *");
     expect(child).toHaveLength(1);
-    expect(child[0].tagName).toBe("LI")
+    expect(child[0].tagName).toBe("LI");
   });
 
   it("should create an element with a multiple child elements", () => {
-    const newElement = $new("ul", $new("li"), $new('li'), $new('li'));
+    const newElement = $new("ul", $new("li"), $new("li"), $new("li"));
     document.body.appendChild(newElement.elements[0]);
-    const children = document.querySelectorAll("ul > *"); 
+    const children = document.querySelectorAll("ul > *");
     expect(children).toHaveLength(3);
   });
 });
