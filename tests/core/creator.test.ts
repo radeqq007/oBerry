@@ -49,4 +49,11 @@ describe("Creator ($new)", () => {
     document.body.appendChild(newElement.elements[0]);
     expect(document.querySelector("ul li")).toBeTruthy();
   });
+
+  it("should create an element with a multiple child elements", () => {
+    const newElement = $new("ul", $new("li"), $new('li'), $new('li'));
+    document.body.appendChild(newElement.elements[0]);
+    const children = document.querySelectorAll("ul > *"); 
+    expect(children).toHaveLength(3);
+  });
 });
