@@ -43,4 +43,11 @@ describe("Creator ($new)", () => {
       "New paragraph"
     );
   });
+
+  it("should create an element with a child element", () => {
+    const newElement = $new("ul", $new("li"));
+
+    document.getElementById("container")?.appendChild(newElement.elements[0]);
+    expect(document.querySelector("ul li")).toBeTruthy();
+  })
 });
