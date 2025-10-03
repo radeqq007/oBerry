@@ -46,7 +46,7 @@ describe("Creator ($new)", () => {
 
   it("should create an element with a child element", () => {
     const newElement = $new("ul", $new("li"));
-    document.appendChild(newElement.elements[0]);
+    document.body.appendChild(newElement.elements[0]);
     expect(document.querySelector("ul li")).toBeTruthy();
   })
 });
