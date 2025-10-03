@@ -48,5 +48,5 @@ describe("Creator ($new)", () => {
     const newElement = $new("ul", $new("li"));
     document.body.appendChild(newElement.elements[0]);
     expect(document.querySelector("ul li")).toBeTruthy();
-  })
+  });
 });
