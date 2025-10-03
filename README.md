@@ -299,7 +299,16 @@ import { $new } from 'oberry';
 const newDiv = $new('div').class('my-class').text('Hello World');
 
 // Create new element with children
-const list = $new('ul', $new('li').text("Hello, world!"));
+const list = $new('ul',
+  $new('li').text("Hello, world!")
+);
+
+// Create new element with multiple children
+const list = $new('ul', 
+  $new('li').text('first element'),
+  $new('li').text('second element'),
+  $new('li').text('third element')
+);
 ```
 
 ### Event Listeners
