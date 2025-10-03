@@ -297,6 +297,9 @@ import { $new } from 'oberry';
 
 // Create new elements
 const newDiv = $new('div').class('my-class').text('Hello World');
+
+// Create new element with children
+const list = $new('ul', $new('li').text("Hello, world!"));
 ```
 
 ### Event Listeners
