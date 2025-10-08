@@ -1,8 +1,5 @@
 import { ElementWrapper } from "../wrapper";
 
-/**
- * Select DOM elements using a CSS selector, HTMLElement, NodeList, or an Array of HTMLElements.
- */
 export function $(selector: string): ElementWrapper;
 export function $(selector: NodeList): ElementWrapper;
 export function $(selector: HTMLElement): ElementWrapper;
