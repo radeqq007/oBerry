@@ -12,7 +12,7 @@ export function $(
 ): ElementWrapper {
   let elements: HTMLElement[] | NodeList = [];
   if (typeof selector === "string") {
-    elements = document.querySelectorAll(selector)
+    elements = document.querySelectorAll(selector);
   } else if (selector instanceof HTMLElement) {
     elements = [selector];
   } else if (selector instanceof NodeList || Array.isArray(selector)) {
