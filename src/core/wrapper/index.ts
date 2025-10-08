@@ -122,9 +122,6 @@ export class ElementWrapper {
     return Array.from(this.elements);
   }
 
-  /**
-   * Get or set elements values.
-   */
   value(newValue: string): this;
   value(): string | undefined;
   value(newValue?: string): this | string | undefined {
@@ -161,9 +158,6 @@ export class ElementWrapper {
     return this;
   }
 
-  /**
-   * Append elements to all selected elements.
-   */
   append(content: string): this;
   append(content: HTMLElement): this;
   append(content: ElementWrapper): this;
@@ -182,9 +176,6 @@ export class ElementWrapper {
     return this;
   }
 
-  /**
-   * Prepend elements to all selected elements.
-   */
   prepend(content: string): this;
   prepend(content: HTMLElement): this;
   prepend(content: ElementWrapper): this;
@@ -203,9 +194,6 @@ export class ElementWrapper {
     return this;
   }
 
-  /**
-   * Insert elements after all selected elements.
-   */
   after(content: string): this;
   after(content: HTMLElement): this;
   after(content: ElementWrapper): this;
@@ -234,9 +222,6 @@ export class ElementWrapper {
     return this;
   }
 
-  /**
-   * Insert elements before all selected elements.
-   */
   before(content: string): this;
   before(content: HTMLElement): this;
   before(content: ElementWrapper): this;
@@ -429,9 +414,6 @@ export class ElementWrapper {
     return this;
   }
 
-  /**
-   * Get or set elements attributes.
-   */
   attr(key: string): string | null;
   attr(key: string, value: string): this;
   attr(key: string, value?: string): this | string | null {
@@ -450,9 +432,6 @@ export class ElementWrapper {
     return this;
   }
 
-  /**
-   * Get or set data attributes.
-   */
   data(key: string): string | undefined;
   data(key: string, value: string): this;
   data(key: string, value?: string): this | string | undefined {
@@ -577,16 +556,10 @@ export class ElementWrapper {
     return new ElementWrapper(el ? [el] : []);
   }
 
-  /**
-   * Get the first element.
-   */
   first() {
     return this.eq(0);
   }
 
-  /**
-   * Get the last element.
-   */
   last() {
     if (this.elements.length === 0) {
       return new ElementWrapper([]);
