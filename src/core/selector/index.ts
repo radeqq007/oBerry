@@ -12,26 +12,7 @@ export function $(
 ): ElementWrapper {
   let elements: HTMLElement[] | NodeList = [];
   if (typeof selector === "string") {
-    // Use getElementById, getElementsByClassName etc. for simple selectors
-    // Fallback to .querySelectorAll() for complex or space-seperated selectors
-    if (selector.includes(" ")) {
-      elements = document.querySelectorAll(selector);
-    } else if (selector.startsWith("#")) {
-      const el = document.getElementById(selector.slice(1));
-      if (el !== null) {
-        elements = [el as HTMLElement];
-      }
-    } else if (selector.startsWith(".")) {
-      elements = Array.from(
-        document.getElementsByClassName(selector.slice(1))
-      ) as HTMLElement[];
-    } else if (selector.includes(".") || selector.includes("#")) {
-      elements = document.querySelectorAll(selector);
-    } else {
-      elements = Array.from(
-        document.getElementsByTagName(selector)
-      ) as HTMLElement[];
-    }
+    document.querySelectorAll("")
   } else if (selector instanceof HTMLElement) {
     elements = [selector];
   } else if (selector instanceof NodeList || Array.isArray(selector)) {
@@ -39,6 +20,5 @@ export function $(
   } else {
     throw new Error("Invalid selector type");
   }
-
   return new ElementWrapper(elements);
 }
