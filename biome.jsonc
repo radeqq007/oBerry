@@ -1,29 +1,29 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.3.1/schema.json",
-  "linter": {
-    "rules": {
-      "performance": {
-        "noBarrelFile": "off"
-      },
-      "suspicious": {
-        "noExplicitAny": "off",
-        "noConsole": "off"
-      },
-      "style": {
-        "useBlockStatements": "off",
-        "useConsistentMemberAccessibility": "off",
-        "useUnifiedTypeSignatures": "off",
-        "noNonNullAssertion": "off",
-        "noMagicNumbers": "off",
-        "useNamingConvention": {
-          "options": {
-            "strictCase": false // This probably shouldn't be false
-          }
-        }
-      },
-      "complexity": {
-        "noExcessiveCognitiveComplexity": "off"
-      }
-    }
-  }
+	"$schema": "https://biomejs.dev/schemas/2.3.1/schema.json",
+	"linter": {
+		"rules": {
+			"performance": {
+				"noBarrelFile": "off"
+			},
+			"suspicious": {
+				"noExplicitAny": "off",
+				"noConsole": "off"
+			},
+			"style": {
+				"useBlockStatements": "off",
+				"useConsistentMemberAccessibility": "off",
+				"useUnifiedTypeSignatures": "off",
+				"noNonNullAssertion": "off",
+				"noMagicNumbers": "off",
+				"useNamingConvention": {
+					"options": {
+						"strictCase": false // This probably shouldn't be false
+					}
+				}
+			},
+			"complexity": {
+				"noExcessiveCognitiveComplexity": "off"
+			}
+		}
+	}
 }

@@ -1,67 +1,67 @@
 {
-  "name": "oberry",
-  "version": "1.1.1",
-  "description": "A lightweight and modern jQuery alternative for DOM manipulation, user interactions, and reactive data binding",
-  "main": "dist/index.mjs",
-  "module": "dist/index.mjs",
-  "exports": {
-    "import": "./dist/index.mjs"
-  },
-  "types": "dist/index.d.mts",
-  "files": [
-    "dist/**/*",
-    "README.md",
-    "LICENSE"
-  ],
-  "sideEffects": false,
-  "scripts": {
-    "build": "tsup src/index.ts --dts",
-    "prepublishOnly": "pnpm run build",
-    "dev": "tsup src/index.ts --watch --dts",
-    "clean": "rm -rf dist",
-    "format": "pnpm dlx @biomejs/biome format --write",
-    "lint": "pnpm dlx @biomejs/biome lint",
-    "test": "vitest",
-    "test:run": "vitest run",
-    "test:coverage": "vitest run --coverage",
-    "test:ui": "vitest --ui"
-  },
-  "keywords": [
-    "dom",
-    "manipulation",
-    "jquery",
-    "alternative",
-    "reactive",
-    "data-binding",
-    "typescript",
-    "frontend",
-    "javascript",
-    "selector",
-    "signals"
-  ],
-  "author": "Radosław Kaczmarczyk",
-  "license": "MIT",
-  "homepage": "https://github.com/radeqq007/oberry#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/radeqq007/oberry.git"
-  },
-  "bugs": {
-    "url": "https://github.com/radeqq007/oberry/issues"
-  },
-  "packageManager": "pnpm@10.10.0",
-  "devDependencies": {
-    "@biomejs/biome": "2.3.1",
-    "@types/node": "^24.0.4",
-    "@vitest/coverage-v8": "3.2.4",
-    "@vitest/ui": "3.2.4",
-    "alien-signals": "^3.0.0",
-    "happy-dom": "^20.0.0",
-    "tsup": "^8.5.0",
-    "typescript": "^5.8.3",
-    "vitest": "^3.2.4"
-  },
-  "peerDependencies": {
-    "alien-signals": "^3.0.0"
-  }
+	"name": "oberry",
+	"version": "1.1.1",
+	"description": "A lightweight and modern jQuery alternative for DOM manipulation, user interactions, and reactive data binding",
+	"main": "dist/index.mjs",
+	"module": "dist/index.mjs",
+	"exports": {
+		"import": "./dist/index.mjs"
+	},
+	"types": "dist/index.d.mts",
+	"files": [
+		"dist/**/*",
+		"README.md",
+		"LICENSE"
+	],
+	"sideEffects": false,
+	"scripts": {
+		"build": "tsup src/index.ts --dts",
+		"prepublishOnly": "pnpm run build",
+		"dev": "tsup src/index.ts --watch --dts",
+		"clean": "rm -rf dist",
+		"format": "pnpm dlx @biomejs/biome format --write",
+		"lint": "pnpm dlx @biomejs/biome lint",
+		"test": "vitest",
+		"test:run": "vitest run",
+		"test:coverage": "vitest run --coverage",
+		"test:ui": "vitest --ui"
+	},
+	"keywords": [
+		"dom",
+		"manipulation",
+		"jquery",
+		"alternative",
+		"reactive",
+		"data-binding",
+		"typescript",
+		"frontend",
+		"javascript",
+		"selector",
+		"signals"
+	],
+	"author": "Radosław Kaczmarczyk",
+	"license": "MIT",
+	"homepage": "https://github.com/radeqq007/oberry#readme",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/radeqq007/oberry.git"
+	},
+	"bugs": {
+		"url": "https://github.com/radeqq007/oberry/issues"
+	},
+	"packageManager": "pnpm@10.10.0",
+	"devDependencies": {
+		"@biomejs/biome": "2.3.1",
+		"@types/node": "^24.0.4",
+		"@vitest/coverage-v8": "3.2.4",
+		"@vitest/ui": "3.2.4",
+		"alien-signals": "^3.0.0",
+		"happy-dom": "^20.0.0",
+		"tsup": "^8.5.0",
+		"typescript": "^5.8.3",
+		"vitest": "^3.2.4"
+	},
+	"peerDependencies": {
+		"alien-signals": "^3.0.0"
+	}
 }
