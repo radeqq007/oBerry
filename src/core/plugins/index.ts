@@ -1,5 +1,9 @@
 import { ElementWrapper } from "../wrapper";
 
+declare module "../wrapper" {
+	interface ElementWrapper {}
+}
+
 type ExtendFunction = (
 	name: string,
 	func: (this: ElementWrapper, ...args: any[]) => any,
