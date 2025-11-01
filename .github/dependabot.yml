@@ -15,7 +15,6 @@ updates:
           - "@types/*"
           - "tsup"
           - "typescript"
-          - "ultracite"
         update-types:
           - "minor"
           - "patch"
