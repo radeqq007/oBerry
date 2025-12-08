@@ -22,10 +22,10 @@ importers:
         version: 3.2.4(vitest@3.2.4)
       alien-signals:
         specifier: ^3.0.0
-        version: 3.1.0
+        version: 3.1.1
       happy-dom:
         specifier: ^20.0.0
-        version: 20.0.10
+        version: 20.0.11
       tsup:
         specifier: ^8.5.0
         version: 8.5.1(postcss@8.5.6)(typescript@5.9.3)
@@ -34,7 +34,7 @@ importers:
         version: 5.9.3
       vitest:
         specifier: ^3.2.4
-        version: 3.2.4(@types/node@24.10.1)(@vitest/ui@3.2.4)(happy-dom@20.0.10)
+        version: 3.2.4(@types/node@24.10.1)(@vitest/ui@3.2.4)(happy-dom@20.0.11)
 
 packages:
 
@@ -733,8 +733,8 @@ packages:
     engines: {node: '>=0.4.0'}
     hasBin: true
 
-  alien-signals@3.1.0:
-    resolution: {integrity: sha512-yufC6VpSy8tK3I0lO67pjumo5JvDQVQyr38+3OHqe6CHl1t2VZekKZ7EKKZSqk0cRmE7U7tfZbpXiKNzuc+ckg==}
+  alien-signals@3.1.1:
+    resolution: {integrity: sha512-ogkIWbVrLwKtHY6oOAXaYkAxP+cTH7V5FZ5+Tm4NZFd8VDZ6uNMDrfzqctTZ42eTMCSR3ne3otpcxmqSnFfPYA==}
 
   ansi-regex@5.0.1:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
@@ -893,8 +893,8 @@ packages:
     resolution: {integrity: sha512-7Bv8RF0k6xjo7d4A/PxYLbUCfb6c+Vpd2/mB2yRDlew7Jb5hEXiCD9ibfO7wpk8i4sevK6DFny9h7EYbM3/sHg==}
     hasBin: true
 
-  happy-dom@20.0.10:
-    resolution: {integrity: sha512-6umCCHcjQrhP5oXhrHQQvLB0bwb1UzHAHdsXy+FjtKoYjUhmNZsQL8NivwM1vDvNEChJabVrUYxUnp/ZdYmy2g==}
+  happy-dom@20.0.11:
+    resolution: {integrity: sha512-QsCdAUHAmiDeKeaNojb1OHOPF7NjcWPBR7obdu3NwH2a/oyQaLg5d0aaCy/9My6CdPChYF07dvz5chaXBGaD4g==}
     engines: {node: '>=20.0.0'}
 
   has-flag@4.0.0:
@@ -1721,7 +1721,7 @@ snapshots:
       std-env: 3.9.0
       test-exclude: 7.0.1
       tinyrainbow: 2.0.0
-      vitest: 3.2.4(@types/node@24.10.1)(@vitest/ui@3.2.4)(happy-dom@20.0.10)
+      vitest: 3.2.4(@types/node@24.10.1)(@vitest/ui@3.2.4)(happy-dom@20.0.11)
     transitivePeerDependencies:
       - supports-color
 
@@ -1770,7 +1770,7 @@ snapshots:
       sirv: 3.0.2
       tinyglobby: 0.2.15
       tinyrainbow: 2.0.0
-      vitest: 3.2.4(@types/node@24.10.1)(@vitest/ui@3.2.4)(happy-dom@20.0.10)
+      vitest: 3.2.4(@types/node@24.10.1)(@vitest/ui@3.2.4)(happy-dom@20.0.11)
 
   '@vitest/utils@3.2.4':
     dependencies:
@@ -1780,7 +1780,7 @@ snapshots:
 
   acorn@8.15.0: {}
 
-  alien-signals@3.1.0: {}
+  alien-signals@3.1.1: {}
 
   ansi-regex@5.0.1: {}
 
@@ -1960,7 +1960,7 @@ snapshots:
       package-json-from-dist: 1.0.1
       path-scurry: 1.11.1
 
-  happy-dom@20.0.10:
+  happy-dom@20.0.11:
     dependencies:
       '@types/node': 20.19.25
       '@types/whatwg-mimetype': 3.0.2
@@ -2329,7 +2329,7 @@ snapshots:
       '@types/node': 24.10.1
       fsevents: 2.3.3
 
-  vitest@3.2.4(@types/node@24.10.1)(@vitest/ui@3.2.4)(happy-dom@20.0.10):
+  vitest@3.2.4(@types/node@24.10.1)(@vitest/ui@3.2.4)(happy-dom@20.0.11):
     dependencies:
       '@types/chai': 5.2.2
       '@vitest/expect': 3.2.4
@@ -2357,7 +2357,7 @@ snapshots:
     optionalDependencies:
       '@types/node': 24.10.1
       '@vitest/ui': 3.2.4(vitest@3.2.4)
-      happy-dom: 20.0.10
+      happy-dom: 20.0.11
     transitivePeerDependencies:
       - jiti
       - less
