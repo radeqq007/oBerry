@@ -33,9 +33,22 @@ export class $http {
       },
     };
 
-    if (data && method === 'GET') {
-      const params = new URLSearchParams(data).toString();
-      url = `${url}${url.includes('?') ? '&' : '?'}${params}`;
+    if (data) {
+      if (method === 'GET') {
+
+        const params = new URLSearchParams(data).toString();
+        url = `${url}${url.includes('?') ? '&' : '?'}${params}`;
+      } else {
+        const isRaw = data instanceof FormData || data instanceof Blob || data instanceof ArrayBuffer;
+    
+        if (!isRaw && typeof data === 'object') {
+          fetchOptions.body = JSON.stringify(data);
+          // set the JSON header if it's not already set
+          fetchOptions.headers = { 'Content-Type': 'application/json', ...headers };
+        } else {
+          fetchOptions.body = data;
+        }
+      }
     }
 
     const response = await fetch(url, fetchOptions);
