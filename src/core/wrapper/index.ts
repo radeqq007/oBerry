@@ -300,15 +300,15 @@ export class ElementWrapper {
 	/**
 	 * Find the closest ancestor matching the selector for the first element.
 	 */
-	closest(selector: string): ElementWrapper | null {
+	closest(selector: string): ElementWrapper {
 		const el = this.elements[0];
 		if (!el) {
-			return null;
+			return new ElementWrapper([]);
 		}
 
 		const closest = el.closest(selector) as HTMLElement | null;
 		if (!closest) {
-			return null;
+			return new ElementWrapper([]);
 		}
 
 		return new ElementWrapper([closest]);
@@ -317,53 +317,49 @@ export class ElementWrapper {
 	/**
 	 * Get the parent wrapper of the first element.
 	 */
-	parent(): ElementWrapper | null {
+	parent(): ElementWrapper {
 		const el = this.elements[0];
 		if (!el) {
-			return null;
+			return new ElementWrapper([]);
 		}
 
 		const parent = el.parentElement;
 
 		if (!parent) {
-			return null;
+			return new ElementWrapper([]);
 		}
 
-		return $([parent]);
+		return new ElementWrapper([parent]);
 	}
 
 	/**
 	 * Get the children wrapper of the first element.
 	 */
-	children(): ElementWrapper | null {
+	children(): ElementWrapper {
 		const el = this.elements[0];
 		if (!el) {
-			return null;
+			return new ElementWrapper([]);
 		}
 
 		const children = el.children;
 
 		if (!children) {
-			return null;
+			return new ElementWrapper([]);
 		}
 
-		return $(Array.from(children) as HTMLElement[]);
+		return new ElementWrapper(Array.from(children) as HTMLElement[]);
 	}
 
 	/**
 	 * Get the children wrapper of the all elements.
 	 */
-	allChildren(): ElementWrapper | null {
+	allChildren(): ElementWrapper {
 		const children: HTMLElement[] = [];
 		for (const el of this.elements) {
 			children.push(...(Array.from(el.children) as HTMLElement[]));
 		}
 
-		if (!children) {
-			return null;
-		}
-
-		return $(Array.from(children) as HTMLElement[]);
+		return new ElementWrapper(children);
 	}
 
 	/**
