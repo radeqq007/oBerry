@@ -6,6 +6,7 @@ export interface FetchOptions extends RequestInit {
   data?: any;
   headers?: Record<string, string>;
   json?: boolean;
+  abortController?: AbortController;
 }
 
 export class HttpError extends Error {
@@ -49,6 +50,10 @@ export class $http {
           fetchOptions.body = data;
         }
       }
+    }
+
+    if (options.abortController) {
+      fetchOptions.signal = options.abortController.signal;
     }
 
     const response = await fetch(url, fetchOptions);
