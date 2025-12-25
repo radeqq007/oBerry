@@ -1,6 +1,5 @@
 import type { Ref } from "../../types/index";
 import { $effect } from "../reactivity";
-import { $ } from "../selector";
 
 type ClassMode = "add" | "remove" | "toggle";
 
