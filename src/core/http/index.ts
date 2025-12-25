@@ -26,12 +26,11 @@ export class $http {
     const { method = 'GET', data, headers = {}, json = true } = options;
     let { url } = options;
 
+    const finalHeaders = { ...headers }
+
     const fetchOptions: RequestInit = {
       method,
-      headers: {
-        'Content-Type': 'application/json',
-        ...headers,
-      },
+      headers: finalHeaders,
     };
 
     if (data) {
@@ -45,7 +44,9 @@ export class $http {
         if (!isRaw && typeof data === 'object') {
           fetchOptions.body = JSON.stringify(data);
           // set the JSON header if it's not already set
-          fetchOptions.headers = { 'Content-Type': 'application/json', ...headers };
+          if (!Object.keys(finalHeaders).some(key => key.toLowerCase() === 'content-type')) {
+            finalHeaders['Content-Type'] = 'application/json';
+          }
         } else {
           fetchOptions.body = data;
         }
