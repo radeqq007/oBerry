@@ -66,7 +66,7 @@ export class ElementWrapper {
 	id(id?: string): string | undefined | this {
 		if (id === undefined) {
 			const el = this.elements[0];
-			return el?.id || undefined;
+			return el?.id ?? undefined;
 		}
 
 		if (this.elements[0]) {
@@ -128,7 +128,7 @@ export class ElementWrapper {
 
 		if (newValue === undefined) {
 			if (!el) {
-				return;
+				return undefined;
 			}
 
 			if (
@@ -139,7 +139,7 @@ export class ElementWrapper {
 				return el.value;
 			}
 
-			return;
+			return undefined;
 		}
 
 		if (!el) {
@@ -165,7 +165,7 @@ export class ElementWrapper {
 			if (typeof content === "string") {
 				el.innerHTML += content;
 			} else if (content instanceof HTMLElement) {
-				el.appendChild(content);
+				el.appendChild(content.cloneNode(true));
 			} else if (content instanceof ElementWrapper) {
 				for (const child of content.elements) {
 					el.appendChild(child.cloneNode(true));
@@ -409,16 +409,17 @@ export class ElementWrapper {
 		return this;
 	}
 
-	attr(key: string): string | null;
+	attr(key: string): string | undefined;
 	attr(key: string, value: string): this;
-	attr(key: string, value?: string): this | string | null {
+	attr(key: string, value?: string): this | string | undefined {
 		if (value === undefined) {
 			const el = this.elements[0];
 			if (!el) {
-				return null;
+				return undefined;
 			}
 
-			return el.getAttribute(key);
+			const attr = el.getAttribute(key);
+			return attr ?? undefined;
 		}
 
 		for (const el of this.elements) {
@@ -433,7 +434,7 @@ export class ElementWrapper {
 		if (value === undefined) {
 			const el = this.elements[0];
 			if (!el) {
-				return;
+				return undefined;
 			}
 
 			return el.dataset[key];
