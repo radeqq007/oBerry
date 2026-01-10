@@ -52,13 +52,13 @@
 	"packageManager": "pnpm@10.10.0",
 	"devDependencies": {
 		"@biomejs/biome": "2.3.11",
-		"@types/node": "^25.0.2",
+		"@types/node": "^25.0.6",
 		"@vitest/coverage-v8": "3.2.4",
 		"@vitest/ui": "3.2.4",
-		"alien-signals": "^3.0.0",
-		"happy-dom": "^20.0.0",
-		"tsup": "^8.5.0",
-		"typescript": "^5.8.3",
+		"alien-signals": "^3.1.2",
+		"happy-dom": "^20.1.0",
+		"tsup": "^8.5.1",
+		"typescript": "^5.9.3",
 		"vitest": "^3.2.4"
 	},
 	"peerDependencies": {
