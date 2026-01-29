@@ -24,7 +24,7 @@ oBerry is a lightweight and modern JQuery alternative designed to simplify the m
 | **Event handling**         | ✅ Yes, with typed callbacks      | ✅ Yes                         |
 | **Modern build support**   | ✅ ESM / tree-shakable            | ❌ UMD only                    |
 | **Legacy browser support** | ❌ Modern browsers only           | ✅ IE9+                        |
-| **Learning curve**         | Low                               | Low                             |
+| **Learning curve**         | Low                               | Low                            |
 
 ## Features
 
@@ -106,6 +106,7 @@ $('.element')
   .class('old-class', 'remove') // Remove a class
   .class('new-class', 'add'); // Add a class
   .class('toggled-class', 'toggle') // Toggle a class
+  .class('toggled-class another-class') // Add multiple classes (seperated by space)
   .hasClass('my-class') // Check if element has class
 ```
 
@@ -299,25 +300,23 @@ import { $new } from 'oberry';
 const newDiv = $new('div').class('my-class').text('Hello World');
 
 // Create new element with children
-const list = $new('ul',
-  $new('li').text("Hello, world!")
-);
+const list = $new('ul', $new('li').text('Hello, world!'));
 
 // Create new element with multiple children
-const list = $new('ul', 
+const list = $new(
+  'ul',
   $new('li').text('first element'),
   $new('li').text('second element'),
-  $new('li').text('third element')
+  $new('li').text('third element'),
 );
 ```
 
 ### Event Listeners
 
 ```js
-$('.element').on('click', () => console.log("Clicked!"))
-$('.element').off('click', () => console.log("Clicked!")) // Remove event listener
+$('.element').on('click', () => console.log('Clicked!'));
+$('.element').off('click', () => console.log('Clicked!')); // Remove event listener
 ```
-
 
 ### Reactivity
 
