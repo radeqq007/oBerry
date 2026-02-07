@@ -94,6 +94,9 @@ $(document.getElementById('myElement'));
 
 // NodeList or Array of elements
 $(document.querySelectorAll('.items'));
+
+// Using a generic type definition
+$<HTMLFormElement>(".my-form")
 ```
 
 ### DOM Manipulation
