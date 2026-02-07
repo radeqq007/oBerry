@@ -1,17 +1,17 @@
-import type { Ref } from '../../types/index';
-import { $effect } from '../reactivity';
+import type { Ref } from "../../types/index";
+import { $effect } from "../reactivity";
 
-type ClassMode = 'add' | 'remove' | 'toggle';
+type ClassMode = "add" | "remove" | "toggle";
 
-export class ElementWrapper {
-  elements: HTMLElement[];
+export class ElementWrapper<T extends HTMLElement = HTMLElement> {
+  elements: T[];
 
-  constructor(elements: HTMLElement[] | NodeList) {
+  constructor(elements: T[] | NodeList) {
     // Convert NodeList to Array and filter to only HTMLElements because typescripts yells at you otherwise
     if (elements instanceof NodeList) {
       this.elements = Array.from(elements).filter(
         (node): node is HTMLElement => node.nodeType === Node.ELEMENT_NODE,
-      ) as HTMLElement[];
+      ) as T[];
     } else {
       this.elements = elements;
     }
@@ -27,30 +27,30 @@ export class ElementWrapper {
       return Array.from(this.elements[0]?.classList ?? []);
     }
 
-    const classList = name.split(' ');
+    const classList = name.split(" ");
 
     // Toggle class by default
-    if (mode === undefined || mode === 'toggle') {
+    if (mode === undefined || mode === "toggle") {
       for (const el of this.elements) {
-        classList.forEach(className => {
+        classList.forEach((className) => {
           el.classList.toggle(className);
         });
       }
       return this;
     }
 
-    if (mode === 'add') {
+    if (mode === "add") {
       for (const el of this.elements) {
-        classList.forEach(className => {
+        classList.forEach((className) => {
           el.classList.add(className);
         });
       }
       return this;
     }
 
-    if (mode === 'remove') {
+    if (mode === "remove") {
       for (const el of this.elements) {
-        classList.forEach(className => {
+        classList.forEach((className) => {
           el.classList.remove(className);
         });
       }
@@ -125,7 +125,7 @@ export class ElementWrapper {
   /**
    *  Get the array of elements.
    */
-  getArray(): HTMLElement[] {
+  getArray(): T[] {
     return Array.from(this.elements);
   }
 
@@ -170,7 +170,7 @@ export class ElementWrapper {
   append(content: ElementWrapper): this;
   append(content: string | HTMLElement | ElementWrapper): this {
     for (const el of this.elements) {
-      if (typeof content === 'string') {
+      if (typeof content === "string") {
         el.innerHTML += content;
       } else if (content instanceof HTMLElement) {
         el.appendChild(content.cloneNode(true));
@@ -188,7 +188,7 @@ export class ElementWrapper {
   prepend(content: ElementWrapper): this;
   prepend(content: string | HTMLElement | ElementWrapper): this {
     for (const el of this.elements) {
-      if (typeof content === 'string') {
+      if (typeof content === "string") {
         el.innerHTML = content + el.innerHTML;
       } else if (content instanceof HTMLElement) {
         el.insertBefore(content.cloneNode(true), el.firstChild);
@@ -211,8 +211,8 @@ export class ElementWrapper {
         continue;
       }
 
-      if (typeof content === 'string') {
-        const temp = document.createElement('div');
+      if (typeof content === "string") {
+        const temp = document.createElement("div");
         temp.innerHTML = content;
 
         while (temp.firstChild) {
@@ -239,8 +239,8 @@ export class ElementWrapper {
         continue;
       }
 
-      if (typeof content === 'string') {
-        const temp = document.createElement('div');
+      if (typeof content === "string") {
+        const temp = document.createElement("div");
         temp.innerHTML = content;
 
         while (temp.firstChild) {
@@ -281,9 +281,11 @@ export class ElementWrapper {
   /**
    * Filter out elements that match the given selector, returning those that don't match.
    */
-  not(selector: string) {
-    const filteredElements = this.elements.filter(el => !el.matches(selector));
-    return new ElementWrapper(filteredElements);
+  not(selector: string): ElementWrapper<T> {
+    const filteredElements = this.elements.filter(
+      (el) => !el.matches(selector),
+    );
+    return new ElementWrapper<T>(filteredElements);
   }
 
   /**
@@ -370,7 +372,7 @@ export class ElementWrapper {
   /**
    * Bind the value of a ref into the element's inner HTML.
    */
-  bindHTML<T>(ref: Ref<T>): this {
+  bindHTML<V>(ref: Ref<V>): this {
     $effect(() => {
       this.html(String(ref()));
     });
@@ -381,7 +383,7 @@ export class ElementWrapper {
   /**
    * Bind the value of a ref into the element's text content.
    */
-  bind<T>(ref: Ref<T>): this {
+  bind<V>(ref: Ref<V>): this {
     $effect(() => {
       this.text(String(ref()));
     });
@@ -392,7 +394,7 @@ export class ElementWrapper {
   /**
    * Bind the value of a ref into the element's attribute.
    */
-  bindAttr<T>(attr: string, ref: Ref<T>): this {
+  bindAttr<V>(attr: string, ref: Ref<V>): this {
     $effect(() => {
       this.attr(attr, String(ref()));
     });
@@ -403,14 +405,14 @@ export class ElementWrapper {
   /**
    * Bind the input value of the first element into a ref value.
    */
-  bindInput<T>(ref: Ref<T>): this {
+  bindInput<V>(ref: Ref<V>): this {
     const el = this.elements[0];
     if (!el) {
       return this;
     }
 
-    el.addEventListener('input', () => {
-      ref((el as HTMLInputElement).value as T);
+    el.addEventListener("input", () => {
+      ref((el as any)?.value);
     });
     return this;
   }
@@ -457,7 +459,7 @@ export class ElementWrapper {
     callback: (this: HTMLElement, ev: HTMLElementEventMap[K]) => void,
   ): this {
     for (const el of this.elements) {
-      el.addEventListener(event, callback);
+      el.addEventListener(event, callback as EventListener);
     }
     return this;
   }
@@ -473,26 +475,26 @@ export class ElementWrapper {
    * Get the elements at even positions (1-based indexing).
    */
   even() {
-    const elements: HTMLElement[] = [];
+    const elements: T[] = [];
     for (let i = 0; i < this.elements.length; i++) {
       if ((i + 1) % 2 === 0 && this.elements[i]) {
-        elements.push(this.elements[i] as HTMLElement);
+        elements.push(this.elements[i] as T);
       }
     }
-    return new ElementWrapper(elements);
+    return new ElementWrapper<T>(elements);
   }
 
   /**
    * Get the elements at odd positions (1-based indexing).
    */
   odd() {
-    const elements: HTMLElement[] = [];
+    const elements: T[] = [];
     for (let i = 0; i < this.elements.length; i++) {
       if ((i + 1) % 2 === 1 && this.elements[i]) {
-        elements.push(this.elements[i] as HTMLElement);
+        elements.push(this.elements[i] as T);
       }
     }
-    return new ElementWrapper(elements);
+    return new ElementWrapper<T>(elements);
   }
   /**
    * Hide all elements.
@@ -504,7 +506,7 @@ export class ElementWrapper {
         el.dataset.originalDisplay = computedStyle.display;
       }
 
-      el.style.display = 'none';
+      el.style.display = "none";
     }
 
     return this;
@@ -515,8 +517,8 @@ export class ElementWrapper {
    */
   show(): this {
     for (const el of this.elements) {
-      const originalDisplay = el.dataset.originalDisplay || '';
-      el.style.display = originalDisplay === 'none' ? 'block' : originalDisplay;
+      const originalDisplay = el.dataset.originalDisplay || "";
+      el.style.display = originalDisplay === "none" ? "block" : originalDisplay;
 
       // Clean up the data attribute
       delete el.dataset.originalDisplay;
@@ -530,16 +532,16 @@ export class ElementWrapper {
    */
   toggle(): this {
     for (const el of this.elements) {
-      const isVisible = window.getComputedStyle(el).display !== 'none';
+      const isVisible = window.getComputedStyle(el).display !== "none";
 
       if (isVisible) {
         if (!el.dataset.originalDisplay) {
           el.dataset.originalDisplay = window.getComputedStyle(el).display;
         }
 
-        el.style.display = 'none';
+        el.style.display = "none";
       } else {
-        const originalDisplay = el.dataset.originalDisplay || 'block';
+        const originalDisplay = el.dataset.originalDisplay || "block";
         el.style.display = originalDisplay;
 
         // Clean up the data attribute
@@ -553,9 +555,9 @@ export class ElementWrapper {
   /**
    * Get the nth element (0-based indexing).
    */
-  eq(idx: number): ElementWrapper {
+  eq(idx: number): ElementWrapper<T> {
     const el = this.elements[idx];
-    return new ElementWrapper(el ? [el] : []);
+    return new ElementWrapper<T>(el ? [el] : []);
   }
 
   first() {
@@ -564,7 +566,7 @@ export class ElementWrapper {
 
   last() {
     if (this.elements.length === 0) {
-      return new ElementWrapper([]);
+      return new ElementWrapper<T>([]);
     }
     return this.eq(this.elements.length - 1);
   }
@@ -573,13 +575,13 @@ export class ElementWrapper {
    * Filter elements based on a predicate function or CSS selector.
    */
   filter(
-    predicate: string | ((element: HTMLElement, index: number) => boolean),
-  ): ElementWrapper {
-    let filteredElements: HTMLElement[];
+    predicate: string | ((element: T, index: number) => boolean),
+  ): ElementWrapper<T> {
+    let filteredElements: T[];
 
-    if (typeof predicate === 'string') {
+    if (typeof predicate === "string") {
       // Filter by CSS selector
-      filteredElements = this.elements.filter(el => el.matches(predicate));
+      filteredElements = this.elements.filter((el) => el.matches(predicate));
     } else {
       // Filter by predicate function
       filteredElements = this.elements.filter((el, index) =>
@@ -587,12 +589,15 @@ export class ElementWrapper {
       );
     }
 
-    return new ElementWrapper(filteredElements);
+    return new ElementWrapper<T>(filteredElements);
   }
 
-  forEach(callback: (el: ElementWrapper) => void) {
-    for (const el of this.elements) {
-      callback(new ElementWrapper([el]));
+  forEach(callback: (el: ElementWrapper<T>, index: number) => void) {
+    for (let i = 0; i < this.elements.length; i++) {
+      const el = this.elements[i];
+      if (el !== undefined) {
+        callback(new ElementWrapper<T>([el]), i);
+      }
     }
   }
 

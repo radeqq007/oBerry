@@ -1,19 +1,19 @@
 import { ElementWrapper } from "../wrapper";
 
-export function $(selector: string): ElementWrapper;
-export function $(selector: NodeList): ElementWrapper;
-export function $(selector: HTMLElement): ElementWrapper;
-export function $(selector: HTMLElement[]): ElementWrapper;
-export function $(
+export function $<T extends HTMLElement>(selector: string): ElementWrapper;
+export function $<T extends HTMLElement>(selector: NodeList): ElementWrapper;
+export function $<T extends HTMLElement>(selector: HTMLElement): ElementWrapper;
+export function $<T extends HTMLElement>(selector: HTMLElement[]): ElementWrapper;
+export function $<T extends HTMLElement> (
 	selector: string | HTMLElement | NodeList | HTMLElement[],
 ): ElementWrapper {
 	let elements: HTMLElement[] | NodeList = [];
 	if (typeof selector === "string") {
-		elements = document.querySelectorAll(selector);
+		elements = document.querySelectorAll(selector) as NodeListOf<T>;
 	} else if (selector instanceof HTMLElement) {
-		elements = [selector];
+		elements = [selector] as T[];
 	} else if (selector instanceof NodeList || Array.isArray(selector)) {
-		elements = selector;
+		elements = selector as NodeListOf<T> | T[];
 	} else {
 		throw new Error("Invalid selector type");
 	}
