@@ -1,7 +1,7 @@
 import { ElementWrapper } from "../wrapper";
 
 export function $<T extends HTMLElement = HTMLElement>(selector: string): ElementWrapper<T>;
-export function $<T extends HTMLElement = HTMLElement>(selector: NodeList): ElementWrapper<T>;
+export function $<T extends HTMLElement = HTMLElement>(selector: NodeListOf<T>): ElementWrapper<T>;
 export function $<T extends HTMLElement = HTMLElement>(selector: T): ElementWrapper<T>;
 export function $<T extends HTMLElement = HTMLElement>(selector: T[]): ElementWrapper<T>;
 export function $<T extends HTMLElement = HTMLElement> (
