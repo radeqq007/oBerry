@@ -15,8 +15,12 @@ export function $<T extends HTMLElement = HTMLElement> (
 		elements = [selector as T];
 	} else if (selector instanceof NodeList) {
 		elements = Array.from(selector) as T[];
+	} else if (Array.isArray(selector)) {
+		elements = selector
 	} else {
-		elements = selector as T[]
+		throw new TypeError(
+			`$(): Invalid selector type. Expected string | HTMLElement | NodeList | HTMLElement[]`
+		)
 	}
 
 	return new ElementWrapper<T>(elements);
