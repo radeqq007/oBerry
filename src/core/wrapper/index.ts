@@ -414,6 +414,11 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
     el.addEventListener("input", () => {
       ref((el as any)?.value);
     });
+
+    $effect(() => {
+      (el as any).value = String(ref());
+    });
+
     return this;
   }
 
