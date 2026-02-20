@@ -96,7 +96,7 @@ $(document.getElementById('myElement'));
 $(document.querySelectorAll('.items'));
 
 // Using a generic type definition
-$<HTMLFormElement>(".my-form")
+$ < HTMLFormElement > '.my-form';
 ```
 
 ### DOM Manipulation
@@ -125,7 +125,7 @@ $('.element').class('this-will-toggle-a-class');
 // Get ID of first element
 const elementId = $('.element').id();
 
-// Set ID for all elements
+// Set ID for the first element
 $('.element').id('new-id');
 ```
 
