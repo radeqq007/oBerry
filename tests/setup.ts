@@ -13,7 +13,6 @@ vi.mock("alien-signals", () => ({
 			if (newValue === undefined) return value;
 
 			value = newValue;
-			return value;
 		};
 
 		return fn;
