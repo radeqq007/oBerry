@@ -96,7 +96,7 @@ $(document.getElementById('myElement'));
 $(document.querySelectorAll('.items'));
 
 // Using a generic type definition
-$ < HTMLFormElement > '.my-form';
+$<HTMLFormElement>('.my-form');
 ```
 
 ### DOM Manipulation
