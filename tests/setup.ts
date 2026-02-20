@@ -10,7 +10,7 @@ vi.mock("alien-signals", () => ({
 	signal: (initialValue: any) => {
 		let value = initialValue;
 		const fn = (newValue?: any) => {
-			if (!newValue) return value;
+			if (newValue == undefined) return value;
 
 			value = newValue;
 			return value;
