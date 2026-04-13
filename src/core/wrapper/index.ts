@@ -477,6 +477,19 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
   }
 
   /**
+   * Add event listener that fires once then removes itself.
+   */
+  once<K extends keyof HTMLElementEventMap>(
+    event: K,
+    callback: (this: HTMLElement, ev: HTMLElementEventMap[K]) => void,
+  ): this {
+    for (const el of this.elements) {
+      el.addEventListener(event, callback as EventListener, { once: true });
+    }
+    return this;
+  }
+
+  /**
    * Get the elements at even positions (1-based indexing).
    */
   even() {
