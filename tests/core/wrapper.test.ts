@@ -30,11 +30,14 @@ describe("ElementWrapper", () => {
 		});
 
 		it("should add multiple classes", () => {
-			const wrapper = $("#test").class("new-class another-class yet-another-class", "add");
+			const wrapper = $("#test").class(
+				"new-class another-class yet-another-class",
+				"add",
+			);
 			expect(wrapper.elements[0].className).toContain("new-class");
 			expect(wrapper.elements[0].className).toContain("another-class");
 			expect(wrapper.elements[0].className).toContain("yet-another-class");
-		})
+		});
 
 		it("should remove class", () => {
 			const wrapper = $("#test").class("original", "remove");
