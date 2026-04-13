@@ -123,6 +123,16 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
   }
 
   /**
+   * Clear innerHTML of all elements without removing them.
+   */
+  empty(): this {
+    for (const el of this.elements) {
+      el.innerHTML = "";
+    }
+    return this;
+  }
+
+  /**
    *  Get the array of elements.
    */
   getArray(): T[] {
