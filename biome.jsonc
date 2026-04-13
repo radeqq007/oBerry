@@ -14,12 +14,7 @@
 				"useConsistentMemberAccessibility": "off",
 				"useUnifiedTypeSignatures": "off",
 				"noNonNullAssertion": "off",
-				"noMagicNumbers": "off",
-				"useNamingConvention": {
-					"options": {
-						"strictCase": false // This probably shouldn't be false
-					}
-				}
+				"noMagicNumbers": "off"
 			},
 			"complexity": {
 				"noExcessiveCognitiveComplexity": "off"
