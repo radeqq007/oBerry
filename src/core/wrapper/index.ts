@@ -600,6 +600,14 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
   }
 
   /**
+   * Clone all the elements into new wrapper.
+   */
+  clone(deep = true): ElementWrapper<T> {
+    const clones = this.elements.map((el) => el.cloneNode(deep) as T);
+    return new ElementWrapper<T>(clones);
+  }
+
+  /**
    * Filter elements based on a predicate function or CSS selector.
    */
   filter(
