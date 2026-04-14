@@ -7,7 +7,7 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 	elements: T[];
 
 	constructor(elements: T[] | NodeList) {
-		// Convert NodeList to Array and filter to only HTMLElements because typescripts yells at you otherwise
+		// Convert NodeList to Array and filter to only HTMLElements because typescript yells at you otherwise
 		if (elements instanceof NodeList) {
 			this.elements = Array.from(elements).filter(
 				(node): node is HTMLElement => node.nodeType === Node.ELEMENT_NODE,
@@ -17,8 +17,17 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 		}
 	}
 
+	/**
+	 * Get an array of all the classes of the first element.
+	 */
 	class(): string[];
+	/**
+	 * Toggle a class on all elements.
+	 */
 	class(name: string): this;
+	/**
+	 * Add, remove or toggle a class on all elements.
+	 */
 	class(name: string, mode: ClassMode): this;
 	class(name?: string, mode?: ClassMode): string[] | this {
 		if (name === undefined) {
@@ -69,7 +78,13 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 		return el.classList.contains(className);
 	}
 
+	/**
+	 * Get the ID of the first element.
+	 */
 	id(): string | undefined;
+	/**
+	 * Set the ID of the fist element.
+	 */
 	id(id: string): this;
 	id(id?: string): string | undefined | this {
 		if (id === undefined) {
@@ -85,7 +100,7 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 	}
 
 	/**
-	 * Modify the style of all elements.
+	 * Apply styles to all elements.
 	 */
 	css(styles: Partial<CSSStyleDeclaration>): this {
 		for (const el of this.elements) {
@@ -94,8 +109,14 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 		return this;
 	}
 
-	html(content: string): this;
+	/**
+	 * Get the innerHTML of the first element.
+	 */
 	html(): string | undefined;
+	/**
+	 * Set the innerHTML of all elements. 
+	 */
+	html(content: string): this;
 	html(content?: string): this | string | undefined {
 		if (content === undefined) {
 			return this.elements[0]?.innerHTML;
@@ -108,8 +129,14 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 		return this;
 	}
 
-	text(content: string): this;
+	/**
+	 * Get the innerText of the first element.
+	 */
 	text(): string | undefined;
+	/**
+	 * Set the innerText of all elements.
+	 */
+	text(content: string): this;
 	text(content?: string): this | string | undefined {
 		if (content === undefined) {
 			return this.elements[0]?.innerText;
@@ -139,8 +166,14 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 		return Array.from(this.elements);
 	}
 
-	value(newValue: string): this;
+	/**
+	 * Get the value of the first element.
+	 */
 	value(): string | undefined;
+	/**
+	 * Set the values of all elements.
+	 */
+	value(newValue: string): this;
 	value(newValue?: string): this | string | undefined {
 		const el = this.elements[0];
 
@@ -175,8 +208,17 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 		return this;
 	}
 
+	/**
+	 * Append an HTML string to all elements.
+	*/
 	append(content: string): this;
+	/**
+	 * Append a raw HTMLElement to all elements.
+	*/
 	append(content: HTMLElement): this;
+	/**
+	 * Append all elements from another wrapper to all elements.
+	 */
 	append(content: ElementWrapper): this;
 	append(content: string | HTMLElement | ElementWrapper): this {
 		for (const el of this.elements) {
@@ -193,8 +235,17 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 		return this;
 	}
 
+	/**
+	 * Prepend an HTML string to all elements.
+	*/
 	prepend(content: string): this;
+	/**
+	 * Prepend a raw HTMLElement to all elements.
+	 */
 	prepend(content: HTMLElement): this;
+	/**
+	 * Prepend all elements from another wrapper to all elements.
+	 */
 	prepend(content: ElementWrapper): this;
 	prepend(content: string | HTMLElement | ElementWrapper): this {
 		for (const el of this.elements) {
@@ -211,8 +262,17 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 		return this;
 	}
 
+	/**
+	 * Insert an HTML string immediately after each element.
+	 */
 	after(content: string): this;
+	/**
+	 * Insert a raw HTMLElement immediately after each element.
+	 */
 	after(content: HTMLElement): this;
+	/**
+	 * Insert all elements from another wrapper immediately after each element.
+	 */
 	after(content: ElementWrapper): this;
 	after(content: string | HTMLElement | ElementWrapper): this {
 		for (const el of this.elements) {
@@ -239,8 +299,17 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 		return this;
 	}
 
+	/**
+	 * Insert an HTML string immediately before each element.
+	 */
 	before(content: string): this;
+	/**
+	 * Insert a raw HTMLElement immediately before each element.
+	*/
 	before(content: HTMLElement): this;
+	/**
+	 * Insert all elements from another wrapper immediately before each element.
+	*/
 	before(content: ElementWrapper): this;
 	before(content: string | HTMLElement | ElementWrapper): this {
 		for (const el of this.elements) {
@@ -278,7 +347,10 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 		this.elements = [];
 		return this;
 	}
-
+ 
+	/**
+	 * Check if the first element matches the given CSS selector. 
+	 */
 	is(selector: string): boolean {
 		const el = this.elements[0];
 		if (!el) {
@@ -299,8 +371,8 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 	}
 
 	/**
-	 * Find descendants matching the selector within all elements.
-	 */
+	 * Find all descendants of the wrapped elements that match the given selector.
+	*/
 	find(selector: string): ElementWrapper {
 		const foundElements: HTMLElement[] = [];
 		for (const el of this.elements) {
@@ -432,7 +504,13 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 		return this;
 	}
 
+	/**
+	 * Get the value of an attribute on the first element.
+	 */
 	attr(key: string): string | undefined;
+	/**
+	 * Set an attribute on all elements.
+	 */
 	attr(key: string, value: string): this;
 	attr(key: string, value?: string): this | string | undefined {
 		if (value === undefined) {
@@ -451,7 +529,13 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 		return this;
 	}
 
+	/**
+	 * Get a dataset entry on the first element.
+	 */
 	data(key: string): string | undefined;
+	/**
+	 * Set a dataset entry on all elements.
+	*/
 	data(key: string, value: string): this;
 	data(key: string, value?: string): this | string | undefined {
 		if (value === undefined) {
@@ -469,6 +553,9 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 		return this;
 	}
 
+	/**
+	 * Add an event listener to all elements.
+	 */
 	on<K extends keyof HTMLElementEventMap>(
 		event: K,
 		callback: (this: HTMLElement, ev: HTMLElementEventMap[K]) => void,
@@ -479,6 +566,9 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 		return this;
 	}
 
+	/**
+	 * Remove an event listener from all elements.
+	 */
 	off<K extends keyof HTMLElementEventMap>(event: K, callback: EventListener) {
 		for (const el of this.elements) {
 			el.removeEventListener(event, callback);
@@ -487,7 +577,7 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 	}
 
 	/**
-	 * Add event listener that fires once then removes itself.
+	 * Add event listener that fires once, then removes itself.
 	 */
 	once<K extends keyof HTMLElementEventMap>(
 		event: K,
@@ -524,6 +614,7 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 		}
 		return new ElementWrapper<T>(elements);
 	}
+
 	/**
 	 * Hide all elements.
 	 */
@@ -600,7 +691,8 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 	}
 
 	/**
-	 * Clone all the elements into new wrapper.
+	 * Clone all elements into a new wrapper.
+	 * @param deep - Whether to perform a deep clone including descendants. Defaults to `true`.
 	 */
 	clone(deep = true): ElementWrapper<T> {
 		const clones = this.elements.map((el) => el.cloneNode(deep) as T);
@@ -645,6 +737,12 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 		return this.elements.length === 0;
 	}
 
+	/**
+	 * Extend the ElementWrapper prototype with a custom method.
+	 * Used internally by the plugin system — prefer the {@link Plugin} API for userland extensions.
+	 * @param name - The method name to add to the prototype.
+	 * @param func - The function to attach.
+	 */
 	static extend(name: string, func: (...args: any[]) => any) {
 		(ElementWrapper as any).prototype[name] = func;
 	}
