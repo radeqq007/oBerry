@@ -114,7 +114,7 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 	 */
 	html(): string | undefined;
 	/**
-	 * Set the innerHTML of all elements. 
+	 * Set the innerHTML of all elements.
 	 */
 	html(content: string): this;
 	html(content?: string): this | string | undefined {
@@ -210,11 +210,11 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 
 	/**
 	 * Append an HTML string to all elements.
-	*/
+	 */
 	append(content: string): this;
 	/**
 	 * Append a raw HTMLElement to all elements.
-	*/
+	 */
 	append(content: HTMLElement): this;
 	/**
 	 * Append all elements from another wrapper to all elements.
@@ -237,7 +237,7 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 
 	/**
 	 * Prepend an HTML string to all elements.
-	*/
+	 */
 	prepend(content: string): this;
 	/**
 	 * Prepend a raw HTMLElement to all elements.
@@ -305,11 +305,11 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 	before(content: string): this;
 	/**
 	 * Insert a raw HTMLElement immediately before each element.
-	*/
+	 */
 	before(content: HTMLElement): this;
 	/**
 	 * Insert all elements from another wrapper immediately before each element.
-	*/
+	 */
 	before(content: ElementWrapper): this;
 	before(content: string | HTMLElement | ElementWrapper): this {
 		for (const el of this.elements) {
@@ -347,9 +347,9 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 		this.elements = [];
 		return this;
 	}
- 
+
 	/**
-	 * Check if the first element matches the given CSS selector. 
+	 * Check if the first element matches the given CSS selector.
 	 */
 	is(selector: string): boolean {
 		const el = this.elements[0];
@@ -372,7 +372,7 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 
 	/**
 	 * Find all descendants of the wrapped elements that match the given selector.
-	*/
+	 */
 	find(selector: string): ElementWrapper {
 		const foundElements: HTMLElement[] = [];
 		for (const el of this.elements) {
@@ -535,7 +535,7 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 	data(key: string): string | undefined;
 	/**
 	 * Set a dataset entry on all elements.
-	*/
+	 */
 	data(key: string, value: string): this;
 	data(key: string, value?: string): this | string | undefined {
 		if (value === undefined) {

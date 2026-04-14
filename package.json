@@ -50,9 +50,9 @@
 		"url": "https://github.com/radeqq007/oberry/issues"
 	},
 	"packageManager": "pnpm@10.33.0",
-  "dependencies": {
+	"dependencies": {
 		"alien-signals": "^3.0.0"
-  },
+	},
 	"devDependencies": {
 		"@biomejs/biome": "2.4.11",
 		"@types/node": "^25.0.6",
