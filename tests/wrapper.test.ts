@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { $ } from "../../src/core/selector";
+import { $ } from "../src/selector";
 
 describe("ElementWrapper", () => {
 	beforeEach(() => {

@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from "vitest";
-import { $ } from "../../src/core/selector/index";
-import { ElementWrapper } from "../../src/core/wrapper/index";
+import { $ } from "../src/selector";
+import { ElementWrapper } from "../src/wrapper";
 
 describe("Selector ($)", () => {
 	beforeEach(() => {

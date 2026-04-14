@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { $new } from "../../src/core/creator";
-import { ElementWrapper } from "../../src/core/wrapper";
+import { $new } from "../src/creator";
+import { ElementWrapper } from "../src/wrapper";
 
 describe("Creator ($new)", () => {
 	it("should create a new element wrapper", () => {

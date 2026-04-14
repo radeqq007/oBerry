@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { Plugin, use } from "../../src/core/plugins";
-import { $ } from "../../src/core/selector";
+import { Plugin, use } from "../src/plugins";
+import { $ } from "../src/selector";
 
 describe("Plugins", () => {
 	beforeEach(() => {

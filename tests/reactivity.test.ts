@@ -1,11 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import {
-	$computed,
-	$effect,
-	$effectScope,
-	$ref,
-} from "../../src/core/reactivity";
-import { $ } from "../../src/core/selector";
+import { $computed, $effect, $effectScope, $ref } from "../src/reactivity";
+import { $ } from "../src/selector";
 
 describe("Reactivity", () => {
 	describe("$ref", () => {

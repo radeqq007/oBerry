@@ -1,7 +1,11 @@
-import type { Ref } from "../../types/index";
-import { $effect } from "../reactivity";
+import { $effect } from "./reactivity";
 
-type ClassMode = "add" | "remove" | "toggle";
+export type ClassMode = "add" | "remove" | "toggle";
+
+export type Ref<T> = {
+	(): T;
+	(value: T): void;
+};
 
 export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 	elements: T[];

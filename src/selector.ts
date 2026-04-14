@@ -1,4 +1,4 @@
-import { ElementWrapper } from "../wrapper";
+import { ElementWrapper } from "./wrapper";
 
 export function $<T extends HTMLElement = HTMLElement>(
 	selector: string,
