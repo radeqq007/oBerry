@@ -10,15 +10,8 @@ export type Ref<T> = {
 export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 	elements: T[];
 
-	constructor(elements: T[] | NodeList) {
-		// Convert NodeList to Array and filter to only HTMLElements because typescript yells at you otherwise
-		if (elements instanceof NodeList) {
-			this.elements = Array.from(elements).filter(
-				(node): node is HTMLElement => node.nodeType === Node.ELEMENT_NODE,
-			) as T[];
-		} else {
-			this.elements = elements;
-		}
+	constructor(elements: T[]) {
+		this.elements = elements;
 	}
 
 	/**
