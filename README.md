@@ -304,6 +304,7 @@ const list = $new(
 ```js
 $('.element').on('click', () => console.log('Clicked!'));
 $('.element').off('click', () => console.log('Clicked!')); // Remove event listener
+$('.element').once('click', () => console.log('Clicked!')); // Add a one time event listener
 ```
 
 ### Reactivity
