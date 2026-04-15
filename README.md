@@ -142,6 +142,7 @@ $('.element')
   .text('Plain text content')
   .html() // Returns HTML of first element
   .text(); // Returns text of first element
+  .empty(); // Clear the inner HTML of the elements
 ```
 
 #### Content insertion
@@ -218,6 +219,9 @@ $('.parent').find('.child-class');
 
 // Find closest ancestor matching selector
 $('.element').closest('.ancestor-class');
+
+// Clone the elements
+$('.element').clone();
 ```
 
 #### Element Filtering and Selection
