@@ -15,9 +15,9 @@
 	],
 	"sideEffects": false,
 	"scripts": {
-		"build": "tsup src/index.ts --dts",
+		"build": "tsdown src/index.ts --dts",
 		"prepublishOnly": "pnpm run build",
-		"dev": "tsup src/index.ts --watch --dts",
+		"dev": "tsdown src/index.ts --watch --dts",
 		"clean": "rm -rf dist",
 		"format": "pnpm dlx @biomejs/biome format --write",
 		"lint": "pnpm dlx @biomejs/biome lint",
@@ -60,7 +60,7 @@
 		"@vitest/ui": "3.2.4",
 		"alien-signals": "^3.1.2",
 		"happy-dom": "^20.1.0",
-		"tsup": "^8.5.1",
+		"tsdown": "^0.21.8",
 		"typescript": "^6.0.2",
 		"vitest": "^3.2.4"
 	}
