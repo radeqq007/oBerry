@@ -420,8 +420,9 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 
 	/**
 	 * Get the children wrapper of the first element.
+	 * Optionally filter by CSS selector.
 	 */
-	children(): ElementWrapper {
+	children(selector?: string): ElementWrapper {
 		const el = this.elements[0];
 		if (!el) {
 			return new ElementWrapper([]);
@@ -433,19 +434,20 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 			return new ElementWrapper([]);
 		}
 
-		return new ElementWrapper(Array.from(children) as HTMLElement[]);
+		return new ElementWrapper((selector ? [...children].filter(ch => ch.matches(selector)) : [...children]) as HTMLElement[]);
 	}
 
 	/**
 	 * Get the children wrapper of the all elements.
+	 * Optionally filter by CSS selector.
 	 */
-	allChildren(): ElementWrapper {
+	allChildren(selector?: string): ElementWrapper {
 		const children: HTMLElement[] = [];
 		for (const el of this.elements) {
 			children.push(...(Array.from(el.children) as HTMLElement[]));
 		}
 
-		return new ElementWrapper(children);
+		return new ElementWrapper((selector ? [...children].filter(ch => ch.matches(selector)) : [...children]));
 	}
 
 	/**
