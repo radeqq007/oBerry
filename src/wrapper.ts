@@ -449,6 +449,47 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 	}
 
 	/**
+	 * Get all siblings of the first element.
+	 * Optionally filter by CSS selector.
+	 */
+	siblings(selector?: string): ElementWrapper {
+		const el = this.elements[0];
+		if (!el || !el.parentElement) {
+			return new ElementWrapper([]);
+		}
+ 
+		const sibs = [...el.parentElement.children].filter(
+			(child): child is HTMLElement =>
+				child !== el && child instanceof HTMLElement,
+		);
+ 
+		return new ElementWrapper(selector ? sibs.filter((s) => s.matches(selector)) : sibs);
+	}
+
+	/**
+	 * Get all siblings of all elements.
+	 * Optionally filter by CSS selector.
+	 */
+	allSiblings(selector?: string): ElementWrapper {
+		const seen = new Set<HTMLElement>();
+		const sibs: HTMLElement[] = [];
+		for (const el of this.elements) {
+			if (!el.parentElement) continue;
+
+			// avoid duplicates
+			for (const child of el.parentElement.children) {
+				if (child !== el && child instanceof HTMLElement && !seen.has(child)) {
+					seen.add(child);
+					sibs.push(child);
+				}
+			}
+		}
+
+
+		return new ElementWrapper(selector ? sibs.filter((s) => s.matches(selector)) : sibs);
+	}
+
+	/**
 	 * Bind the value of a ref into the element's inner HTML.
 	 */
 	bindHTML<V>(ref: Ref<V>): this {
