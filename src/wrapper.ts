@@ -470,7 +470,7 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 			return new ElementWrapper([]);
 		}
 
-		const sibs = [...el.parentElement.children].filter(
+		const sibs = Array.from(el.parentElement.children).filter(
 			(child): child is HTMLElement =>
 				child !== el && child instanceof HTMLElement,
 		);
@@ -491,7 +491,7 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 			if (!el.parentElement) continue;
 
 			// avoid duplicates
-			for (const child of el.parentElement.children) {
+			for (const child of Array.from(el.parentElement.children)) {
 				if (child !== el && child instanceof HTMLElement && !seen.has(child)) {
 					seen.add(child);
 					sibs.push(child);
