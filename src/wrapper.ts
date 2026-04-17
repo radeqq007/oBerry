@@ -458,7 +458,7 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 	 */
 	siblings(selector?: string): ElementWrapper {
 		const el = this.elements[0];
-		if (!el || !el.parentElement) {
+		if (!el?.parentElement) {
 			return new ElementWrapper([]);
 		}
  
