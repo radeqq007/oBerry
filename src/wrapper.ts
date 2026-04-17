@@ -791,6 +791,93 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 	}
 
 	/**
+	 * Get the width of the first element (excluding padding, border, margin).
+	 */
+	width(): number | undefined;
+	/**
+	 * Set the width of all elements (in pixels).
+	 */
+	width(value: number): this;
+	width(value?: number): this | number | undefined {
+		const el = this.elements[0];
+		if (!el) {
+			return value !== undefined ? this : undefined;
+		}
+
+		if (value === undefined) {
+			const computed = window.getComputedStyle(el);
+			const parsed = parseFloat(computed.width);
+			return Number.isNaN(parsed) ? 0 : parsed;
+		}
+
+		for (const element of this.elements) {
+			element.style.width = `${value}px`;
+		}
+
+		return this;
+	}
+
+	/**
+	 * Get the height of the first element (excluding padding, border, margin).
+	 */
+	height(): number | undefined;
+	/**
+	 * Set the height of all elements (in pixels).
+	 */
+	height(value: number): this;
+	height(value?: number): this | number | undefined {
+		const el = this.elements[0];
+		if (!el) {
+			return value !== undefined ? this : undefined;
+		}
+
+		if (value === undefined) {
+			const computed = window.getComputedStyle(el);
+			const parsed = parseFloat(computed.height);
+			return Number.isNaN(parsed) ? 0 : parsed;
+		}
+
+		for (const element of this.elements) {
+			element.style.height = `${value}px`;
+		}
+
+		return this;
+	}
+
+	/**
+	 * Get the current coordinates of the first element relative to the document.
+	 * Returns an object with `top` and `left` properties.
+	 */
+	offset(): { top: number; left: number } | undefined {
+		const el = this.elements[0];
+		if (!el) {
+			return undefined;
+		}
+
+		const rect = el.getBoundingClientRect();
+		return {
+			top: rect.top + window.scrollY,
+			left: rect.left + window.scrollX,
+		};
+	}
+
+	/**
+	 * Get the current coordinates of the first element relative to its offset parent.
+	 * Returns an object with `top` and `left` properties.
+	 */
+	position(): { top: number; left: number } | undefined {
+		const el = this.elements[0];
+		if (!el) {
+			return undefined;
+		}
+
+		return {
+			top: el.offsetTop,
+			left: el.offsetLeft,
+		};
+	}
+
+	/**
 	 * Extend the ElementWrapper prototype with a custom method.
 	 * Used internally by the plugin system — prefer the {@link Plugin} API for userland extensions.
 	 * @param name - The method name to add to the prototype.
