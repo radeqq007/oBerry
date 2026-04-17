@@ -194,12 +194,14 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 			return this;
 		}
 
-		if (
-			el instanceof HTMLInputElement ||
-			el instanceof HTMLTextAreaElement ||
-			el instanceof HTMLSelectElement
-		) {
-			el.value = newValue;
+		for (const el of this.elements) {
+			if (
+				el instanceof HTMLInputElement ||
+				el instanceof HTMLTextAreaElement ||
+				el instanceof HTMLSelectElement
+			) {
+				el.value = newValue;
+			}
 		}
 
 		return this;
