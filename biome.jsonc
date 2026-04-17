@@ -20,5 +20,8 @@
 				"noExcessiveCognitiveComplexity": "off"
 			}
 		}
+	},
+	"files": {
+		"includes": ["**", "!/dist/"]
 	}
 }
