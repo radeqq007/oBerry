@@ -7,13 +7,16 @@ export function $<T extends HTMLElement = HTMLElement>(
 	selector: NodeListOf<T>,
 ): ElementWrapper<T>;
 export function $<T extends HTMLElement = HTMLElement>(
+	selector: NodeListOf<Element>,
+): ElementWrapper<T>;
+export function $<T extends HTMLElement = HTMLElement>(
 	selector: T,
 ): ElementWrapper<T>;
 export function $<T extends HTMLElement = HTMLElement>(
 	selector: T[],
 ): ElementWrapper<T>;
 export function $<T extends HTMLElement = HTMLElement>(
-	selector: string | T | NodeList | T[],
+	selector: string | T | NodeList | T[] | NodeListOf<Element>,
 ): ElementWrapper<T> {
 	let elements: T[] = [];
 
