@@ -15,7 +15,7 @@ export default defineConfig({
 				"node_modules/**/*",
 				"**/*.d.ts",
 			],
-			reporter: ["text", "json", "html"],
+			reporter: ["text", "json", "lcov"],
 			reportsDirectory: "./coverage",
 		},
 	},
