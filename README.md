@@ -134,6 +134,38 @@ $('.element').css({
 });
 ```
 
+#### Dimensions
+
+```js
+// Get the width of the first element (excluding padding, border, margin)
+const width = $('.element').width();
+
+// Set the width of all elements (in pixels)
+$('.element').width(200);
+
+// Get the height of the first element (excluding padding, border, margin)
+const height = $('.element').height();
+
+// Set the height of all elements (in pixels)
+$('.element').height(100);
+```
+
+#### Position and Offset
+
+```js
+// Get the coordinates of the first element relative to the document
+// Returns an object with top and left properties
+const offset = $('.element').offset();
+console.log(offset.top);  // Distance from top of document
+console.log(offset.left); // Distance from left of document
+
+// Get the coordinates of the first element relative to its offset parent
+// Returns an object with top and left properties
+const position = $('.element').position();
+console.log(position.top);  // Distance from offset parent
+console.log(position.left); // Distance from offset parent
+```
+
 #### Content Manipulation
 
 ```js
