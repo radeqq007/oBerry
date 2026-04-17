@@ -90,7 +90,7 @@ $<HTMLFormElement>('.my-form');
 
 ```js
 $('.element')
-  .class() // Get the array of classes
+  .class() // Get the array of classes of the first element
   .class('old-class', 'remove') // Remove a class
   .class('new-class', 'add'); // Add a class
   .class('toggled-class', 'toggle') // Toggle a class
