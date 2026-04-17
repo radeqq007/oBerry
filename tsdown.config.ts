@@ -5,5 +5,5 @@ export default {
 	outDir: "dist",
 	sourceMap: true,
 	clean: true,
-  	target: false,
+	target: false,
 };

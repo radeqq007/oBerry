@@ -436,7 +436,11 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 			return new ElementWrapper([]);
 		}
 
-		return new ElementWrapper((selector ? [...children].filter(ch => ch.matches(selector)) : [...children]) as HTMLElement[]);
+		return new ElementWrapper(
+			(selector
+				? [...children].filter((ch) => ch.matches(selector))
+				: [...children]) as HTMLElement[],
+		);
 	}
 
 	/**
@@ -449,7 +453,11 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 			children.push(...(Array.from(el.children) as HTMLElement[]));
 		}
 
-		return new ElementWrapper((selector ? [...children].filter(ch => ch.matches(selector)) : [...children]));
+		return new ElementWrapper(
+			selector
+				? [...children].filter((ch) => ch.matches(selector))
+				: [...children],
+		);
 	}
 
 	/**
@@ -461,13 +469,15 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 		if (!el?.parentElement) {
 			return new ElementWrapper([]);
 		}
- 
+
 		const sibs = [...el.parentElement.children].filter(
 			(child): child is HTMLElement =>
 				child !== el && child instanceof HTMLElement,
 		);
- 
-		return new ElementWrapper(selector ? sibs.filter((s) => s.matches(selector)) : sibs);
+
+		return new ElementWrapper(
+			selector ? sibs.filter((s) => s.matches(selector)) : sibs,
+		);
 	}
 
 	/**
@@ -489,8 +499,9 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 			}
 		}
 
-
-		return new ElementWrapper(selector ? sibs.filter((s) => s.matches(selector)) : sibs);
+		return new ElementWrapper(
+			selector ? sibs.filter((s) => s.matches(selector)) : sibs,
+		);
 	}
 
 	/**
