@@ -438,8 +438,8 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 
 		return new ElementWrapper(
 			(selector
-				? [...children].filter((ch) => ch.matches(selector))
-				: [...children]) as HTMLElement[],
+				? Array.from(children).filter((ch) => ch.matches(selector))
+				: Array.from(children)) as HTMLElement[],
 		);
 	}
 
