@@ -815,7 +815,7 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 		}
 
 		for (const element of this.elements) {
-			element.style.width = typeof value === 'number' ? `${value}px` : value;
+			element.style.width = typeof value === "number" ? `${value}px` : value;
 		}
 
 		return this;
@@ -846,7 +846,7 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 		}
 
 		for (const element of this.elements) {
-			element.style.height = typeof value === 'number' ? `${value}px` : value;
+			element.style.height = typeof value === "number" ? `${value}px` : value;
 		}
 
 		return this;
