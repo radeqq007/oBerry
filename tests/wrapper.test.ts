@@ -333,4 +333,119 @@ describe("ElementWrapper", () => {
 			expect(mockCallback).toHaveBeenCalledTimes(2);
 		});
 	});
+
+	describe("Dimensions", () => {
+		beforeEach(() => {
+			document.body.innerHTML = `
+        <div id="box" style="width: 200px; height: 100px; padding: 10px; margin: 5px; border: 2px solid black; position: absolute; top: 50px; left: 30px; display: block;">
+          Content
+        </div>
+        <div id="parent" style="position: relative; width: 300px; height: 200px;">
+          <div class="multi-box" style="width: 50px; height: 30px;">Box 1</div>
+          <div class="multi-box" style="width: 50px; height: 30px;">Box 2</div>
+          <div id="child" style="position: absolute; top: 20px; left: 10px; width: 50px; height: 30px;">
+            Child
+          </div>
+        </div>
+      `;
+		});
+
+		describe("width", () => {
+			it("should get the width style of the first element", () => {
+				const width = $("#box").width();
+				expect(width).toBe(200);
+			});
+
+			it("should return undefined for empty selection", () => {
+				const width = $("#nonexistent").width();
+				expect(width).toBeUndefined();
+			});
+
+			it("should set the width of all elements", () => {
+				const wrapper = $("#box").width(300);
+				expect(wrapper.elements[0].style.width).toBe("300px");
+			});
+
+			it("should set width on multiple elements", () => {
+				const wrapper = $(".multi-box").width(100);
+				expect(wrapper.elements[0].style.width).toBe("100px");
+				expect(wrapper.elements[1].style.width).toBe("100px");
+			});
+
+			it("should return this when setting width", () => {
+				const wrapper = $("#box").width(250);
+				expect(wrapper).toBe(wrapper);
+			});
+		});
+
+		describe("height", () => {
+			it("should get the height style of the first element", () => {
+				const height = $("#box").height();
+				expect(height).toBe(100);
+			});
+
+			it("should return undefined for empty selection", () => {
+				const height = $("#nonexistent").height();
+				expect(height).toBeUndefined();
+			});
+
+			it("should set the height of all elements", () => {
+				const wrapper = $("#box").height(150);
+				expect(wrapper.elements[0].style.height).toBe("150px");
+			});
+
+			it("should set height on multiple elements", () => {
+				const wrapper = $(".multi-box").height(80);
+				expect(wrapper.elements[0].style.height).toBe("80px");
+				expect(wrapper.elements[1].style.height).toBe("80px");
+			});
+
+			it("should return this when setting height", () => {
+				const wrapper = $("#box").height(200);
+				expect(wrapper).toBe(wrapper);
+			});
+		});
+
+		describe("offset", () => {
+			it("should get the offset coordinates of the first element", () => {
+				const offset = $("#box").offset();
+				expect(offset).toBeDefined();
+				expect(typeof offset?.top).toBe("number");
+				expect(typeof offset?.left).toBe("number");
+			});
+
+			it("should return undefined for empty selection", () => {
+				const offset = $("#nonexistent").offset();
+				expect(offset).toBeUndefined();
+			});
+
+			it("should return object with top and left properties", () => {
+				const offset = $("#box").offset();
+				expect(offset).toHaveProperty("top");
+				expect(offset).toHaveProperty("left");
+			});
+		});
+
+		describe("position", () => {
+			it("should get the position relative to offset parent", () => {
+				const position = $("#child").position();
+				expect(position).toBeDefined();
+				expect(position).toHaveProperty("top");
+				expect(position).toHaveProperty("left");
+				expect(typeof position?.top).toBe("number");
+				expect(typeof position?.left).toBe("number");
+			});
+
+			it("should return undefined for empty selection", () => {
+				const position = $("#nonexistent").position();
+				expect(position).toBeUndefined();
+			});
+
+			it("should return object with top and left properties", () => {
+				const position = $("#child").position();
+				expect(position).toHaveProperty("top");
+				expect(position).toHaveProperty("left");
+			});
+		});
+	});
 });
