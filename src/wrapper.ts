@@ -798,7 +798,11 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 	 * Set the width of all elements (in pixels).
 	 */
 	width(value: number): this;
-	width(value?: number): this | number | undefined {
+	/**
+	 * Set the width of all elements.
+	 */
+	width(value: string): this;
+	width(value?: number | string): this | number | undefined {
 		const el = this.elements[0];
 		if (!el) {
 			return value !== undefined ? this : undefined;
@@ -811,7 +815,7 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 		}
 
 		for (const element of this.elements) {
-			element.style.width = `${value}px`;
+			element.style.width = typeof value === 'number' ? `${value}px` : value;
 		}
 
 		return this;
@@ -825,7 +829,11 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 	 * Set the height of all elements (in pixels).
 	 */
 	height(value: number): this;
-	height(value?: number): this | number | undefined {
+	/**
+	 * Set the height of all elements).
+	 */
+	height(value: string): this;
+	height(value?: number | string): this | number | undefined {
 		const el = this.elements[0];
 		if (!el) {
 			return value !== undefined ? this : undefined;
@@ -838,7 +846,7 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 		}
 
 		for (const element of this.elements) {
-			element.style.height = `${value}px`;
+			element.style.height = typeof value === 'number' ? `${value}px` : value;
 		}
 
 		return this;
