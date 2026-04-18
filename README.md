@@ -307,6 +307,14 @@ $('.elements').filter((element, index) => {
 $('.elements').forEach(wrappedElement => {
   wrappedElement.class('processed');
 });
+
+// Transform elements into an array of values
+const texts = $('.items').map(el => el.text());
+// ['Item 1', 'Item 2', 'Item 3']
+
+// Accumulate a value over all elements
+const combined = $('.items').reduce((acc, el) => acc + el.text() + ' ', '');
+// 'Item 1 Item 2 Item 3 '
 ```
 
 #### Element Information
