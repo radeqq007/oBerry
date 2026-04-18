@@ -773,6 +773,27 @@ export class ElementWrapper<T extends HTMLElement = HTMLElement> {
 		return new ElementWrapper<T>(filteredElements);
 	}
 
+  /**
+	 * Transform each element into a value, returning an array of results.
+	 */
+  map<R>(callback: (el: ElementWrapper<T>, index: number) => R): R[] {
+    return this.elements.map((el, idx) => callback(new ElementWrapper<T>([el]), idx));
+  }
+
+  /**
+	 * Accumulate a value over all elements.
+	 */
+	reduce<R>(
+		callback: (acc: R, el: ElementWrapper<T>, index: number) => R,
+		initial: R,
+	): R {
+		return this.elements.reduce(
+			(acc, el, index) => callback(acc, new ElementWrapper<T>([el]), index),
+			initial,
+		);
+	}
+  
+
 	forEach(callback: (el: ElementWrapper<T>, index: number) => void) {
 		for (let i = 0; i < this.elements.length; i++) {
 			const el = this.elements[i];
